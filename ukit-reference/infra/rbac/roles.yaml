@@ -1,0 +1,99 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# infra/rbac/roles.yaml
+# Giai đoạn 4: Phân quyền RBAC / IAM — 3 tầng
+#   SysAdmin   → Kernel/OS management only
+#   NodeOp     → P2P sync, block propagation
+#   Treasury   → Node.js scripts, auto-sign transactions
+# ──────────────────────────────────────────────────────────────────────────────
+
+version: "1.0"
+project: "axioledger"
+
+roles:
+  # ── Tier 1: SysAdmin ────────────────────────────────────────────────────────
+  - name: sysadmin
+    description: "System Administrator — OS and kernel management only"
+    permissions:
+      os:
+        - "kernel.upgrade"
+        - "os.packages.install"
+        - "os.packages.remove"
+        - "disk.partition"
+        - "network.interface.configure"
+        - "firewall.rules.manage"
+        - "cron.system.manage"
+      axioledger:
+        - "node.start"
+        - "node.stop"
+        - "node.restart"
+    forbidden:
+      - "keys.read"
+      - "keys.write"
+      - "treasury.sign"
+      - "governance.vote"
+      - "smart_contract.deploy"
+
+  # ── Tier 2: Node Operator ────────────────────────────────────────────────────
+  - name: node-operator
+    description: "Node Operator — P2P sync, block propagation, RPC monitoring"
+    permissions:
+      axioledger:
+        - "vpx.node.start"
+        - "vpx.node.stop"
+        - "sqx.node.start"
+        - "sqx.node.stop"
+        - "rpc.read"
+        - "metrics.read"
+        - "logs.read"
+        - "peers.connect"
+        - "peers.disconnect"
+    forbidden:
+      - "keys.read"
+      - "keys.write"
+      - "treasury.sign"
+      - "governance.vote"
+      - "smart_contract.deploy"
+      - "os.packages.install"
+
+  # ── Tier 3: Treasury Engine ──────────────────────────────────────────────────
+  - name: treasury-engine
+    description: "Treasury Engine — Auto-sign treasury transactions only"
+    permissions:
+      axioledger:
+        - "treasury.gas_sweep.execute"
+        - "treasury.vpx_subsidy.distribute"
+        - "treasury.rpc.read"
+    key_access:
+      - path: "./keys/treasury-engine.json"
+        mode: "sign-only"    # Cannot read raw key bytes, only sign approved tx types
+    forbidden:
+      - "governance.vote"
+      - "smart_contract.deploy"
+      - "keys.root.read"
+      - "os.packages.install"
+      - "node.start"
+      - "node.stop"
+
+# ── Service Accounts ──────────────────────────────────────────────────────────
+service_accounts:
+  - id: "sa-vpx-node-0"
+    role: "node-operator"
+    host: "vpx-node-0.internal"
+    key: "./keys/sa-vpx-node-0.json"
+
+  - id: "sa-sqx-node-0"
+    role: "node-operator"
+    host: "sqx-node-0.internal"
+    key: "./keys/sa-sqx-node-0.json"
+
+  - id: "sa-treasury-engine"
+    role: "treasury-engine"
+    host: "treasury.internal"
+    key: "./keys/treasury-engine.json"
+
+# ── Audit Log ─────────────────────────────────────────────────────────────────
+audit:
+  enabled: true
+  log_path: "./logs/rbac-audit.jsonl"
+  alert_on_forbidden: true
+  alert_webhook: "${ALERT_WEBHOOK_URL}"

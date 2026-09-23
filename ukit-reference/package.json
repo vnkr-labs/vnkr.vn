@@ -1,0 +1,38 @@
+{
+  "name": "axioledger-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AxioLedger ($AXQ) — Hub & 4 Pillars monorepo (500,000 LOC target)",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "core-nodes/*",
+    "smart-contracts/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "audit:supply-chain": "npm audit --audit-level=moderate && turbo run audit",
+    "dev": "turbo run dev --parallel"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "author": "AxioLedger Core Team",
+  "license": "BSL-1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axioledger/axioledger-monorepo"
+  },
+  "keywords": [
+    "blockchain", "L2", "zk-proofs", "dao", "defi", "axioledger", "axq"
+  ]
+}

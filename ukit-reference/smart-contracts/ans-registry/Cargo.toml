@@ -1,0 +1,19 @@
+[package]
+name = "ans-registry"
+version = "0.1.0"
+edition = "2021"
+license = "BSL-1.1"
+description = "ANS Namespace Registry — .axq / .vpx / .sqx / .kpx / .vrq domains"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "1.18"
+borsh = "1.5"
+borsh-derive = "1.5"
+thiserror = "1.0"
+
+[dev-dependencies]
+solana-program-test = "1.18"
+tokio = { version = "1", features = ["macros"] }

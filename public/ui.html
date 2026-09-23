@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VNKR.VN — Tài Liệu Thiết Kế & Nhận Diện Thương Hiệu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/vnkr-tokens.css" />
+    <link rel="stylesheet" href="/assets/css/vnkr-ui.css" />
+</head>
+
+<body>
+
+    <!-- ══ NAV ══ -->
+    <nav class="vnkr-nav">
+        <a href="#" class="vnkr-nav-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="#E84118"/>
+                <text x="6" y="23" font-family="serif" font-size="16" font-weight="900" fill="white">VN</text>
+            </svg>
+            <span class="logo-vn">VN</span><span class="logo-kr">KR</span>
+            <span class="logo-badge">v2.0</span>
+        </a>
+        <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+            <button class="vnkr-theme-toggle" aria-label="Chuyển sang Dark Mode" title="Chuyển sang Dark Mode">🌙</button>
+            <button id="vnkr-nav-toggle" class="vnkr-nav-toggle" aria-label="Mở menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <ul class="vnkr-nav-links">
+            <li><a href="#identity">Nhận Diện</a></li>
+            <li><a href="#colors">Màu Sắc</a></li>
+            <li><a href="#typography">Chữ Viết</a></li>
+            <li><a href="#chuyen-muc">Chuyên Mục</a></li>
+            <li><a href="#tech">Kỹ Thuật</a></li>
+            <li><a href="#roadmap">Lộ Trình</a></li>
+            <li><a href="#kpi">KPI</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#loading">Loading</a></li>
+            <li><a href="#components">Components</a></li>
+        </ul>
+    </nav>
+
+    <!-- ══ HERO ══ -->
+    <section class="vnkr-hero">
+        <div class="vnkr-hero-tag">Tài Liệu Nhận Diện Thương Hiệu</div>
+        <h1><span class="accent-vn">VN</span><span class="accent-kr">KR</span><span class="accent-dot">.</span>VN</h1>
+        <p class="vnkr-hero-slogan">"Tin tức được biên tập — Dành cho cộng đồng"</p>
+        <p class="vnkr-hero-slogan2">Việt Nam · King Review — Nền tảng thông tin cộng đồng do Phạm Thế Bảo vận hành</p>
+        <div class="vnkr-hero-btns">
+            <a href="#identity" class="vnkr-btn vnkr-btn--primary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 6l6 6-6 6M6 12h12"/></svg>
+                Xem Nhận Diện
+            </a>
+            <a href="#roadmap" class="vnkr-btn vnkr-btn--outline">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                Lộ Trình
+            </a>
+        </div>
+        <div class="vnkr-hero-stats">
+            <div class="vnkr-stat"><div class="vnkr-stat-num">9</div><div class="vnkr-stat-label">Chuyên Mục</div></div>
+            <div class="vnkr-stat"><div class="vnkr-stat-num">3×</div><div class="vnkr-stat-label">Bài / Ngày</div></div>
+            <div class="vnkr-stat"><div class="vnkr-stat-num">Laravel</div><div class="vnkr-stat-label">PHP 8.2</div></div>
+            <div class="vnkr-stat"><div class="vnkr-stat-num">100%</div><div class="vnkr-stat-label">Nội Dung Gốc PTB</div></div>
+            <div class="vnkr-stat"><div class="vnkr-stat-num">vnkr.vn</div><div class="vnkr-stat-label">Domain Chính</div></div>
+        </div>
+    </section>
+
+    <!-- ══ NHẬN DIỆN ══ -->
+    <section class="vnkr-section vnkr-section--alt" id="identity">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Nhận Diện Thương Hiệu</div>
+            <div class="vnkr-section-sub">Thông tin định danh đầy đủ của VNKR — Việt Nam · King Review</div>
+            <div class="vnkr-identity-grid">
+                <div class="vnkr-identity-card">
+                    <div class="vnkr-identity-icon" style="background:#D6E8F5;">📰</div>
+                    <h3>Tên & Domain</h3>
+                    <div class="vnkr-identity-value">
+                        <strong>VNKR — Tin Tức Cộng Đồng</strong><br/>
+                        vnkr.vn &nbsp;·&nbsp; HTTPS ✅<br/>
+                        <em>VN = Việt Nam &nbsp;·&nbsp; KR = King Review</em>
+                    </div>
+                </div>
+                <div class="vnkr-identity-card">
+                    <div class="vnkr-identity-icon" style="background:#FDECEA;">👑</div>
+                    <h3>Biên Tập Viên</h3>
+                    <div class="vnkr-identity-value">
+                        <strong>Phạm Thế Bảo</strong><br/>
+                        Cộng đồng: TheKingBao<br/>
+                        phamthebao@vnkr.vn
+                    </div>
+                </div>
+                <div class="vnkr-identity-card">
+                    <div class="vnkr-identity-icon" style="background:#FEF6E0;">💬</div>
+                    <h3>Slogan Chính</h3>
+                    <div class="vnkr-identity-value">
+                        <strong>"Tin tức được biên tập<br/>— Dành cho cộng đồng"</strong><br/>
+                        <span class="text-faint" style="font-size:12px;">Phụ: "Đọc ít hơn, hiểu nhiều hơn"</span>
+                    </div>
+                </div>
+                <div class="vnkr-identity-card">
+                    <div class="vnkr-identity-icon" style="background:#D6E8F5;">⚖️</div>
+                    <h3>Loại Hình Pháp Lý</h3>
+                    <div class="vnkr-identity-value">
+                        <strong>Trang thông tin điện tử tổng hợp</strong><br/>
+                        Cá nhân vận hành — không phải báo điện tử<br/>
+                        Luật Báo chí 2016 · NĐ 72/2013
+                    </div>
+                </div>
+                <div class="vnkr-identity-card">
+                    <div class="vnkr-identity-icon" style="background:#e6f9f1;">🏗️</div>
+                    <h3>Nền Tảng Kỹ Thuật</h3>
+                    <div class="vnkr-identity-value">
+                        <strong>Laravel 10 / PHP 8.2</strong><br/>
+                        MySQL · Redis Cache<br/>
+                        Vite · TailwindCSS
+                    </div>
+                </div>
+                <div class="vnkr-identity-card">
+                    <div class="vnkr-identity-icon" style="background:#FEF6E0;">📱</div>
+                    <h3>Mạng Xã Hội</h3>
+                    <div class="vnkr-identity-value">
+                        <strong>Facebook:</strong> @thekingbao / @vnkr.vn<br/>
+                        <strong>Zalo:</strong> Group cộng đồng TheKingBao<br/>
+                        <strong>TikTok/YouTube:</strong> @thekingbao
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ MÀU SẮC ══ -->
+    <section class="vnkr-section" id="colors">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Màu Sắc Thương Hiệu</div>
+            <div class="vnkr-section-sub">Bảng màu nhận diện VNKR — phân biệt hoàn toàn với các báo chính thống</div>
+
+            <div class="vnkr-palette-wrap">
+                <div class="vnkr-palette-label">Màu Chủ — Brand Colors</div>
+                <div class="vnkr-color-row">
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#0A3D62;"></div><div class="vnkr-swatch-name">Brand Blue</div><div class="vnkr-swatch-hex">#0A3D62</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#1E6FA5;"></div><div class="vnkr-swatch-name">Brand Alt</div><div class="vnkr-swatch-hex">#1E6FA5</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#D6E8F5;"></div><div class="vnkr-swatch-name">Brand Light</div><div class="vnkr-swatch-hex">#D6E8F5</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#E84118;"></div><div class="vnkr-swatch-name">Accent Red</div><div class="vnkr-swatch-hex">#E84118</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#F0A500;"></div><div class="vnkr-swatch-name">Gold</div><div class="vnkr-swatch-hex">#F0A500</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#FEF6E0;"></div><div class="vnkr-swatch-name">Gold Light</div><div class="vnkr-swatch-hex">#FEF6E0</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#f4f6f8;border:1.5px solid #d1dce8;"></div><div class="vnkr-swatch-name">BG Page</div><div class="vnkr-swatch-hex">#f4f6f8</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#1a1a1a;"></div><div class="vnkr-swatch-name">Text Dark</div><div class="vnkr-swatch-hex">#1a1a1a</div></div>
+                </div>
+            </div>
+
+            <div class="vnkr-palette-wrap">
+                <div class="vnkr-palette-label">Màu Ngữ Nghĩa — Semantic Colors</div>
+                <div class="vnkr-color-row">
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#00A878;"></div><div class="vnkr-swatch-name">Success</div><div class="vnkr-swatch-hex">#00A878</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#F0A500;"></div><div class="vnkr-swatch-name">Warning</div><div class="vnkr-swatch-hex">#F0A500</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#E84118;"></div><div class="vnkr-swatch-name">Error</div><div class="vnkr-swatch-hex">#E84118</div></div>
+                    <div class="vnkr-color-swatch"><div class="vnkr-swatch-box" style="background:#1E6FA5;"></div><div class="vnkr-swatch-name">Info</div><div class="vnkr-swatch-hex">#1E6FA5</div></div>
+                </div>
+            </div>
+
+            <div class="vnkr-code-block">
+                <code><span class="code-comment">/* vnkr-tokens.css — import vào bất kỳ trang nào */</span>
+<span class="code-key">@import</span> <span class="code-str">'/assets/css/vnkr-tokens.css'</span>;
+<span class="code-key">@import</span> <span class="code-str">'/assets/css/vnkr-ui.css'</span>;
+
+<span class="code-comment">/* Dùng token trong CSS của bạn */</span>
+<span class="code-prop">.article-title</span> {
+  color:       <span class="code-val">var(--brand)</span>;
+  font-family: <span class="code-val">var(--font-main)</span>;
+  font-size:   <span class="code-val">var(--text-5xl)</span>;
+  font-weight: <span class="code-val">var(--fw-extrabold)</span>;
+}
+<span class="code-prop">.breaking-label</span> {
+  background:  <span class="code-val">var(--accent)</span>;
+  color:       <span class="code-val">var(--white)</span>;
+  border-radius: <span class="code-val">var(--radius-full)</span>;
+}</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CHỮ VIẾT ══ -->
+    <section class="vnkr-section vnkr-section--alt" id="typography">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Chữ Viết — Be Vietnam Pro</div>
+            <div class="vnkr-section-sub">Font Việt hóa hoàn toàn — H1 đến Caption, body đọc dễ, chuẩn báo chí</div>
+            <div class="vnkr-type-grid">
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/headline</div><div class="vnkr-type-spec">72px · 800</div></div>
+                    <div class="vnkr-type-sample" style="font-size:48px;font-weight:800;line-height:1;color:#0A3D62;letter-spacing:-1.5px;">VNKR</div>
+                </div>
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/h1</div><div class="vnkr-type-spec">36px · 800</div></div>
+                    <div class="vnkr-type-sample" style="font-size:32px;font-weight:800;line-height:1.1;color:#0A3D62;">Tin tức nổi bật trong ngày</div>
+                </div>
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/h2</div><div class="vnkr-type-spec">28px · 700</div></div>
+                    <div class="vnkr-type-sample" style="font-size:24px;font-weight:700;">Góc Nhìn PTB — Phân tích tuần</div>
+                </div>
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/h3</div><div class="vnkr-type-spec">22px · 700</div></div>
+                    <div class="vnkr-type-sample" style="font-size:20px;font-weight:700;">Tiêu đề bài viết chuyên mục</div>
+                </div>
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/body-lg</div><div class="vnkr-type-spec">17px · 400</div></div>
+                    <div class="vnkr-type-sample" style="font-size:17px;line-height:1.65;">Đoạn lead của bài viết — tóm tắt bản chất sự kiện trong 1-2 câu ngắn gọn, súc tích.</div>
+                </div>
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/body</div><div class="vnkr-type-spec">15px · 400</div></div>
+                    <div class="vnkr-type-sample" style="font-size:15px;line-height:1.7;">Nội dung biên tập — diễn giải lại từ nguồn, thêm bối cảnh, không copy nguyên văn từ báo gốc.</div>
+                </div>
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/caption</div><div class="vnkr-type-spec">12px · 400</div></div>
+                    <div class="vnkr-type-sample" style="font-size:12px;color:#5a6a7a;">Nguồn: VnExpress · Biên tập: Phạm Thế Bảo / VNKR · 22/09/2026</div>
+                </div>
+                <div class="vnkr-type-row">
+                    <div class="vnkr-type-meta"><div class="vnkr-type-token">text/overline</div><div class="vnkr-type-spec">11px · 700 · UPPER</div></div>
+                    <div class="vnkr-type-sample vnkr-overline">BREAKING NEWS &nbsp;·&nbsp; THỜI SỰ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CHUYÊN MỤC ══ -->
+    <section class="vnkr-section" id="chuyen-muc">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">9 Chuyên Mục VNKR</div>
+            <div class="vnkr-section-sub">Ma trận nội dung và tần suất đăng bài theo từng chuyên mục</div>
+            <div class="cm-grid">
+                <div class="cm-card"><div class="cm-emoji">🇻🇳</div><div class="cm-name">Thời Sự</div><div class="cm-freq">5 bài/tuần</div><span class="vnkr-tag">Tổng hợp + nhận xét</span></div>
+                <div class="cm-card"><div class="cm-emoji">🌍</div><div class="cm-name">Thế Giới</div><div class="cm-freq">3 bài/tuần</div><span class="vnkr-tag">Tổng hợp + bối cảnh</span></div>
+                <div class="cm-card"><div class="cm-emoji">💼</div><div class="cm-name">Kinh Doanh</div><div class="cm-freq">3 bài/tuần</div><span class="vnkr-tag">Phân tích số liệu</span></div>
+                <div class="cm-card"><div class="cm-emoji">⚽</div><div class="cm-name">Thể Thao</div><div class="cm-freq">4 bài/tuần</div><span class="vnkr-tag">Điểm tin + bình luận</span></div>
+                <div class="cm-card"><div class="cm-emoji">🎬</div><div class="cm-name">Giải Trí</div><div class="cm-freq">2 bài/tuần</div><span class="vnkr-tag">Điểm tin nhẹ nhàng</span></div>
+                <div class="cm-card"><div class="cm-emoji">🏥</div><div class="cm-name">Sức Khỏe</div><div class="cm-freq">2 bài/tuần</div><span class="vnkr-tag">Biên tập kỹ — y tế</span></div>
+                <div class="cm-card"><div class="cm-emoji">💻</div><div class="cm-name">Công Nghệ</div><div class="cm-freq">3 bài/tuần</div><span class="vnkr-tag">Review + phân tích</span></div>
+                <div class="cm-card"><div class="cm-emoji">🌱</div><div class="cm-name">Đời Sống</div><div class="cm-freq">2 bài/tuần</div><span class="vnkr-tag">Phong cách sống</span></div>
+                <div class="cm-card cm-card--gold"><div class="cm-emoji">👑</div><div class="cm-name" style="color:#7a5200;">Góc Nhìn PTB</div><div class="cm-freq">1 bài/tuần (Thứ 7)</div><span class="vnkr-tag vnkr-tag--gold">100% Nội Dung Gốc</span></div>
+            </div>
+
+            <div class="sub-heading">Tháp Nội Dung VNKR</div>
+            <div class="vnkr-pyramid">
+                <div class="vnkr-pyramid-row" style="background:#FEF6E0;">
+                    <div class="vnkr-pyramid-num" style="background:#F0A500;">1</div>
+                    <div><div class="vnkr-pyramid-title" style="color:#7a5200;">Góc Nhìn PTB — 10% khối lượng</div><div class="vnkr-pyramid-desc" style="color:#5a3e00;">100% nội dung gốc · Cao nhất về giá trị · PTB trực tiếp viết quan điểm cá nhân</div></div>
+                </div>
+                <div class="vnkr-pyramid-row" style="background:#D6E8F5;">
+                    <div class="vnkr-pyramid-num" style="background:#1E6FA5;">2</div>
+                    <div><div class="vnkr-pyramid-title" style="color:#0A3D62;">Biên Tập Chuyên Sâu — 25% khối lượng</div><div class="vnkr-pyramid-desc" style="color:#1e3a5f;">Tổng hợp + bình luận PTB · Tin quan trọng / tuần · 30% nội dung gốc</div></div>
+                </div>
+                <div class="vnkr-pyramid-row" style="background:#f4f6f8;border:1px solid #d1dce8;">
+                    <div class="vnkr-pyramid-num" style="background:#5a6a7a;">3</div>
+                    <div><div class="vnkr-pyramid-title">Tin Tổng Hợp Thường Ngày — 65% khối lượng</div><div class="vnkr-pyramid-desc text-muted">Tóm tắt + trích nguồn · Cập nhật nhanh mỗi ngày · Trích nguồn đầy đủ</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CHÂN DUNG ĐỘC GIẢ ══ -->
+    <section class="vnkr-section vnkr-section--alt">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Chân Dung Độc Giả</div>
+            <div class="vnkr-section-sub">3 nhóm độc giả mục tiêu — hiểu để tạo nội dung phù hợp</div>
+            <div class="vnkr-grid vnkr-grid--md">
+                <div class="vnkr-persona-card vnkr-persona-card--p1">
+                    <div class="vnkr-persona-tag">Persona 1 — Primary</div>
+                    <div class="vnkr-persona-name">Người Việt Bận Rộn</div>
+                    <div class="vnkr-persona-detail"><strong>Tuổi:</strong> 22–38 · <strong>Nghề:</strong> Văn phòng, sinh viên, startup<br/><strong>Nhu cầu:</strong> Nắm bắt tin nhanh, hiểu bản chất vấn đề<br/><strong>Nỗi đau:</strong> Quá nhiều thông tin nhiễu, không biết tin ai<br/><strong>VNKR:</strong> Tin đã lọc + góc nhìn thực tế từ PTB</div>
+                </div>
+                <div class="vnkr-persona-card vnkr-persona-card--p2">
+                    <div class="vnkr-persona-tag">Persona 2 — Core Community</div>
+                    <div class="vnkr-persona-name">Thành Viên TheKingBao</div>
+                    <div class="vnkr-persona-detail"><strong>Tuổi:</strong> 18–30 · Theo dõi PTB từ trước<br/><strong>Nhu cầu:</strong> Nơi cộng đồng tập trung, thảo luận lành mạnh<br/><strong>Đặc điểm:</strong> Trung thành, sẵn sàng chia sẻ<br/><strong>VNKR:</strong> Hub thông tin + cộng đồng bình luận</div>
+                </div>
+                <div class="vnkr-persona-card vnkr-persona-card--p3">
+                    <div class="vnkr-persona-tag">Persona 3 — Growth</div>
+                    <div class="vnkr-persona-name">Người Quan Tâm Cộng Đồng</div>
+                    <div class="vnkr-persona-detail"><strong>Tuổi:</strong> 30–50 · Muốn đọc tin không thiên lệch<br/><strong>Nhu cầu:</strong> Nguồn tin đáng tin, có giải thích rõ ràng<br/><strong>Đặc điểm:</strong> Ít dùng mạng xã hội, tìm kiếm Google<br/><strong>VNKR:</strong> Biên tập có trách nhiệm + trích nguồn minh bạch</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ KỸ THUẬT ══ -->
+    <section class="vnkr-section" id="tech">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Stack Kỹ Thuật</div>
+            <div class="vnkr-section-sub">Nền tảng kỹ thuật hiện tại và hướng mở rộng theo lộ trình</div>
+            <div class="vnkr-grid vnkr-grid--sm" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#FDECEA;">🐘</div><div><div class="vnkr-tech-name">Laravel 10 / PHP 8.2</div><div class="vnkr-tech-desc">Framework backend chính — dễ mở rộng, bảo trì tốt</div></div></div>
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#D6E8F5;">🗄️</div><div><div class="vnkr-tech-name">MySQL Database</div><div class="vnkr-tech-desc">Lưu trữ bài viết, bình luận, người dùng</div></div></div>
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#FEF6E0;">⚡</div><div><div class="vnkr-tech-name">Redis Cache</div><div class="vnkr-tech-desc">Caching trang — mục tiêu cache hit &gt;70%</div></div></div>
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#e6f9f1;">⚙️</div><div><div class="vnkr-tech-name">Vite + TailwindCSS</div><div class="vnkr-tech-desc">Build tool frontend, CSS utility-first</div></div></div>
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#D6E8F5;">🔍</div><div><div class="vnkr-tech-name">Meilisearch (Tháng 2)</div><div class="vnkr-tech-desc">Full-text search Tiếng Việt — thay LIKE query</div></div></div>
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#FEF6E0;">🗺️</div><div><div class="vnkr-tech-name">Spatie Sitemap + Feed</div><div class="vnkr-tech-desc">Sitemap XML tự động · RSS Feed /feed</div></div></div>
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#FDECEA;">🏷️</div><div><div class="vnkr-tech-name">Spatie Tags</div><div class="vnkr-tech-desc">Hệ thống tags nâng cao cho phân loại nội dung</div></div></div>
+                <div class="vnkr-tech-card"><div class="vnkr-tech-icon" style="background:#e6f9f1;">📧</div><div><div class="vnkr-tech-name">Laravel Horizon + Queue</div><div class="vnkr-tech-desc">Gửi newsletter, xử lý ảnh nền — Tháng 3</div></div></div>
+            </div>
+
+            <div class="sub-heading">Mục Tiêu Hiệu Năng</div>
+            <div class="vnkr-progress-wrap">
+                <div class="vnkr-progress-label"><span>Lighthouse Performance (hiện: ~60)</span><span>Mục tiêu: 85+</span></div>
+                <div class="vnkr-progress-bg"><div class="vnkr-progress-fill" data-width="60%" style="width:60%;"></div></div>
+                <div class="vnkr-progress-label"><span>Redis Cache Hit Rate (hiện: 0%)</span><span>Mục tiêu: 70%+</span></div>
+                <div class="vnkr-progress-bg"><div class="vnkr-progress-fill vnkr-progress-fill--gold" data-width="10%" style="width:10%;"></div></div>
+                <div class="vnkr-progress-label"><span>Google Index Rate (hiện: ước tính ~80%)</span><span>Mục tiêu: 95%</span></div>
+                <div class="vnkr-progress-bg"><div class="vnkr-progress-fill vnkr-progress-fill--alt" data-width="80%" style="width:80%;"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PHÁP LÝ ══ -->
+    <section class="vnkr-section vnkr-section--alt">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Pháp Lý & Tuân Thủ</div>
+            <div class="vnkr-section-sub">Trạng thái pháp lý và các trang đã triển khai trên site</div>
+            <div class="legal-grid">
+                <div class="legal-card"><h3>📄 Trang Giới Thiệu</h3><span class="vnkr-badge vnkr-badge--success">✅ Live — /gioi-thieu</span><p>Ghi rõ: trang thông tin tổng hợp, không phải báo điện tử, người vận hành là cá nhân Phạm Thế Bảo.</p></div>
+                <div class="legal-card"><h3>📋 Điều Khoản Sử Dụng</h3><span class="vnkr-badge vnkr-badge--success">✅ Live — /dieu-khoan</span><p>Điều khoản rõ ràng, phân biệt nội dung biên tập và quan điểm cá nhân.</p></div>
+                <div class="legal-card"><h3>🔒 Chính Sách Bảo Mật</h3><span class="vnkr-badge vnkr-badge--success">✅ Live — /chinh-sach-bao-mat</span><p>Bảo vệ dữ liệu người dùng, tuân thủ quy định về lưu trữ thông tin.</p></div>
+                <div class="legal-card"><h3>📜 Quy Chế Hoạt Động</h3><span class="vnkr-badge vnkr-badge--success">✅ Live — /quy-che-hoat-dong</span><p>Quy định biên tập, trích dẫn nguồn, chuẩn mực nội dung cộng đồng.</p></div>
+                <div class="legal-card"><h3>📌 Hộp Trích Nguồn</h3><span class="vnkr-badge vnkr-badge--success">✅ Cuối mỗi bài viết</span><p>Mỗi bài có hộp ghi rõ: Nguồn tham khảo · Link gốc · Biên tập: Phạm Thế Bảo</p></div>
+                <div class="legal-card"><h3>🏢 Hộ Kinh Doanh</h3><span class="vnkr-badge vnkr-badge--warning">⏳ Khi đạt 100K lượt xem</span><p>Đăng ký hộ kinh doanh để hợp pháp hóa thu nhập từ affiliate, newsletter.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ LỘ TRÌNH ══ -->
+    <section class="vnkr-section" id="roadmap">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Lộ Trình 12 Tháng</div>
+            <div class="vnkr-section-sub">Kế hoạch hành động theo từng giai đoạn phát triển của VNKR</div>
+            <div class="vnkr-grid">
+                <div class="vnkr-roadmap-card vnkr-roadmap-card--p0">
+                    <h3>🚀 Tháng 1 — Đặt Nền Móng</h3>
+                    <div class="vnkr-roadmap-period">Tuần 1–4 · Ưu tiên P0</div>
+                    <div class="vnkr-roadmap-items">
+                        <div class="vnkr-roadmap-item">Đăng ký Google Search Console + Analytics</div>
+                        <div class="vnkr-roadmap-item">Tạo fanpage Facebook "VNKR — TheKingBao"</div>
+                        <div class="vnkr-roadmap-item">Viết 5 bài "Góc Nhìn PTB" đầu tiên</div>
+                        <div class="vnkr-roadmap-item">Cài Redis caching (đã có trên server)</div>
+                        <div class="vnkr-roadmap-item">Di chuyển bình luận JSON → MySQL</div>
+                        <div class="vnkr-roadmap-item">Tạo logo VNKR chuyên nghiệp (SVG)</div>
+                        <div class="vnkr-roadmap-item">Mục tiêu: 50 bài · 100 người dùng/tháng</div>
+                    </div>
+                </div>
+                <div class="vnkr-roadmap-card vnkr-roadmap-card--p1">
+                    <h3>📝 Tháng 2–3 — Xây Nội Dung</h3>
+                    <div class="vnkr-roadmap-period">P1 · Core Features</div>
+                    <div class="vnkr-roadmap-items">
+                        <div class="vnkr-roadmap-item">Cài hệ thống Tags (bảng tags + article_tag)</div>
+                        <div class="vnkr-roadmap-item">Full-text search (Meilisearch hoặc MySQL FULLTEXT)</div>
+                        <div class="vnkr-roadmap-item">Sitemap XML + RSS Feed /feed</div>
+                        <div class="vnkr-roadmap-item">Open Graph tags — preview khi share Facebook</div>
+                        <div class="vnkr-roadmap-item">Newsletter hàng tuần (Mailchimp free)</div>
+                        <div class="vnkr-roadmap-item">Schema.org NewsArticle JSON-LD</div>
+                        <div class="vnkr-roadmap-item">Mục tiêu: 100 bài · 500 người dùng/tháng</div>
+                    </div>
+                </div>
+                <div class="vnkr-roadmap-card vnkr-roadmap-card--p2">
+                    <h3>🔥 Tháng 4–6 — Kích Hoạt Cộng Đồng</h3>
+                    <div class="vnkr-roadmap-period">P2 · Growth Features</div>
+                    <div class="vnkr-roadmap-items">
+                        <div class="vnkr-roadmap-item">Mở tính năng Cộng Tác Viên TheKingBao</div>
+                        <div class="vnkr-roadmap-item">Mini contest: "Bình luận hay nhất tuần"</div>
+                        <div class="vnkr-roadmap-item">Video TikTok/YouTube Shorts — 3 video/tuần</div>
+                        <div class="vnkr-roadmap-item">Giao lưu group Facebook lớn về tin tức VN</div>
+                        <div class="vnkr-roadmap-item">Breaking news ticker từ DB (hiện hardcode)</div>
+                        <div class="vnkr-roadmap-item">Ảnh WebP tự động convert (intervention/image)</div>
+                        <div class="vnkr-roadmap-item">Mục tiêu: 500 bài · 5.000 người dùng/tháng</div>
+                    </div>
+                </div>
+                <div class="vnkr-roadmap-card vnkr-roadmap-card--p3">
+                    <h3>💰 Tháng 7–12 — Tăng Tốc & Bền Vững</h3>
+                    <div class="vnkr-roadmap-period">P3 · Scale & Revenue</div>
+                    <div class="vnkr-roadmap-items">
+                        <div class="vnkr-roadmap-item">Đăng ký hộ kinh doanh (nếu đạt traffic)</div>
+                        <div class="vnkr-roadmap-item">Bắt đầu Affiliate Marketing</div>
+                        <div class="vnkr-roadmap-item">Nút "Ủng hộ PTB" (Ko-fi/Momo)</div>
+                        <div class="vnkr-roadmap-item">REST API /api/v1/ (mobile app tương lai)</div>
+                        <div class="vnkr-roadmap-item">PWA (Progressive Web App)</div>
+                        <div class="vnkr-roadmap-item">Newsletter Premium có phí</div>
+                        <div class="vnkr-roadmap-item">Mục tiêu: 50.000 người dùng/tháng</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-heading">✅ Checklist Ngày 1 — Làm Ngay Hôm Nay</div>
+            <div class="vnkr-checklist">
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--now">!</div><div><strong>Đăng ký Google Search Console</strong> — verify domain vnkr.vn, submit sitemap.xml</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--now">!</div><div><strong>Đăng ký Google Analytics 4</strong> — thêm GA4 script vào fe/layouts/js.blade.php</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--now">!</div><div><strong>Tạo Facebook Page</strong> — "VNKR — Tin Tức Cộng Đồng" · @vnkr.vn · link về vnkr.vn</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--now">!</div><div><strong>Viết bài "Góc Nhìn PTB" đầu tiên</strong> — ít nhất 500 từ, quan điểm thật sự của PTB</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--now">!</div><div><strong>Cài backup MySQL tự động</strong> — crontab 2:00 sáng mỗi ngày</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--soon">7</div><div><strong>Logo VNKR chuyên nghiệp</strong> — SVG, Canva miễn phí hoặc Fiverr ~$10–20</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--soon">7</div><div><strong>Đăng ký email phamthebao@vnkr.vn</strong> — Zoho Mail free với custom domain</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--done">✓</div><div><strong>Domain vnkr.vn + HTTPS</strong> — Let's Encrypt, độ tin cậy cao, SEO sạch</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--done">✓</div><div><strong>Trang pháp lý đầy đủ</strong> — Giới thiệu, Điều khoản, Bảo mật, Quy chế</div></div>
+                <div class="vnkr-check-item"><div class="vnkr-check-icon vnkr-check-icon--done">✓</div><div><strong>Nền tảng Laravel 10 / PHP 8.2</strong> — Giao diện chuẩn báo chí, 8 chuyên mục, 19 bài mẫu</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ KPI ══ -->
+    <section class="vnkr-section vnkr-section--alt" id="kpi">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">KPI & Đo Lường Tăng Trưởng</div>
+            <div class="vnkr-section-sub">Dashboard mục tiêu theo từng nhóm chỉ số — Tháng 1 đến Tháng 12</div>
+
+            <p class="kpi-label">📊 KPI Nội Dung</p>
+            <div class="vnkr-table-wrap">
+                <table class="vnkr-table">
+                    <thead><tr><th>Chỉ Số</th><th>Tháng 1</th><th>Tháng 3</th><th>Tháng 6</th><th>Tháng 12</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-metric">Số bài viết tổng</td><td class="col-muted">50</td><td>150</td><td>400</td><td class="col-target">1.000</td></tr>
+                        <tr><td class="col-metric">Bài "Góc Nhìn PTB"</td><td class="col-muted">4</td><td>12</td><td>24</td><td class="col-target">50</td></tr>
+                        <tr><td class="col-metric">Thời gian đọc TB</td><td class="col-muted">—</td><td>2 phút</td><td>3 phút</td><td class="col-target">4 phút</td></tr>
+                        <tr><td class="col-metric">Bounce rate</td><td class="col-muted">—</td><td>&lt;70%</td><td>&lt;60%</td><td class="col-target">&lt;55%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="kpi-label">👥 KPI Cộng Đồng</p>
+            <div class="vnkr-table-wrap">
+                <table class="vnkr-table">
+                    <thead><tr><th>Chỉ Số</th><th>Tháng 1</th><th>Tháng 3</th><th>Tháng 6</th><th>Tháng 12</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-metric">Người dùng đăng ký</td><td class="col-muted">50</td><td>500</td><td>5.000</td><td class="col-target">30.000</td></tr>
+                        <tr><td class="col-metric">Newsletter subscriber</td><td class="col-muted">20</td><td>200</td><td>2.000</td><td class="col-target">10.000</td></tr>
+                        <tr><td class="col-metric">Bình luận/bài TB</td><td class="col-muted">1</td><td>3</td><td>8</td><td class="col-target">15</td></tr>
+                        <tr><td class="col-metric">Facebook followers</td><td class="col-muted">100</td><td>1.000</td><td>5.000</td><td class="col-target">20.000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="kpi-label">📈 KPI Traffic</p>
+            <div class="vnkr-table-wrap">
+                <table class="vnkr-table">
+                    <thead><tr><th>Chỉ Số</th><th>Tháng 1</th><th>Tháng 3</th><th>Tháng 12</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-metric">Pageviews/tháng</td><td class="col-muted">1.000</td><td>20.000</td><td class="col-target">500.000</td></tr>
+                        <tr><td class="col-metric">Organic search (%)</td><td class="col-muted">10%</td><td>25%</td><td class="col-target">45%</td></tr>
+                        <tr><td class="col-metric">Social traffic (%)</td><td class="col-muted">70%</td><td>50%</td><td class="col-target">35%</td></tr>
+                        <tr><td class="col-metric">Page load time</td><td class="col-muted">&lt;2s</td><td>&lt;1.5s</td><td class="col-target">&lt;1s</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sub-heading">💰 Lộ Trình Doanh Thu (Năm 2+)</div>
+            <div class="vnkr-grid vnkr-grid--sm" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
+                <div class="vnkr-revenue-card"><div class="vnkr-revenue-phase">Nguồn 1</div><div class="vnkr-revenue-title">Affiliate Marketing</div><div class="vnkr-revenue-amount">30–60 tr/năm</div><div class="vnkr-revenue-desc">Đặt link affiliate liên quan trong bài viết · Shopee, Lazada, v.v.</div></div>
+                <div class="vnkr-revenue-card"><div class="vnkr-revenue-phase">Nguồn 2</div><div class="vnkr-revenue-title">Newsletter Premium</div><div class="vnkr-revenue-amount">50–100 tr/năm</div><div class="vnkr-revenue-desc">Nội dung độc quyền "Góc Nhìn PTB" sâu hơn · 200–500k đồng/năm</div></div>
+                <div class="vnkr-revenue-card"><div class="vnkr-revenue-phase">Nguồn 3</div><div class="vnkr-revenue-title">Đóng Góp Tự Nguyện</div><div class="vnkr-revenue-amount">5–15 tr/năm</div><div class="vnkr-revenue-desc">Nút "Ủng hộ PTB" — Ko-fi / Momo · Build tình cảm cộng đồng</div></div>
+                <div class="vnkr-revenue-card"><div class="vnkr-revenue-phase">Nguồn 4</div><div class="vnkr-revenue-title">Google AdSense</div><div class="vnkr-revenue-amount">10–30 tr/năm</div><div class="vnkr-revenue-desc">Khi đạt điều kiện: domain &gt;6 tháng, traffic ổn định, nội dung chất lượng</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FORM ELEMENTS ══ -->
+    <section class="vnkr-section vnkr-section--alt" id="forms">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Form Elements — vnkr-input</div>
+            <div class="vnkr-section-sub">Input, textarea, search — dùng <code>data-size</code> và <code>data-state</code> attribute để kiểm soát variant</div>
+
+            <div class="sub-heading">📝 Input Sizes</div>
+            <div style="display:flex;flex-direction:column;gap:16px;max-width:480px;">
+                <div class="vnkr-field" data-size="large">
+                    <label class="vnkr-label">Large Input</label>
+                    <div class="vnkr-input-wrap">
+                        <input class="vnkr-input" type="text" placeholder="data-size=&quot;large&quot; — 52px">
+                    </div>
+                </div>
+                <div class="vnkr-field" data-size="medium">
+                    <label class="vnkr-label">Medium Input (mặc định)</label>
+                    <div class="vnkr-input-wrap">
+                        <svg class="vnkr-input-icon vnkr-input-icon--left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        <input class="vnkr-input" type="text" placeholder="Có icon bên trái...">
+                    </div>
+                    <span class="vnkr-input-helper">Gợi ý: Nhập từ khóa để tìm bài viết</span>
+                </div>
+                <div class="vnkr-field" data-size="small">
+                    <label class="vnkr-label">Small Input</label>
+                    <div class="vnkr-input-wrap">
+                        <input class="vnkr-input" type="text" placeholder="data-size=&quot;small&quot; — 36px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-heading">⚠️ Input States</div>
+            <div style="display:flex;flex-direction:column;gap:16px;max-width:480px;">
+                <div class="vnkr-field" data-state="error">
+                    <label class="vnkr-label">Email</label>
+                    <div class="vnkr-input-wrap">
+                        <input class="vnkr-input" type="email" value="email-sai-format">
+                    </div>
+                    <span class="vnkr-input-helper">Nhập địa chỉ email hợp lệ</span>
+                    <span class="vnkr-input-error">⚠ Email không hợp lệ. Vui lòng kiểm tra lại.</span>
+                </div>
+                <div class="vnkr-field" data-state="disabled">
+                    <label class="vnkr-label">Trường bị vô hiệu</label>
+                    <div class="vnkr-input-wrap">
+                        <input class="vnkr-input" type="text" placeholder="Không thể chỉnh sửa" disabled>
+                    </div>
+                    <span class="vnkr-input-helper">Trường này hiện không khả dụng</span>
+                </div>
+                <div class="vnkr-field">
+                    <label class="vnkr-label">Bình luận</label>
+                    <div class="vnkr-input-wrap" style="align-items:flex-start;padding-top:10px;padding-bottom:10px;height:auto;">
+                        <textarea class="vnkr-input" rows="3" placeholder="Viết bình luận của bạn..."></textarea>
+                    </div>
+                    <span class="vnkr-input-helper">Tối đa 500 ký tự. Bình luận lịch sự, đúng chủ đề.</span>
+                </div>
+            </div>
+
+            <div class="sub-heading">🔍 Search Bar</div>
+            <div style="max-width:480px;">
+                <div class="vnkr-search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="text" placeholder="Tìm kiếm bài viết, chuyên mục...">
+                </div>
+            </div>
+
+            <div class="sub-heading">📣 Callout Boxes</div>
+            <div style="max-width:640px;">
+                <div class="vnkr-callout vnkr-callout--info">
+                    <div class="vnkr-callout-title">ℹ️ Lưu ý</div>
+                    Đây là callout kiểu <strong>info</strong> — dùng để ghi chú bổ sung trong bài viết. Border trái màu xanh brand.
+                </div>
+                <div class="vnkr-callout vnkr-callout--success">
+                    <div class="vnkr-callout-title">✅ Thành công</div>
+                    Callout <strong>success</strong> — dùng để xác nhận thông tin đúng, kết quả tốt, hoặc thao tác thành công.
+                </div>
+                <div class="vnkr-callout vnkr-callout--warn">
+                    <div class="vnkr-callout-title">⚠️ Cảnh báo</div>
+                    Callout <strong>warn</strong> — dùng để cảnh báo người dùng về điều cần chú ý trước khi thực hiện.
+                </div>
+                <div class="vnkr-callout vnkr-callout--danger">
+                    <div class="vnkr-callout-title">🚫 Nguy hiểm</div>
+                    Callout <strong>danger</strong> — dùng khi hành động có thể gây hậu quả nghiêm trọng hoặc không thể hoàn tác.
+                </div>
+                <div class="vnkr-callout vnkr-callout--gold">
+                    <div class="vnkr-callout-title">👑 Góc Nhìn PTB</div>
+                    Callout <strong>gold</strong> — dùng để highlight nội dung đặc biệt từ Phạm Thế Bảo, trích dẫn quan trọng, hoặc thông tin độc quyền.
+                </div>
+            </div>
+
+            <div class="sub-heading">⌨️ Keyboard Accessibility (Tab qua các phần tử)</div>
+            <div class="vnkr-callout vnkr-callout--info" style="max-width:640px;margin-top:0;">
+                Nhấn <strong>Tab</strong> để di chuyển qua các phần tử trên trang — tất cả button, input, nav link đều hiển thị <strong>focus ring màu xanh</strong> rõ ràng khi dùng bàn phím. Đây là chuẩn accessibility WCAG 2.1 AA.
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SKELETON + MODAL + TIMELINE ══ -->
+    <section class="vnkr-section vnkr-section--alt" id="loading">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">Skeleton, Modal & Timeline</div>
+            <div class="vnkr-section-sub">Components giai đoạn 2 — dùng cho loading state, dialog, và lộ trình thời gian</div>
+
+            <div class="sub-heading">💀 Skeleton Loading</div>
+            <div class="vnkr-grid vnkr-grid--md">
+                <!-- Card skeleton 1 -->
+                <div class="vnkr-skeleton-card">
+                    <div class="vnkr-skeleton vnkr-skeleton--rect" style="height:140px;"></div>
+                    <div class="vnkr-skeleton-card-header">
+                        <div class="vnkr-skeleton vnkr-skeleton--circle" style="width:36px;height:36px;"></div>
+                        <div class="vnkr-skeleton-card-header-text">
+                            <div class="vnkr-skeleton vnkr-skeleton--text" style="width:55%;"></div>
+                            <div class="vnkr-skeleton vnkr-skeleton--text" style="width:35%;"></div>
+                        </div>
+                    </div>
+                    <div class="vnkr-skeleton-lines">
+                        <div class="vnkr-skeleton vnkr-skeleton--text"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:88%;"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:72%;"></div>
+                    </div>
+                </div>
+                <!-- Card skeleton 2 -->
+                <div class="vnkr-skeleton-card">
+                    <div class="vnkr-skeleton-card-header">
+                        <div class="vnkr-skeleton vnkr-skeleton--circle" style="width:44px;height:44px;"></div>
+                        <div class="vnkr-skeleton-card-header-text">
+                            <div class="vnkr-skeleton vnkr-skeleton--text" style="width:60%;"></div>
+                            <div class="vnkr-skeleton vnkr-skeleton--text" style="width:40%;"></div>
+                        </div>
+                    </div>
+                    <div class="vnkr-skeleton-lines">
+                        <div class="vnkr-skeleton vnkr-skeleton--text"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:90%;"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:65%;"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:50%;"></div>
+                    </div>
+                </div>
+                <!-- Card skeleton 3 -->
+                <div class="vnkr-skeleton-card">
+                    <div class="vnkr-skeleton vnkr-skeleton--rect" style="height:100px;"></div>
+                    <div class="vnkr-skeleton-lines">
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:70%;"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:80%;"></div>
+                    </div>
+                    <div style="display:flex;gap:8px;">
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:60px;height:22px;border-radius:9999px;margin:0;"></div>
+                        <div class="vnkr-skeleton vnkr-skeleton--text" style="width:60px;height:22px;border-radius:9999px;margin:0;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-heading">🪟 Modal & Bottom Sheet</div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;">
+                <button class="vnkr-btn vnkr-btn--primary" data-modal-open="demo-modal">Mở Modal</button>
+                <button class="vnkr-btn vnkr-btn--outline-dark" data-modal-open="demo-sheet">Bottom Sheet</button>
+                <button class="vnkr-btn vnkr-btn--ghost vnkr-btn--sm" data-modal-open="demo-confirm">Modal Xác Nhận</button>
+            </div>
+            <div class="vnkr-callout vnkr-callout--info" style="max-width:520px;margin-top:16px;">
+                Click nút để mở modal · Nhấn <strong>ESC</strong> hoặc click backdrop để đóng · <strong>Tab</strong> để di chuyển trong modal (focus trap).
+            </div>
+
+            <div class="sub-heading">⏱️ Timeline — Lộ Trình VNKR</div>
+            <div class="vnkr-timeline" style="max-width:640px;">
+                <div class="vnkr-tl-item">
+                    <div class="vnkr-tl-dot vnkr-tl-dot--accent"></div>
+                    <div class="vnkr-tl-content">
+                        <div class="vnkr-tl-status vnkr-tl-status--done">✅ Hoàn thành</div>
+                        <div class="vnkr-tl-period">Tháng 1 · 2025 · P0</div>
+                        <div class="vnkr-tl-title">🚀 Đặt Nền Móng</div>
+                        <div class="vnkr-tl-body">Domain vnkr.vn, Laravel 10, trang pháp lý đầy đủ, 8 chuyên mục, bài mẫu đầu tiên.</div>
+                        <div class="vnkr-tl-tags"><span class="vnkr-tag">Laravel 10</span><span class="vnkr-tag">MySQL</span><span class="vnkr-tag">HTTPS</span></div>
+                    </div>
+                </div>
+                <div class="vnkr-tl-item">
+                    <div class="vnkr-tl-dot vnkr-tl-dot--brand"></div>
+                    <div class="vnkr-tl-content">
+                        <div class="vnkr-tl-status vnkr-tl-status--active">🔵 Đang làm</div>
+                        <div class="vnkr-tl-period">Tháng 2–3 · 2025 · P1</div>
+                        <div class="vnkr-tl-title">📝 Xây Nội Dung & SEO</div>
+                        <div class="vnkr-tl-body">Tags system, Meilisearch, Sitemap XML, RSS Feed, Open Graph, Schema.org JSON-LD, newsletter.</div>
+                        <div class="vnkr-tl-tags"><span class="vnkr-tag">Meilisearch</span><span class="vnkr-tag">SEO</span><span class="vnkr-tag">RSS</span><span class="vnkr-tag">Newsletter</span></div>
+                    </div>
+                </div>
+                <div class="vnkr-tl-item">
+                    <div class="vnkr-tl-dot vnkr-tl-dot--gold"></div>
+                    <div class="vnkr-tl-content">
+                        <div class="vnkr-tl-status vnkr-tl-status--soon">⏳ Sắp tới</div>
+                        <div class="vnkr-tl-period">Tháng 4–6 · 2025 · P2</div>
+                        <div class="vnkr-tl-title">🔥 Kích Hoạt Cộng Đồng</div>
+                        <div class="vnkr-tl-body">Cộng tác viên TheKingBao, TikTok/YouTube Shorts, breaking news ticker, WebP auto-convert.</div>
+                        <div class="vnkr-tl-tags"><span class="vnkr-tag">Community</span><span class="vnkr-tag">TikTok</span><span class="vnkr-tag">WebP</span></div>
+                    </div>
+                </div>
+                <div class="vnkr-tl-item">
+                    <div class="vnkr-tl-dot"></div>
+                    <div class="vnkr-tl-content">
+                        <div class="vnkr-tl-status vnkr-tl-status--planned">📋 Kế hoạch</div>
+                        <div class="vnkr-tl-period">Tháng 7–12 · 2025 · P3</div>
+                        <div class="vnkr-tl-title">💰 Tăng Tốc & Bền Vững</div>
+                        <div class="vnkr-tl-body">Affiliate marketing, newsletter premium, Ko-fi/Momo, REST API, PWA, mục tiêu 50K users/tháng.</div>
+                        <div class="vnkr-tl-tags"><span class="vnkr-tag">Affiliate</span><span class="vnkr-tag">PWA</span><span class="vnkr-tag">API</span><span class="vnkr-tag">Revenue</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ MODALS (hidden) ══ -->
+    <div class="vnkr-modal" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+        <div class="vnkr-modal-dialog">
+            <div class="vnkr-modal-header">
+                <h3 class="vnkr-modal-title" id="demo-modal-title">Demo Modal</h3>
+                <button class="vnkr-modal-close" data-modal-close aria-label="Đóng">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="vnkr-modal-body">
+                <p>Đây là modal chuẩn của VNKR UI Library. Hỗ trợ:</p>
+                <ul style="margin:12px 0 12px 20px;color:var(--text-muted);line-height:1.8;">
+                    <li>Backdrop blur + overlay tối</li>
+                    <li>Đóng bằng ESC, click backdrop, hoặc nút ×</li>
+                    <li>Focus trap — Tab chỉ di chuyển trong modal</li>
+                    <li>Scroll lock body khi modal mở</li>
+                    <li>Animate in/out mượt</li>
+                </ul>
+                <div class="vnkr-callout vnkr-callout--info" style="margin:0;">
+                    API: <strong><code>VNKRUI.modal.open('demo-modal')</code></strong> để mở từ JS.
+                </div>
+            </div>
+            <div class="vnkr-modal-footer">
+                <button class="vnkr-btn vnkr-btn--ghost vnkr-btn--sm" data-modal-close>Đóng</button>
+                <button class="vnkr-btn vnkr-btn--primary vnkr-btn--sm" data-modal-close>Đã hiểu</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="vnkr-modal vnkr-modal--sheet" id="demo-sheet" role="dialog" aria-modal="true">
+        <div class="vnkr-modal-dialog">
+            <div class="vnkr-sheet-handle"></div>
+            <div class="vnkr-modal-header">
+                <h3 class="vnkr-modal-title">Bottom Sheet</h3>
+                <button class="vnkr-modal-close" data-modal-close aria-label="Đóng">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="vnkr-modal-body">
+                <p>Bottom Sheet trượt lên từ đáy màn hình — lý tưởng trên mobile cho menu tùy chọn, chia sẻ bài viết, filter nội dung.</p>
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;">
+                    <button class="vnkr-btn vnkr-btn--outline-dark">📤 Chia sẻ bài viết</button>
+                    <button class="vnkr-btn vnkr-btn--outline-dark">🔖 Lưu để đọc sau</button>
+                    <button class="vnkr-btn vnkr-btn--outline-dark">🚩 Báo cáo nội dung</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="vnkr-modal" id="demo-confirm" role="dialog" aria-modal="true" aria-labelledby="demo-confirm-title">
+        <div class="vnkr-modal-dialog" style="max-width:380px;">
+            <div class="vnkr-modal-header">
+                <h3 class="vnkr-modal-title" id="demo-confirm-title">Xác Nhận Xóa</h3>
+                <button class="vnkr-modal-close" data-modal-close aria-label="Đóng">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="vnkr-modal-body">
+                <div class="vnkr-callout vnkr-callout--danger" style="margin:0;">
+                    <strong>Hành động này không thể hoàn tác.</strong> Bài viết sẽ bị xóa vĩnh viễn khỏi hệ thống.
+                </div>
+            </div>
+            <div class="vnkr-modal-footer">
+                <button class="vnkr-btn vnkr-btn--ghost vnkr-btn--sm" data-modal-close>Hủy</button>
+                <button class="vnkr-btn vnkr-btn--danger vnkr-btn--sm" data-modal-close>Xóa vĩnh viễn</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ UI COMPONENTS DEMO ══ -->
+    <section class="vnkr-section" id="components">
+        <div class="vnkr-container">
+            <div class="vnkr-section-title">UI Components — vnkr-ui.css</div>
+            <div class="vnkr-section-sub">Toàn bộ component có thể tái sử dụng trên bất kỳ trang nào của VNKR</div>
+
+            <div class="sub-heading">🔘 Buttons</div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+                <button class="vnkr-btn vnkr-btn--primary">Primary Button</button>
+                <button class="vnkr-btn vnkr-btn--outline">Outline Button</button>
+                <button class="vnkr-btn vnkr-btn--ghost">Ghost Button</button>
+                <button class="vnkr-btn vnkr-btn--danger">Danger Button</button>
+                <button class="vnkr-btn vnkr-btn--sm vnkr-btn--primary">Small</button>
+                <button class="vnkr-btn vnkr-btn--lg vnkr-btn--primary">Large</button>
+            </div>
+
+            <div class="sub-heading">🏷️ Badges & Tags</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+                <span class="vnkr-badge vnkr-badge--brand">BREAKING</span>
+                <span class="vnkr-badge vnkr-badge--success">✅ Live</span>
+                <span class="vnkr-badge vnkr-badge--warning">⏳ Pending</span>
+                <span class="vnkr-badge vnkr-badge--error">❌ Error</span>
+                <span class="vnkr-badge vnkr-badge--info">ℹ Info</span>
+                <span class="vnkr-tag">Thể Thao</span>
+                <span class="vnkr-tag">Thời Sự</span>
+                <span class="vnkr-tag vnkr-tag--gold">👑 PTB</span>
+            </div>
+
+            <div class="sub-heading">🃏 Cards</div>
+            <div class="vnkr-grid vnkr-grid--md">
+                <div class="vnkr-card">
+                    <div class="vnkr-card-meta">Thời Sự · 3 phút đọc</div>
+                    <div class="vnkr-card-title">Tiêu đề bài viết mẫu của VNKR</div>
+                    <div class="vnkr-card-excerpt">Đoạn tóm tắt ngắn — biên tập lại từ nguồn, thêm bối cảnh, súc tích và dễ đọc.</div>
+                    <div class="vnkr-card-footer"><span class="vnkr-tag">Thời Sự</span><a href="#" class="vnkr-btn vnkr-btn--sm vnkr-btn--ghost">Đọc tiếp →</a></div>
+                </div>
+                <div class="vnkr-card">
+                    <div class="vnkr-card-meta">Kinh Doanh · 5 phút đọc</div>
+                    <div class="vnkr-card-title">Phân tích số liệu kinh tế tuần này</div>
+                    <div class="vnkr-card-excerpt">Nhìn lại số liệu kinh tế vĩ mô, tác động lên thị trường và những điểm cần chú ý.</div>
+                    <div class="vnkr-card-footer"><span class="vnkr-tag">Kinh Doanh</span><a href="#" class="vnkr-btn vnkr-btn--sm vnkr-btn--ghost">Đọc tiếp →</a></div>
+                </div>
+                <div class="vnkr-card" style="border-color:var(--gold);background:#FFFDF0;">
+                    <div class="vnkr-card-meta" style="color:#7a5200;">👑 Góc Nhìn PTB · Thứ 7</div>
+                    <div class="vnkr-card-title">Góc nhìn cá nhân về sự kiện tuần qua</div>
+                    <div class="vnkr-card-excerpt">100% nội dung gốc — Phạm Thế Bảo trực tiếp phân tích, không dẫn nguồn, không viết lại.</div>
+                    <div class="vnkr-card-footer"><span class="vnkr-tag vnkr-tag--gold">PTB Original</span><a href="#" class="vnkr-btn vnkr-btn--sm vnkr-btn--ghost">Đọc tiếp →</a></div>
+                </div>
+            </div>
+
+            <div class="sub-heading">🔔 Toast Notification API</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                <button class="vnkr-btn vnkr-btn--primary vnkr-btn--sm" onclick="VNKRUI.toast('Bài viết đã được lưu!', 'success')">Toast Success</button>
+                <button class="vnkr-btn vnkr-btn--outline vnkr-btn--sm" onclick="VNKRUI.toast('Hãy đăng nhập để bình luận.', 'info')">Toast Info</button>
+                <button class="vnkr-btn vnkr-btn--ghost vnkr-btn--sm" onclick="VNKRUI.toast('Kết nối chậm, thử lại sau.', 'warning')">Toast Warning</button>
+                <button class="vnkr-btn vnkr-btn--danger vnkr-btn--sm" onclick="VNKRUI.toast('Không thể tải bài viết!', 'error')">Toast Error</button>
+            </div>
+            <div class="vnkr-code-block" style="margin-top:16px;">
+                <code><span class="code-comment">/* Toast cơ bản */</span>
+<span class="code-prop">VNKRUI</span>.<span class="code-key">toast</span>(<span class="code-str">'Bài viết đã được lưu!'</span>, <span class="code-str">'success'</span>);
+
+<span class="code-comment">/* Toast với action button + không tự đóng */</span>
+<span class="code-prop">VNKRUI</span>.<span class="code-key">toast</span>(<span class="code-str">'Bình luận bị xóa.'</span>, <span class="code-str">'warning'</span>, {
+  duration: <span class="code-val">0</span>,  <span class="code-comment">// 0 = không tự đóng</span>
+  action: <span class="code-str">'Hoàn tác'</span>,
+  onAction: <span class="code-key">function</span>() { <span class="code-comment">/* restore comment */</span> }
+});</code>
+            </div>
+
+            <div class="sub-heading">🌙 Dark Mode API</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+                <button class="vnkr-btn vnkr-btn--primary vnkr-btn--sm" onclick="VNKRUI.theme.set('dark')">Set Dark</button>
+                <button class="vnkr-btn vnkr-btn--ghost vnkr-btn--sm" onclick="VNKRUI.theme.set('light')">Set Light</button>
+                <button class="vnkr-btn vnkr-btn--outline-dark vnkr-btn--sm" onclick="VNKRUI.theme.toggle()">Toggle Theme</button>
+                <button class="vnkr-theme-toggle" style="font-size:20px;width:44px;height:44px;">🌙</button>
+            </div>
+            <div class="vnkr-code-block" style="margin-top:16px;">
+                <code><span class="code-comment">/* Dark mode API — gọi từ bất kỳ đâu */</span>
+<span class="code-prop">VNKRUI</span>.<span class="code-key">theme</span>.<span class="code-key">toggle</span>();           <span class="code-comment">// đổi qua lại</span>
+<span class="code-prop">VNKRUI</span>.<span class="code-key">theme</span>.<span class="code-key">set</span>(<span class="code-str">'dark'</span>);        <span class="code-comment">// set cụ thể</span>
+<span class="code-prop">VNKRUI</span>.<span class="code-key">theme</span>.<span class="code-key">get</span>();             <span class="code-comment">// → 'dark' | 'light'</span>
+
+<span class="code-comment">/* Tự động detect OS preference + lưu localStorage */</span>
+<span class="code-comment">/* Áp dụng TRƯỚC paint — không flash trắng khi tải */</span></code>
+            </div>
+
+            <div class="sub-heading">📂 Dropdown</div>
+            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
+                <!-- Dropdown cơ bản -->
+                <div class="vnkr-dropdown" data-dropdown>
+                    <button class="vnkr-dropdown-trigger" data-dropdown-trigger aria-haspopup="true" aria-expanded="false">
+                        Chuyên mục
+                        <svg class="vnkr-dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <ul class="vnkr-dropdown-menu" role="menu">
+                        <li class="vnkr-dropdown-header">Nội dung</li>
+                        <li role="menuitem"><a class="vnkr-dropdown-item" href="#">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20"/><path d="M2 12h10"/><path d="M12 2c-2.76 4-2.76 16 0 20"/></svg>
+                            Thế Giới
+                        </a></li>
+                        <li role="menuitem"><a class="vnkr-dropdown-item" href="#">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            Kinh Doanh
+                        </a></li>
+                        <li role="menuitem"><a class="vnkr-dropdown-item" href="#">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                            Thời Sự
+                        </a></li>
+                        <li class="vnkr-dropdown-divider"></li>
+                        <li role="menuitem"><a class="vnkr-dropdown-item" href="#">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                            Tất cả chuyên mục
+                        </a></li>
+                    </ul>
+                </div>
+                <!-- Dropdown right-aligned + với danger item -->
+                <div class="vnkr-dropdown vnkr-dropdown--right" data-dropdown>
+                    <button class="vnkr-dropdown-trigger" data-dropdown-trigger aria-haspopup="true" aria-expanded="false">
+                        Tùy chọn bài viết
+                        <svg class="vnkr-dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <ul class="vnkr-dropdown-menu" role="menu">
+                        <li role="menuitem"><button class="vnkr-dropdown-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                            Chỉnh sửa
+                        </button></li>
+                        <li role="menuitem"><button class="vnkr-dropdown-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                            Chia sẻ
+                        </button></li>
+                        <li class="vnkr-dropdown-divider"></li>
+                        <li role="menuitem"><button class="vnkr-dropdown-item vnkr-dropdown-item--danger">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                            Xóa bài viết
+                        </button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vnkr-code-block" style="margin-top:16px;">
+                <code><span class="code-comment">/* HTML — dùng data attributes, không cần JS thêm */</span>
+<span class="code-prop">&lt;div</span> <span class="code-key">class</span>=<span class="code-str">"vnkr-dropdown"</span> <span class="code-key">data-dropdown</span><span class="code-prop">&gt;</span>
+  <span class="code-prop">&lt;button</span> <span class="code-key">class</span>=<span class="code-str">"vnkr-dropdown-trigger"</span> <span class="code-key">data-dropdown-trigger</span>
+          <span class="code-key">aria-haspopup</span>=<span class="code-str">"true"</span> <span class="code-key">aria-expanded</span>=<span class="code-str">"false"</span><span class="code-prop">&gt;</span>
+    Tùy chọn
+  <span class="code-prop">&lt;/button&gt;</span>
+  <span class="code-prop">&lt;ul</span> <span class="code-key">class</span>=<span class="code-str">"vnkr-dropdown-menu"</span> <span class="code-key">role</span>=<span class="code-str">"menu"</span><span class="code-prop">&gt;</span>
+    <span class="code-prop">&lt;li</span> <span class="code-key">role</span>=<span class="code-str">"menuitem"</span><span class="code-prop">&gt;</span>
+      <span class="code-prop">&lt;a</span> <span class="code-key">class</span>=<span class="code-str">"vnkr-dropdown-item"</span> <span class="code-key">href</span>=<span class="code-str">"#"</span><span class="code-prop">&gt;</span>Mục 1<span class="code-prop">&lt;/a&gt;</span>
+    <span class="code-prop">&lt;/li&gt;</span>
+  <span class="code-prop">&lt;/ul&gt;</span>
+<span class="code-prop">&lt;/div&gt;</span></code>
+            </div>
+
+            <div class="sub-heading">📊 Progress Bars</div>
+            <div class="vnkr-progress-wrap">
+                <div class="vnkr-progress-label"><span>Tiến độ Tháng 1</span><span>40%</span></div>
+                <div class="vnkr-progress-bg"><div class="vnkr-progress-fill" data-width="40%"></div></div>
+                <div class="vnkr-progress-label"><span>Cache Hit Rate</span><span>70%</span></div>
+                <div class="vnkr-progress-bg"><div class="vnkr-progress-fill vnkr-progress-fill--gold" data-width="70%"></div></div>
+                <div class="vnkr-progress-label"><span>Google Index</span><span>90%</span></div>
+                <div class="vnkr-progress-bg"><div class="vnkr-progress-fill vnkr-progress-fill--alt" data-width="90%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="vnkr-footer">
+        <div style="max-width:760px;margin:0 auto;">
+            <strong>VNKR.VN</strong> · Tin Tức Cộng Đồng · Biên tập: Phạm Thế Bảo / TheKingBao
+            <div class="vnkr-footer-disclaimer">VNKR là trang thông tin điện tử tổng hợp do cá nhân vận hành, không phải cơ quan báo chí.</div>
+            <div class="vnkr-footer-made">Made with IBM Bob</div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/vnkr-ui.js" defer></script>
+</body>
+</html>

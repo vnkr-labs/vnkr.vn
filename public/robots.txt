@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /logon
+Disallow: /sign-out
+Disallow: /api/
+Disallow: /storage/comments/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://vnkr.vn/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1

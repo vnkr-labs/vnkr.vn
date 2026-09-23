@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/*!
+ * VNKR Icons <%= v %> by VNKR - https://vnkr.vn
+ * License - https://github.com/vnkr/vnkr-icons/blob/main/LICENSE
+ */
+@use "sass:string";
+
+$vi-font-family: '<%= fileName %>' !default;
+$vi-font-path: 'fonts' !default;
+$vi-font-display: null !default;
+$vi-prefix: 'vi' !default;
+
+@font-face {
+  font-family: $vi-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-display: $vi-font-display;
+  src: url('#{$vi-font-path}/<%= fileName %>.eot');
+  src: url('#{$vi-font-path}/<%= fileName %>.eot?#iefix') format('embedded-opentype'),
+  url('#{$vi-font-path}/<%= fileName %>.woff2') format('woff2'),
+  url('#{$vi-font-path}/<%= fileName %>.woff') format('woff'),
+  url('#{$vi-font-path}/<%= fileName %>.ttf') format('truetype'),
+  url("#{$vi-font-path}/<%= fileName %>.svg\##{$vi-font-family}") format("svg");
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: $vi-font-family;
+    src: url("#{$vi-font-path}/<%= fileName %>.svg\##{$vi-font-family}") format("svg");
+  }
+}
+
+.#{$vi-prefix} {
+  font-family: $vi-font-family !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@function unicode($str) {
+  @return string.unquote("\"")+string.unquote(string.insert($str, "\\", 1))+string.unquote("\"")
+}
+
+<% glyphs.forEach(function(glyph) {
+    %> $vi-icon-<%=glyph.name %>: unicode('<%= glyph.unicode[0].codePointAt(0).toString(16) %>'); <%
+  });
+
+%><% glyphs.forEach(function(glyph) {
+    %> .#{$vi-prefix}-<%=glyph.name %>:before {
+      content: $vi-icon-<%=glyph.name %>;
+    }
+
+    <%
+  });
+%>

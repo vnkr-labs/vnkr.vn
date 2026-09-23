@@ -1,0 +1,60 @@
+.root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--inset-lg);
+  padding-top: calc(env(safe-area-inset-top, 44px) + var(--primitive-space-16));
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--primitive-space-32));
+  background: var(--color-background-primary);
+  align-items: center;
+  position: relative;
+}
+
+.back {
+  align-self: flex-start;
+  background: none; border: none;
+  font-size: 20px; color: var(--color-text-primary);
+  cursor: pointer; padding: 4px 0 16px;
+}
+
+.padWrap {
+  flex: 1; width: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: var(--primitive-space-24);
+}
+
+.errorMsg {
+  font-size: var(--type-body-sm);
+  color: var(--color-status-error-text);
+  background: var(--color-status-error-bg);
+  border: 1px solid var(--color-status-error-subtle);
+  border-radius: var(--primitive-radius-md);
+  padding: 6px 12px; margin: 0;
+}
+
+/* Lockout */
+.lockout {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: var(--primitive-space-16); text-align: center;
+}
+.lockoutIcon  { display: flex; align-items: center; justify-content: center; }
+.lockoutTitle { font-size: var(--type-h5); font-weight: 700; margin: 0; }
+.lockoutBody  { font-size: var(--type-body-sm); color: var(--color-text-secondary); max-width: 280px; margin: 0; }
+
+.primaryBtn {
+  height: 56px; width: 100%; max-width: 300px;
+  background: var(--color-background-brand);
+  color: var(--color-text-inverse);
+  border: none; border-radius: var(--radius-button);
+  font-size: var(--type-body); font-weight: 700; cursor: pointer;
+}
+
+.forgotBtn {
+  background: none; border: none;
+  color: var(--color-text-link);
+  font-size: var(--type-body-sm); font-weight: 600; cursor: pointer;
+  margin-top: auto;
+}

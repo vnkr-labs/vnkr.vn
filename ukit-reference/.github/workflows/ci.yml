@@ -1,0 +1,90 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# ci.yml — Main CI pipeline
+# Runs on every push and PR to main/develop
+# ──────────────────────────────────────────────────────────────────────────────
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── TypeScript / Node ─────────────────────────────────────────────────────────
+  ts-build-test:
+    name: TypeScript Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test
+
+  # ── Rust Smart Contracts ──────────────────────────────────────────────────────
+  rust-contracts:
+    name: Smart Contract Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Test axioledger-system
+        run: cd smart-contracts/axioledger-system && cargo test
+      - name: Test ans-registry
+        run: cd smart-contracts/ans-registry && cargo test
+      - name: Test kpx-liquidity
+        run: cd smart-contracts/kpx-liquidity && cargo test
+
+  # ── Rust Core Nodes ───────────────────────────────────────────────────────────
+  rust-nodes:
+    name: Core Node Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            target/
+          key: ${{ runner.os }}-cargo-nodes-${{ hashFiles('**/Cargo.lock') }}
+      - name: Test valiprecision-node
+        run: cd core-nodes/valiprecision-node && cargo test
+      - name: Test sequentichain-node
+        run: cd core-nodes/sequentichain-node && cargo test
+
+  # ── Localnet Smoke Test ───────────────────────────────────────────────────────
+  localnet-smoke:
+    name: Localnet Smoke Test
+    runs-on: ubuntu-latest
+    needs: [rust-contracts, rust-nodes]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start localnet (docker-compose)
+        run: |
+          if [ -f docker-compose.yml ]; then
+            docker compose up -d
+            sleep 10
+            docker compose ps
+          else
+            echo "docker-compose.yml not yet present — skipping localnet smoke test"
+          fi
+      - name: Run smoke tests
+        run: echo "TODO: integrate localnet smoke tests (Milestone 1)"

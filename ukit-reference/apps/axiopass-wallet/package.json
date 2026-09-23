@@ -1,0 +1,27 @@
+{
+  "name": "axiopass-wallet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Axiopass Wallet — Passkey-native (FaceID/TouchID), ZK-DID, ANS domains",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "test": "jest"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "@axioledger/ans-resolver": "*",
+    "@axioledger/zkp-crypto-lib": "*",
+    "@axioledger/evm-interop": "*",
+    "@axioledger/axio-design-system": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/react": "^18.3.0",
+    "@types/node": "^20.0.0"
+  }
+}

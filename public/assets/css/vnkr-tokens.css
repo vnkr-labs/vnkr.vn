@@ -1,0 +1,382 @@
+/**
+ * VNKR.VN — Design Tokens
+ * ========================
+ * File: vnkr-tokens.css
+ * Phiên bản: 2.0 (Sprint 1 — Design System Plan implementation)
+ * Mô tả: Toàn bộ CSS custom properties (design tokens) của hệ thống UI VNKR,
+ *        bao gồm màu sắc, typography, spacing, radius, shadow, transition.
+ *        Import file này TRƯỚC vnkr-ui.css.
+ *
+ * Cách dùng:
+ *   <link rel="stylesheet" href="/assets/css/vnkr-tokens.css">
+ */
+
+/* ══════════════════════════════════════════════
+   1. COLOR TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    /* ── Brand ── */
+    --brand:        #0A3D62;   /* Xanh đậm — uy tín, độc lập */
+    --brand-alt:    #1E6FA5;   /* Xanh dương nhạt — phụ, hover */
+    --brand-light:  #D6E8F5;   /* Xanh nhạt — background tint */
+    --brand-dark:   #072d47;   /* Xanh tối — pressed, shadow */
+
+    /* ── Accent ── */
+    --accent:       #E84118;   /* Cam đỏ — CTA, breaking, highlight */
+    --accent-alt:   #d13512;   /* Accent pressed */
+    --accent-light: #FDECEA;   /* Accent background tint */
+
+    /* ── Gold (TheKingBao signature) ── */
+    --gold:         #F0A500;
+    --gold-alt:     #d49200;
+    --gold-light:   #FEF6E0;
+
+    /* ── Neutral ── */
+    --white:        #FFFFFF;
+    --black:        #1a1a1a;
+    --text:         #1a1a1a;
+    --text-muted:   #5a6a7a;
+    --text-faint:   #8a9ab0;
+
+    /* ── Background ── */
+    --bg:           #f4f6f8;
+    --bg-section:   #edf2f7;
+    --bg-card:      #FFFFFF;
+
+    /* ── Border ── */
+    --border:       #d1dce8;
+    --border-dark:  #b0bfd0;
+
+    /* ── Semantic status ── */
+    --success:      #00A878;
+    --success-light:#e6f9f1;
+    --success-text: #007c52;
+    --warning:      #F0A500;
+    --warning-light:#FEF6E0;
+    --warning-text: #7a5200;
+    --error:        #E84118;
+    --error-light:  #FDECEA;
+    --error-text:   #8b1c09;
+    --info:         #1E6FA5;
+    --info-light:   #EFF6FF;
+    --info-text:    #0A3D62;
+}
+
+/* ── Dark Mode Override — html[data-theme="dark"] ─────────────
+   Tất cả màu sắc được inverse/adjust để phù hợp nền tối.
+   Brand + Accent + Gold giữ nguyên — chỉ đổi background/text/border.
+   Toggle bằng JS: document.documentElement.dataset.theme = 'dark'/'light'
+   ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+    /* ── Neutral/Text ── */
+    --white:        #1e2530;   /* Card surface trong dark mode */
+    --black:        #f0f4f8;
+    --text:         #e8edf2;
+    --text-muted:   #8a9ab0;
+    --text-faint:   #5a6a7a;
+
+    /* ── Background ── */
+    --bg:           #141a22;   /* Page background tối */
+    --bg-section:   #1a2330;   /* Section alt tối */
+    --bg-card:      #1e2530;   /* Card surface */
+
+    /* ── Border ── */
+    --border:       #2d3d52;
+    --border-dark:  #3d5068;
+
+    /* ── Brand light (tint backgrounds) ── */
+    --brand-light:  #0f2a42;
+
+    /* ── Semantic — giảm độ bão hoà để không chói ── */
+    --success-light:#0a2e22;
+    --success-text: #4ade9a;
+    --warning-light:#2a1e00;
+    --warning-text: #f5c842;
+    --error-light:  #2e1010;
+    --error-text:   #f87171;
+    --info-light:   #0a1e33;
+    --info-text:    #60a5fa;
+
+    /* ── Gold light — giảm độ sáng ── */
+    --gold-light:   #251800;
+    --accent-light: #2e1010;
+
+    /* ── Focus rings — sáng hơn trên nền tối ── */
+    --focus-ring:        0 0 0 3px rgba(96,165,250,0.35);
+    --focus-ring-accent: 0 0 0 3px rgba(248,113,113,0.35);
+}
+
+
+/* ══════════════════════════════════════════════
+   2. TYPOGRAPHY TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    /* Font families — Work Sans cho headings (Design System Plan §4) */
+    --font-display: 'Work Sans', 'Be Vietnam Pro', Arial, sans-serif;
+    --font-main:    'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+    /* Scale — tương thích tên cũ + alias mới từ Design System Plan */
+    --text-xs:      10px;
+    --text-sm:      11px;
+    --text-base:    13px;
+    --text-md:      14px;
+    --text-lg:      15px;
+    --text-xl:      17px;
+    --text-2xl:     20px;
+    --text-3xl:     24px;
+    --text-4xl:     30px;
+    --text-5xl:     36px;
+    --text-hero:    clamp(38px, 5.5vw, 72px);
+
+    /* Alias theo Design System Plan §4.2 */
+    --text-h1:      2.5rem;    /* 40px */
+    --text-h2:      2rem;      /* 32px */
+    --text-h3:      1.75rem;   /* 28px */
+    --text-h4:      1.375rem;  /* 22px */
+    --text-h5:      1.125rem;  /* 18px */
+    --text-h6:      1rem;      /* 16px */
+    --text-b1:      1rem;      /* 16px body */
+    --text-b2:      0.875rem;  /* 14px meta */
+    --text-caption: 0.75rem;   /* 12px timestamp */
+    --text-overline:0.625rem;  /* 10px category label */
+
+    /* Button text sizes */
+    --text-btn-giant:  1.25rem;
+    --text-btn-large:  1rem;
+    --text-btn-medium: 0.875rem;
+    --text-btn-small:  0.75rem;
+
+    /* Weight */
+    --fw-normal:    400;
+    --fw-medium:    500;
+    --fw-semibold:  600;
+    --fw-bold:      700;
+    --fw-extrabold: 800;
+
+    /* Line-height */
+    --lh-tight:     1.1;
+    --lh-snug:      1.35;
+    --lh-normal:    1.55;
+    --lh-relaxed:   1.65;
+    --lh-loose:     1.85;
+}
+
+
+/* ══════════════════════════════════════════════
+   3. SPACING TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    --sp-1:    4px;
+    --sp-2:    8px;
+    --sp-3:    12px;
+    --sp-4:    16px;
+    --sp-5:    20px;
+    --sp-6:    24px;
+    --sp-7:    28px;
+    --sp-8:    32px;
+    --sp-10:   40px;
+    --sp-12:   48px;
+    --sp-16:   64px;
+    --sp-18:   72px;
+    --sp-20:   80px;
+
+    /* Padding phổ biến */
+    --p-card:      28px 24px;
+    --p-card-sm:   22px 18px;
+    --p-section:   72px 40px;
+    --p-section-sm:48px 20px;
+}
+
+
+/* ══════════════════════════════════════════════
+   4. BORDER RADIUS TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    --radius-sm:   4px;
+    --radius-md:   8px;
+    --radius-lg:   12px;
+    --radius-xl:   16px;
+    --radius-2xl:  24px;
+    --radius-pill: 50px;   /* Pill button — từ Design System Plan §5.2 */
+    --radius-full: 9999px;
+}
+
+
+/* ══════════════════════════════════════════════
+   5. SHADOW TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    --shadow-xs:  0 1px 4px  rgba(10,61,98,0.05);
+    --shadow-sm:  0 2px 8px  rgba(10,61,98,0.06);
+    --shadow-md:  0 2px 12px rgba(10,61,98,0.07);
+    --shadow-lg:  0 8px 24px rgba(10,61,98,0.12);
+    --shadow-xl:  0 16px 40px rgba(10,61,98,0.15);
+
+    --shadow-accent: 0 4px 14px rgba(232,65,24,0.35);
+    --shadow-accent-hover: 0 6px 20px rgba(232,65,24,0.45);
+}
+
+
+/* ══════════════════════════════════════════════
+   6. TRANSITION TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    --transition-fast:   0.15s ease;
+    --transition-base:   0.2s ease;
+    --transition-slow:   0.3s ease;
+}
+
+
+/* ══════════════════════════════════════════════
+   7. LAYOUT TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    --container-max:  1200px;
+    --nav-height:     64px;
+    --section-gap:    72px;
+
+    /* Logo sizing — Design System Plan §2.3 */
+    --logo-height-desktop: 32px;
+    --logo-height-mobile:  26px;
+    --logo-height-admin:   28px;
+}
+
+/* ══════════════════════════════════════════════
+   7b. SEMANTIC COLOR SHADE SCALE
+   (từ Design System Plan §3.3)
+   ══════════════════════════════════════════════ */
+:root {
+    /* Info scale */
+    --info-900: #003B8E; --info-700: #0052CC; --info-500: #0095FF;
+    --info-300: #66B8FF; --info-100: #CCE5FF;
+
+    /* Success scale */
+    --success-900: #00543A; --success-700: #007A55; --success-500: #00D68F;
+    --success-300: #66EBC0; --success-100: #CCFAEC;
+
+    /* Warning scale */
+    --warning-900: #7A4100; --warning-700: #B36000; --warning-500: #FFAA00;
+    --warning-300: #FFD166; --warning-100: #FFF4CC;
+
+    /* Error scale */
+    --error-900: #8B0032; --error-700: #C4004D; --error-500: #FF3D71;
+    --error-300: #FF8FAD; --error-100: #FFD6E3;
+
+    /* Status semantic — Design System Plan §3.2 */
+    --status-published: #00D68F;
+    --status-draft:     #FFAA00;
+    --status-review:    #0095FF;
+    --status-archived:  #718096;
+    --status-live:      #FF3D71;
+    --status-breaking:  #FC7339;
+}
+
+
+/* ══════════════════════════════════════════════
+   10. FOCUS & ACCESSIBILITY TOKENS
+   ══════════════════════════════════════════════ */
+:root {
+    /* Ring hiển thị khi tab/keyboard — dùng cho mọi interactive element */
+    --focus-ring:         0 0 0 3px rgba(30,111,165,0.30);
+    --focus-ring-accent:  0 0 0 3px rgba(232,65,24,0.28);
+    --focus-ring-gold:    0 0 0 3px rgba(240,165,0,0.28);
+}
+
+/* Global focus-visible — keyboard nav luôn hiển thị rõ */
+:focus-visible {
+    outline: 2px solid var(--brand-alt);
+    outline-offset: 2px;
+}
+
+/* Xóa outline mặc định cho mouse click (chỉ giữ cho keyboard) */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+/* ══════════════════════════════════════════════
+   8. RESET & BASE
+   ══════════════════════════════════════════════ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: var(--text-md);
+    line-height: var(--lh-normal);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--brand-alt);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+}
+
+button, input, textarea, select {
+    font-family: inherit;
+}
+
+
+/* ══════════════════════════════════════════════
+   9. UTILITY HELPERS
+   ══════════════════════════════════════════════ */
+
+/* Container */
+.vnkr-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Text utilities */
+.text-brand    { color: var(--brand); }
+.text-accent   { color: var(--accent); }
+.text-gold     { color: var(--gold); }
+.text-muted    { color: var(--text-muted); }
+.text-success  { color: var(--success-text); }
+.text-warning  { color: var(--warning-text); }
+.text-error    { color: var(--error-text); }
+
+/* Background utilities */
+.bg-brand      { background: var(--brand); color: var(--white); }
+.bg-accent     { background: var(--accent); color: var(--white); }
+.bg-success    { background: var(--success-light); }
+.bg-warning    { background: var(--warning-light); }
+.bg-error      { background: var(--error-light); }
+.bg-info       { background: var(--info-light); }
+
+/* Font weight utilities */
+.fw-normal     { font-weight: var(--fw-normal); }
+.fw-medium     { font-weight: var(--fw-medium); }
+.fw-bold       { font-weight: var(--fw-bold); }
+.fw-extrabold  { font-weight: var(--fw-extrabold); }
+
+/* Responsive mobile override */
+@media (max-width: 768px) {
+    .vnkr-container {
+        padding: 0 20px;
+    }
+}

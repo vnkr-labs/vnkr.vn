@@ -1,0 +1,97 @@
+.wrapper { display: flex; flex-direction: column; gap: 6px; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label  { font-size: var(--type-caption); color: var(--color-text-secondary); }
+.percent { font-size: var(--type-caption); color: var(--color-text-tertiary); font-variant-numeric: tabular-nums; }
+
+.track {
+  width: 100%;
+  background: var(--color-background-tertiary);
+  border-radius: var(--radius-chip);
+  overflow: hidden;
+}
+
+.track[data-size="sm"] { height: 4px; }
+.track[data-size="md"] { height: 8px; }
+.track[data-size="lg"] { height: 12px; }
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.fill[data-variant="default"] { background: var(--color-background-brand); }
+.fill[data-variant="success"] { background: var(--color-status-success-default); }
+.fill[data-variant="warning"] { background: var(--color-status-warning-default); }
+.fill[data-variant="error"]   { background: var(--color-status-error-default); }
+
+/* StepIndicator */
+.steps {
+  display: flex;
+  align-items: flex-start;
+}
+
+.steps[data-orientation="horizontal"] { flex-direction: row; gap: 0; }
+.steps[data-orientation="vertical"]   { flex-direction: column; gap: var(--gap-md); }
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.steps[data-orientation="horizontal"] .step { flex-direction: row; align-items: center; }
+
+.dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--type-caption);
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  color: var(--color-text-tertiary);
+  transition: all var(--transition-fast);
+}
+
+.step[data-state="active"] .dot {
+  border-color: var(--color-background-brand);
+  background: var(--color-background-brand);
+  color: var(--color-text-inverse);
+}
+
+.step[data-state="done"] .dot {
+  border-color: var(--color-status-success-default);
+  background: var(--color-status-success-default);
+  color: var(--color-text-inverse);
+}
+
+.connector {
+  flex: 1;
+  height: 2px;
+  background: var(--color-border-default);
+  margin: 0 4px;
+  margin-top: -14px; /* align with dot center */
+}
+
+.stepLabel {
+  font-size: var(--type-caption);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.step[data-state="active"] .stepLabel { color: var(--color-text-primary); font-weight: 600; }
+.step[data-state="done"]   .stepLabel { color: var(--color-text-secondary); }

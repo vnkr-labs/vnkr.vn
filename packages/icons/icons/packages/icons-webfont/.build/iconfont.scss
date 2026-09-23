@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/*!
+ * VNKR Icons <%= it.v %> by VNKR - https://vnkr.vn
+ * License - https://github.com/vnkr/vnkr-icons/blob/main/LICENSE
+ */
+@use "sass:string";
+
+$vi-font-family: '<%= it.fileName %>' !default;
+$vi-font-path: './fonts' !default;
+$vi-font-display: null !default;
+$vi-prefix: 'vi' !default;
+
+@font-face {
+  font-family: $vi-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-display: $vi-font-display;
+  src: url('#{$vi-font-path}/<%= it.fileName %>.woff2?v<%= it.v %>') format('woff2'),
+  url('#{$vi-font-path}/<%= it.fileName %>.woff?') format('woff'),
+  url('#{$vi-font-path}/<%= it.fileName %>.ttf?v<%= it.v %>') format('truetype');
+}
+
+.#{$vi-prefix} {
+  font-family: $vi-font-family !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@function unicode($str) {
+  @return string.unquote("\"")+string.unquote(string.insert($str, "\\", 1))+string.unquote("\"")
+}
+
+<% it.glyphs.forEach(function(glyph) {
+    %> $vi-icon-<%=glyph.name %>: unicode('<%= glyph.unicodeHex %>'); <%
+
+  }) %><% it.glyphs.forEach(function(glyph) {
+    %> .#{$vi-prefix}-<%=glyph.name %>:before {
+      content: $vi-icon-<%=glyph.name %>;
+    }
+
+    <%
+  }) %> // Aliases
+
+<% it.aliases.forEach(function(alias) {
+    %>.#{$vi-prefix}-<%=alias.from %>:before {
+      content: $vi-icon-<%=alias.to %>;
+    }
+
+    <%
+  }) %>

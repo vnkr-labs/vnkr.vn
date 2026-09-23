@@ -1,0 +1,32 @@
+[package]
+name = "sequentichain-node"
+version = "0.1.0"
+edition = "2021"
+license = "BSL-1.1"
+description = "Sequentichain ($SQX) — L2 Execution Engine, AF_XDP NIC Bypass, SVM Rollup (~150k LOC)"
+
+[[bin]]
+name = "sqx-node"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+sha2 = "0.10"
+thiserror = "1"
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+rayon = "1.9"       # Parallel transaction execution
+bytes = "1"
+rocksdb = "0.21"
+
+[dev-dependencies]
+tokio-test = "0.4"
+criterion = { version = "0.5", features = ["async_tokio"] }
+
+[[bench]]
+name = "tps_benchmark"
+harness = false

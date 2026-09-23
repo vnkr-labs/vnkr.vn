@@ -1,0 +1,22 @@
+{
+  "name": "@vnkr-io/packages",
+  "version": "1.0.0",
+  "description": "VNKR Design System — monorepo packages",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "publish:tokens": "cd packages/vnkr-tokens && npm publish",
+    "publish:ui":     "cd packages/vnkr-ui && npm publish",
+    "publish:fe":     "cd packages/vnkr-fe && npm publish",
+    "publish:admin":  "cd packages/vnkr-admin && npm publish",
+    "publish:all":    "npm run publish:tokens && npm run publish:ui && npm run publish:fe && npm run publish:admin"
+  },
+  "author": "VNKR Labs <dev@vnkr.vn>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vnkr-labs/packages.git"
+  }
+}

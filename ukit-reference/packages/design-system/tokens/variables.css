@@ -1,0 +1,453 @@
+/* ══════════════════════════════════════════════════════════════════
+   @axioledger/axio-design-system — CSS Custom Properties
+   AXQ Token System v2.0 — 3-Layer: Primitive → Semantic → Component
+   ══════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+/* ── PRIMITIVE: Greyscale ────────────────────────────────────────── */
+:root {
+  --primitive-white:     #FFFFFF;
+  --primitive-black:     #000000;
+  --primitive-grey-100:  #EDF1F7;
+  --primitive-grey-200:  #E4E9F2;
+  --primitive-grey-300:  #C5CEE0;
+  --primitive-grey-400:  #8F9BB3;
+  --primitive-grey-500:  #2E3A59;
+  --primitive-grey-600:  #222B45;
+  --primitive-grey-700:  #192038;
+  --primitive-grey-800:  #151A30;
+  --primitive-grey-900:  #101426;
+
+  /* Brand Accent */
+  --primitive-brand-teal:   #49DBC8;
+  --primitive-brand-green:  #BEFF6C;
+  --primitive-brand-orange: #FC7339;
+  --primitive-brand-pink:   #FD9FDD;
+  --primitive-brand-purple: #AF96FB;
+  --primitive-brand-yellow: #FFF172;
+  --primitive-brand-grey:   #EFEFEF;
+
+  /* Status: Info */
+  --primitive-info-100: #F2F8FF;
+  --primitive-info-200: #C7E2FF;
+  --primitive-info-300: #94CBFF;
+  --primitive-info-400: #42AAFF;
+  --primitive-info-500: #0095FF;
+  --primitive-info-600: #006FD6;
+  --primitive-info-700: #0057C2;
+  --primitive-info-800: #003F8F;
+  --primitive-info-900: #002885;
+
+  /* Status: Success */
+  --primitive-success-100: #F0FFF5;
+  --primitive-success-200: #CCFCE3;
+  --primitive-success-300: #8CFAC7;
+  --primitive-success-400: #2CE69B;
+  --primitive-success-500: #00D68F;
+  --primitive-success-600: #00B887;
+  --primitive-success-700: #00997A;
+  --primitive-success-800: #007D6C;
+  --primitive-success-900: #004A45;
+
+  /* Status: Warning */
+  --primitive-warning-100: #FFFDF2;
+  --primitive-warning-200: #FFF1C2;
+  --primitive-warning-300: #FFE59E;
+  --primitive-warning-400: #FFC94D;
+  --primitive-warning-500: #FFAA00;
+  --primitive-warning-600: #DB8B00;
+  --primitive-warning-700: #B86E00;
+  --primitive-warning-800: #945400;
+  --primitive-warning-900: #703C00;
+
+  /* Status: Error */
+  --primitive-error-100: #FFF2F2;
+  --primitive-error-200: #FFD6D9;
+  --primitive-error-300: #FFA8B4;
+  --primitive-error-400: #FF708D;
+  --primitive-error-500: #FF3D71;
+  --primitive-error-600: #DB2C66;
+  --primitive-error-700: #B81D5B;
+  --primitive-error-800: #94124E;
+  --primitive-error-900: #700940;
+}
+
+/* ── PRIMITIVE: Spacing ──────────────────────────────────────────── */
+:root {
+  --primitive-space-0:   0px;
+  --primitive-space-2:   2px;
+  --primitive-space-4:   4px;
+  --primitive-space-6:   6px;
+  --primitive-space-8:   8px;
+  --primitive-space-10:  10px;
+  --primitive-space-12:  12px;
+  --primitive-space-16:  16px;
+  --primitive-space-20:  20px;
+  --primitive-space-24:  24px;
+  --primitive-space-32:  32px;
+  --primitive-space-40:  40px;
+  --primitive-space-48:  48px;
+  --primitive-space-56:  56px;
+  --primitive-space-64:  64px;
+  --primitive-space-80:  80px;
+  --primitive-space-96:  96px;
+  --primitive-space-128: 128px;
+}
+
+/* ── PRIMITIVE: Border Radius ────────────────────────────────────── */
+:root {
+  --primitive-radius-none: 0px;
+  --primitive-radius-xs:   2px;
+  --primitive-radius-sm:   4px;
+  --primitive-radius-md:   8px;
+  --primitive-radius-lg:   12px;
+  --primitive-radius-xl:   16px;
+  --primitive-radius-2xl:  24px;
+  --primitive-radius-3xl:  32px;
+  --primitive-radius-full: 9999px;
+}
+
+/* ── PRIMITIVE: Font Size ────────────────────────────────────────── */
+:root {
+  --primitive-fs-10: 10px;
+  --primitive-fs-12: 12px;
+  --primitive-fs-14: 14px;
+  --primitive-fs-16: 16px;
+  --primitive-fs-20: 20px;
+  --primitive-fs-24: 24px;
+  --primitive-fs-34: 34px;
+  --primitive-fs-48: 48px;
+  --primitive-fs-60: 60px;
+  --primitive-fs-96: 96px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SEMANTIC TOKENS — Light Mode (default)
+   ══════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme="light"] {
+
+  /* ── Color: Text ───────────────────────────────────────────────── */
+  --color-text-primary:   var(--primitive-grey-900);    /* #101426 */
+  --color-text-secondary: var(--primitive-grey-500);    /* #2E3A59 */
+  --color-text-tertiary:  var(--primitive-grey-400);    /* #8F9BB3 */
+  --color-text-disabled:  var(--primitive-grey-300);    /* #C5CEE0 */
+  --color-text-inverse:   var(--primitive-white);       /* #FFFFFF */
+  --color-text-brand:     var(--primitive-black);       /* #000000 */
+  --color-text-link:      var(--primitive-info-700);    /* #0057C2 */
+  --color-text-on-color:  var(--primitive-white);       /* #FFFFFF */
+
+  /* ── Color: Background ─────────────────────────────────────────── */
+  --color-background-primary:   var(--primitive-white);      /* #FFFFFF */
+  --color-background-secondary: var(--primitive-grey-100);   /* #EDF1F7 */
+  --color-background-tertiary:  var(--primitive-grey-200);   /* #E4E9F2 */
+  --color-background-inverse:   var(--primitive-grey-900);   /* #101426 */
+  --color-background-brand:     var(--primitive-black);      /* #000000 */
+  --color-background-disabled:  var(--primitive-grey-200);   /* #E4E9F2 */
+
+  /* ── Color: Surface ────────────────────────────────────────────── */
+  --color-surface-default:  var(--primitive-white);      /* #FFFFFF */
+  --color-surface-raised:   var(--primitive-white);      /* #FFFFFF */
+  --color-surface-overlay:  var(--primitive-grey-100);   /* #EDF1F7 */
+  --color-surface-sunken:   var(--primitive-grey-100);   /* #EDF1F7 */
+
+  /* ── Color: Border ─────────────────────────────────────────────── */
+  --color-border-default:  var(--primitive-grey-200);   /* #E4E9F2 */
+  --color-border-subtle:   var(--primitive-grey-100);   /* #EDF1F7 */
+  --color-border-strong:   var(--primitive-grey-400);   /* #8F9BB3 */
+  --color-border-disabled: var(--primitive-grey-200);   /* #E4E9F2 */
+  --color-border-focus:    var(--primitive-info-500);   /* #0095FF */
+
+  /* ── Color: Icon ───────────────────────────────────────────────── */
+  --color-icon-primary:   var(--primitive-grey-900);   /* #101426 */
+  --color-icon-secondary: var(--primitive-grey-500);   /* #2E3A59 */
+  --color-icon-tertiary:  var(--primitive-grey-400);   /* #8F9BB3 */
+  --color-icon-disabled:  var(--primitive-grey-300);   /* #C5CEE0 */
+  --color-icon-inverse:   var(--primitive-white);      /* #FFFFFF */
+  --color-icon-brand:     var(--primitive-black);      /* #000000 */
+
+  /* ── Color: Status — Info ──────────────────────────────────────── */
+  --color-status-info-bg:      var(--primitive-info-100);   /* #F2F8FF */
+  --color-status-info-subtle:  var(--primitive-info-200);   /* #C7E2FF */
+  --color-status-info-default: var(--primitive-info-500);   /* #0095FF */
+  --color-status-info-text:    var(--primitive-info-700);   /* #0057C2 */
+
+  /* ── Color: Status — Success ───────────────────────────────────── */
+  --color-status-success-bg:      var(--primitive-success-100);   /* #F0FFF5 */
+  --color-status-success-subtle:  var(--primitive-success-200);   /* #CCFCE3 */
+  --color-status-success-default: var(--primitive-success-500);   /* #00D68F */
+  --color-status-success-text:    var(--primitive-success-700);   /* #00997A */
+
+  /* ── Color: Status — Warning ───────────────────────────────────── */
+  --color-status-warning-bg:      var(--primitive-warning-100);   /* #FFFDF2 */
+  --color-status-warning-subtle:  var(--primitive-warning-200);   /* #FFF1C2 */
+  --color-status-warning-default: var(--primitive-warning-500);   /* #FFAA00 */
+  --color-status-warning-text:    var(--primitive-warning-700);   /* #B86E00 */
+
+  /* ── Color: Status — Error ─────────────────────────────────────── */
+  --color-status-error-bg:      var(--primitive-error-100);   /* #FFF2F2 */
+  --color-status-error-subtle:  var(--primitive-error-200);   /* #FFD6D9 */
+  --color-status-error-default: var(--primitive-error-500);   /* #FF3D71 */
+  --color-status-error-text:    var(--primitive-error-700);   /* #B81D5B */
+
+  /* ── Color: Accent ─────────────────────────────────────────────── */
+  --color-accent-teal:   var(--primitive-brand-teal);
+  --color-accent-green:  var(--primitive-brand-green);
+  --color-accent-orange: var(--primitive-brand-orange);
+  --color-accent-pink:   var(--primitive-brand-pink);
+  --color-accent-purple: var(--primitive-brand-purple);
+  --color-accent-yellow: var(--primitive-brand-yellow);
+
+  /* ── Semantic: Radius ──────────────────────────────────────────── */
+  --radius-button:   var(--primitive-radius-2xl);    /* 24px */
+  --radius-input:    var(--primitive-radius-lg);     /* 12px */
+  --radius-card:     var(--primitive-radius-xl);     /* 16px */
+  --radius-modal:    var(--primitive-radius-2xl);    /* 24px */
+  --radius-chip:     var(--primitive-radius-full);   /* 9999px */
+  --radius-avatar:   var(--primitive-radius-full);   /* 9999px */
+  --radius-badge:    var(--primitive-radius-sm);     /* 4px */
+  --radius-tooltip:  var(--primitive-radius-md);     /* 8px */
+  --radius-dropdown: var(--primitive-radius-md);     /* 8px */
+
+  /* ── Semantic: Spacing — Inset (padding) ───────────────────────── */
+  --inset-xs:  var(--primitive-space-4);    /* 4px  */
+  --inset-sm:  var(--primitive-space-8);    /* 8px  */
+  --inset-md:  var(--primitive-space-16);   /* 16px */
+  --inset-lg:  var(--primitive-space-24);   /* 24px */
+  --inset-xl:  var(--primitive-space-32);   /* 32px */
+  --inset-2xl: var(--primitive-space-48);   /* 48px */
+
+  /* ── Semantic: Spacing — Gap ───────────────────────────────────── */
+  --gap-xs: var(--primitive-space-4);    /* 4px  */
+  --gap-sm: var(--primitive-space-8);    /* 8px  */
+  --gap-md: var(--primitive-space-12);   /* 12px */
+  --gap-lg: var(--primitive-space-16);   /* 16px */
+  --gap-xl: var(--primitive-space-24);   /* 24px */
+
+  /* ── Semantic: Typography ──────────────────────────────────────── */
+  --type-overline: var(--primitive-fs-10);   /* 10px */
+  --type-caption:  var(--primitive-fs-12);   /* 12px */
+  --type-body-sm:  var(--primitive-fs-14);   /* 14px */
+  --type-body:     var(--primitive-fs-16);   /* 16px */
+  --type-h6:       var(--primitive-fs-20);   /* 20px */
+  --type-h5:       var(--primitive-fs-24);   /* 24px */
+  --type-h4:       var(--primitive-fs-34);   /* 34px */
+  --type-h3:       var(--primitive-fs-48);   /* 48px */
+  --type-h2:       var(--primitive-fs-60);   /* 60px */
+  --type-h1:       var(--primitive-fs-96);   /* 96px */
+
+  /* ── Font Family ───────────────────────────────────────────────── */
+  --font-sans: 'Work Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* ── Misc ──────────────────────────────────────────────────────── */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ICON SIZE TOKENS
+   Usage: width/height on <svg> or via Icon size prop
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --icon-xs:  16px;   /* inline / badge */
+  --icon-sm:  20px;   /* compact UI / list rows */
+  --icon-md:  24px;   /* default / standard */
+  --icon-lg:  32px;   /* section headers / nav */
+  --icon-xl:  40px;   /* hero / card thumbnails */
+  --icon-2xl: 48px;   /* splash / empty states */
+  --icon-3xl: 64px;   /* full-page illustrations */
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ICON COLOR SEMANTIC TOKENS
+   Apply to the wrapping element — Icon uses currentColor internally.
+   Usage: color: var(--icon-color-primary)
+   ══════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme="light"] {
+  --icon-color-primary:    var(--color-icon-primary);    /* #101426 */
+  --icon-color-secondary:  var(--color-icon-secondary);  /* #2E3A59 */
+  --icon-color-tertiary:   var(--color-icon-tertiary);   /* #8F9BB3 */
+  --icon-color-disabled:   var(--color-icon-disabled);   /* #C5CEE0 */
+  --icon-color-inverse:    var(--color-icon-inverse);    /* #FFFFFF */
+  --icon-color-brand:      var(--color-icon-brand);      /* #000000 */
+
+  /* Status colours */
+  --icon-color-success:    var(--primitive-success-500); /* #00D68F */
+  --icon-color-warning:    var(--primitive-warning-500); /* #FFAA00 */
+  --icon-color-error:      var(--primitive-error-500);   /* #FF3D71 */
+  --icon-color-info:       var(--primitive-info-500);    /* #0095FF */
+
+  /* Brand accent colours */
+  --icon-color-teal:       var(--primitive-brand-teal);  /* #49DBC8 */
+  --icon-color-green:      var(--primitive-brand-green); /* #BEFF6C */
+  --icon-color-orange:     var(--primitive-brand-orange);/* #FC7339 */
+  --icon-color-purple:     var(--primitive-brand-purple);/* #AF96FB */
+  --icon-color-yellow:     var(--primitive-brand-yellow);/* #FFF172 */
+
+  /* Nav tab colours */
+  --icon-color-tab-active:   var(--primitive-brand-teal);
+  --icon-color-tab-inactive: var(--primitive-grey-400);
+}
+
+[data-theme="dark"] {
+  --icon-color-primary:    #E6EDF3;
+  --icon-color-secondary:  #8B949E;
+  --icon-color-tertiary:   #6E7681;
+  --icon-color-disabled:   #484F58;
+  --icon-color-inverse:    #1A1A1A;
+  --icon-color-brand:      #FFFFFF;
+  --icon-color-tab-active: var(--primitive-brand-teal);
+  --icon-color-tab-inactive: #6E7681;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ICON UTILITY CLASSES
+   Apply directly to <Icon> wrapper or parent element.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Colour variants */
+.icon-primary   { color: var(--icon-color-primary);   }
+.icon-secondary { color: var(--icon-color-secondary); }
+.icon-tertiary  { color: var(--icon-color-tertiary);  }
+.icon-disabled  { color: var(--icon-color-disabled);  }
+.icon-inverse   { color: var(--icon-color-inverse);   }
+.icon-success   { color: var(--icon-color-success);   }
+.icon-warning   { color: var(--icon-color-warning);   }
+.icon-error     { color: var(--icon-color-error);     }
+.icon-info      { color: var(--icon-color-info);      }
+.icon-teal      { color: var(--icon-color-teal);      }
+.icon-orange    { color: var(--icon-color-orange);    }
+.icon-purple    { color: var(--icon-color-purple);    }
+
+/* Size helpers */
+.icon-xs  { width: var(--icon-xs);  height: var(--icon-xs);  }
+.icon-sm  { width: var(--icon-sm);  height: var(--icon-sm);  }
+.icon-md  { width: var(--icon-md);  height: var(--icon-md);  }
+.icon-lg  { width: var(--icon-lg);  height: var(--icon-lg);  }
+.icon-xl  { width: var(--icon-xl);  height: var(--icon-xl);  }
+.icon-2xl { width: var(--icon-2xl); height: var(--icon-2xl); }
+
+/* Interactive states */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--primitive-space-8);
+  border-radius: var(--primitive-radius-md);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--icon-color-primary);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.icon-btn:hover  { background: var(--color-surface-overlay); }
+.icon-btn:active { background: var(--color-background-tertiary); }
+.icon-btn:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+.icon-btn--round { border-radius: var(--primitive-radius-full); }
+
+/* ══════════════════════════════════════════════════════════════════
+   SEMANTIC TOKENS — Dark Mode
+   ══════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] {
+
+  /* ── Color: Text ───────────────────────────────────────────────── */
+  --color-text-primary:   #E6EDF3;
+  --color-text-secondary: #8B949E;
+  --color-text-tertiary:  #6E7681;
+  --color-text-disabled:  #484F58;
+  --color-text-inverse:   #1A1A1A;
+  --color-text-brand:     #FFFFFF;
+  --color-text-link:      #58A6FF;
+  --color-text-on-color:  #FFFFFF;
+
+  /* ── Color: Background ─────────────────────────────────────────── */
+  --color-background-primary:   #0D1117;
+  --color-background-secondary: #161B22;
+  --color-background-tertiary:  #21262D;
+  --color-background-inverse:   #E6EDF3;
+  --color-background-brand:     #FFFFFF;
+  --color-background-disabled:  #21262D;
+
+  /* ── Color: Surface ────────────────────────────────────────────── */
+  --color-surface-default: #1C2128;
+  --color-surface-raised:  #22272E;
+  --color-surface-overlay: #2D333B;
+  --color-surface-sunken:  #0D1117;
+
+  /* ── Color: Border ─────────────────────────────────────────────── */
+  --color-border-default:  #30363D;
+  --color-border-subtle:   #21262D;
+  --color-border-strong:   #484F58;
+  --color-border-disabled: #30363D;
+  --color-border-focus:    #58A6FF;
+
+  /* ── Color: Icon ───────────────────────────────────────────────── */
+  --color-icon-primary:   #E6EDF3;
+  --color-icon-secondary: #8B949E;
+  --color-icon-tertiary:  #6E7681;
+  --color-icon-disabled:  #484F58;
+  --color-icon-inverse:   #1A1A1A;
+  --color-icon-brand:     #FFFFFF;
+
+  /* Status tokens inherit from primitives — same values in dark */
+
+  /* ── Misc ──────────────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.30);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TLP (Trust Level Protocol) Tokens
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --tlp-safe:         var(--primitive-success-500);   /* #00D68F — .axq .vrq */
+  --tlp-safe-bg:      var(--primitive-success-100);
+  --tlp-safe-text:    var(--primitive-success-700);
+  --tlp-caution:      var(--primitive-warning-500);   /* #FFAA00 — .kpx */
+  --tlp-caution-bg:   var(--primitive-warning-100);
+  --tlp-caution-text: var(--primitive-warning-700);
+  --tlp-blocked:      var(--primitive-error-500);     /* #FF3D71 — unknown */
+  --tlp-blocked-bg:   var(--primitive-error-100);
+  --tlp-blocked-text: var(--primitive-error-700);
+  --tlp-system:       #57606A;                        /* #57606A — .sqx .vpx */
+  --tlp-system-bg:    #F0F1F3;
+  --tlp-system-text:  #404855;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ══════════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--type-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus visible — global */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

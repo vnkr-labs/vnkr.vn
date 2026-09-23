@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@axioledger/ans-resolver": ["../../packages/ans-resolver/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*", ".storybook/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

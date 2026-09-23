@@ -1,0 +1,99 @@
+/* Shared base for all KYC screens */
+.root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--inset-lg);
+  padding-top: calc(env(safe-area-inset-top, 44px) + var(--primitive-space-12));
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--primitive-space-32));
+  background: var(--color-background-primary);
+  gap: var(--primitive-space-20);
+}
+
+.header { display: flex; flex-direction: column; gap: 6px; }
+.title   { font-size: var(--type-h5); font-weight: 700; color: var(--color-text-primary); margin: 0; }
+.subtitle { font-size: var(--type-body-sm); color: var(--color-text-secondary); margin: 0; }
+
+/* Tier cards */
+.tiers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  flex: 1;
+}
+
+.tierCard {
+  background: var(--color-surface-raised);
+  border: 1.5px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: var(--inset-md);
+}
+
+.tierCurrent { box-shadow: var(--shadow-sm); }
+
+.tierTop {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.tierLabel {
+  font-size: var(--type-body-sm);
+  font-weight: 700;
+}
+
+.tierBadge {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--primitive-grey-900);
+  border-radius: var(--primitive-radius-full);
+  padding: 2px 8px;
+}
+
+.tierLimit {
+  font-size: var(--type-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 8px;
+}
+
+.tierFeatures {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.tierFeatures li {
+  font-size: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+/* Actions */
+.actions {
+  display: flex; flex-direction: column;
+  gap: var(--primitive-space-12);
+}
+
+.countryBtn {
+  height: 48px;
+  border: 1.5px solid var(--color-border-default);
+  border-radius: var(--radius-button);
+  background: transparent;
+  font-size: var(--type-body-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.primaryBtn {
+  height: 56px;
+  background: var(--color-background-brand);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: var(--radius-button);
+  font-size: var(--type-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+.primaryBtn:hover:not(:disabled) { opacity: 0.88; }
+.primaryBtn:disabled { opacity: 0.4; cursor: not-allowed; }

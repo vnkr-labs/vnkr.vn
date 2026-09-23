@@ -1,0 +1,2927 @@
+/**
+ * VNKR.VN — UI Component Library
+ * ================================
+ * File: vnkr-ui.css
+ * Phụ thuộc: vnkr-tokens.css (phải import trước)
+ * Mô tả: Toàn bộ component classes của hệ thống UI VNKR — có thể tái sử dụng
+ *        trong bất kỳ trang nào của dự án.
+ *
+ * Cách dùng:
+ *   <link rel="stylesheet" href="/assets/css/vnkr-tokens.css">
+ *   <link rel="stylesheet" href="/assets/css/vnkr-ui.css">
+ *
+ * Mục lục:
+ *   1.  NAV / HEADER
+ *   2.  HERO SECTION
+ *   3.  SECTION WRAPPER
+ *   4.  BUTTONS
+ *   5.  BADGES & TAGS
+ *   6.  CARDS (generic)
+ *   7.  IDENTITY CARD
+ *   8.  COLOR SWATCH
+ *   9.  TYPOGRAPHY SHOWCASE
+ *   10. CHECKLIST
+ *   11. PROGRESS BAR
+ *   12. DATA TABLE
+ *   13. CODE BLOCK
+ *   14. GRID LAYOUTS
+ *   15. ROADMAP CARD
+ *   16. STAT BLOCK
+ *   17. TECH CARD
+ *   18. REVENUE CARD
+ *   19. PERSONA CARD
+ *   20. PYRAMID
+ *   21. FOOTER
+ *   22. RESPONSIVE
+ *   23. HAMBURGER NAV TOGGLE
+ *   24. CHUYÊN MỤC CARD (cm-*)
+ *   25. LEGAL CARD
+ *   26. SUB-HEADING & KPI LABEL
+ *   27. CARD META / EXCERPT / FOOTER
+ *   28. CALLOUT / ALERT BOX          ← Giai đoạn 1
+ *   29. INPUT / FORM ELEMENTS        ← Giai đoạn 1
+ *   30. SKELETON LOADING             ← Giai đoạn 2
+ *   31. MODAL / DIALOG               ← Giai đoạn 2
+ *   32. TIMELINE                     ← Giai đoạn 2
+ */
+
+
+/* ══════════════════════════════════════════════
+   1. NAV / HEADER
+   ══════════════════════════════════════════════ */
+
+.vnkr-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--brand);
+    border-bottom: 3px solid var(--accent);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-height);
+    transition: background var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Scrolled state — glassmorphism khi cuộn > 60px */
+.vnkr-nav--scrolled {
+    background: color-mix(in srgb, var(--brand) 88%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 20px rgba(10,61,98,0.18);
+}
+
+.vnkr-nav-logo {
+    font-size: 22px;
+    font-weight: var(--fw-extrabold);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+}
+
+.vnkr-nav-logo .logo-vn { color: var(--white); }
+.vnkr-nav-logo .logo-kr { color: var(--gold); }
+
+.vnkr-nav-logo .logo-badge {
+    background: var(--accent);
+    color: var(--white);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.5px;
+}
+
+.vnkr-nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.vnkr-nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: var(--text-base);
+    font-weight: var(--fw-medium);
+    transition: color var(--transition-base);
+    border-radius: var(--radius-sm);
+    padding: 2px 4px;
+}
+
+.vnkr-nav-links a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.vnkr-nav-links a:hover,
+.vnkr-nav-links a.active {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+
+/* ══════════════════════════════════════════════
+   2. HERO SECTION
+   ══════════════════════════════════════════════ */
+
+.vnkr-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px 64px;
+    text-align: center;
+    background: linear-gradient(160deg, #0A3D62 0%, #0d4f80 60%, #1a6299 100%);
+}
+
+.vnkr-hero-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: 1.5px;
+    padding: 5px 16px;
+    border-radius: var(--radius-full);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.vnkr-hero h1 {
+    font-size: var(--text-hero);
+    font-weight: var(--fw-extrabold);
+    line-height: var(--lh-tight);
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+    color: var(--white);
+}
+
+.vnkr-hero h1 .accent-vn  { color: var(--white); }
+.vnkr-hero h1 .accent-kr  { color: var(--gold); }
+.vnkr-hero h1 .accent-dot { color: var(--accent); }
+
+.vnkr-hero-slogan {
+    font-size: var(--text-xl);
+    font-weight: var(--fw-medium);
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 8px;
+}
+
+.vnkr-hero-slogan2 {
+    font-size: var(--text-md);
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 36px;
+}
+
+.vnkr-hero-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Stats bar bên dưới hero */
+.vnkr-hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.vnkr-stat { text-align: center; }
+
+.vnkr-stat-num {
+    font-size: 34px;
+    font-weight: var(--fw-extrabold);
+    color: var(--gold);
+}
+
+.vnkr-stat-label {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+}
+
+
+/* ══════════════════════════════════════════════
+   3. SECTION WRAPPER
+   ══════════════════════════════════════════════ */
+
+.vnkr-section {
+    padding: var(--p-section);
+    background: var(--bg);
+    transition: background var(--transition-base), color var(--transition-base);
+}
+
+/* Section trắng (xen kẽ) */
+.vnkr-section--alt {
+    background: var(--bg-card);
+}
+
+/* Section nền thương hiệu */
+.vnkr-section--dark {
+    background: var(--brand);
+    color: var(--white);
+}
+
+.vnkr-section-title {
+    font-size: var(--text-4xl);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.8px;
+    margin-bottom: 8px;
+    color: var(--brand);
+}
+
+.vnkr-section--dark .vnkr-section-title {
+    color: var(--gold);
+}
+
+.vnkr-section-sub {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 560px;
+    line-height: var(--lh-relaxed);
+}
+
+.vnkr-section--dark .vnkr-section-sub {
+    color: rgba(255,255,255,0.65);
+}
+
+
+/* ══════════════════════════════════════════════
+   4. BUTTONS
+   ══════════════════════════════════════════════ */
+
+/* Base button */
+.vnkr-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-main);
+    font-size: var(--text-md);
+    font-weight: var(--fw-bold);
+    padding: 13px 32px;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-base),
+        color var(--transition-base);
+    white-space: nowrap;
+}
+
+.vnkr-btn:hover { text-decoration: none; }
+
+.vnkr-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+.vnkr-btn--primary:focus-visible,
+.vnkr-btn--danger:focus-visible  {
+    box-shadow: var(--focus-ring-accent);
+}
+
+/* Primary — accent đỏ */
+.vnkr-btn--primary {
+    background: var(--accent);
+    color: var(--white);
+    box-shadow: var(--shadow-accent);
+}
+
+.vnkr-btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-hover);
+    color: var(--white);
+}
+
+/* Outline — trên nền tối */
+.vnkr-btn--outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.45);
+}
+
+.vnkr-btn--outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* Outline — trên nền sáng */
+.vnkr-btn--outline-dark {
+    background: transparent;
+    color: var(--brand);
+    border: 2px solid var(--brand);
+}
+
+.vnkr-btn--outline-dark:hover {
+    background: var(--brand);
+    color: var(--white);
+}
+
+/* Brand */
+.vnkr-btn--brand {
+    background: var(--brand);
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.vnkr-btn--brand:hover {
+    background: var(--brand-alt);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+/* Ghost — trên nền sáng */
+.vnkr-btn--ghost {
+    background: transparent;
+    color: var(--brand);
+    border: 2px solid var(--border);
+}
+
+.vnkr-btn--ghost:hover {
+    border-color: var(--brand-alt);
+    color: var(--brand-alt);
+    transform: translateY(-1px);
+}
+
+/* Danger */
+.vnkr-btn--danger {
+    background: var(--accent);
+    color: var(--white);
+    border: 2px solid var(--accent);
+}
+
+.vnkr-btn--danger:hover {
+    background: #c93410;
+    border-color: #c93410;
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+/* Sizes */
+.vnkr-btn--sm { font-size: var(--text-base); padding: 9px 20px; }
+.vnkr-btn--lg { font-size: var(--text-xl);   padding: 16px 40px; }
+.vnkr-btn--full { width: 100%; justify-content: center; }
+
+/* Loading state — aria-busy="true" */
+.vnkr-btn[aria-busy="true"] {
+    pointer-events: none;
+    opacity: 0.7;
+    position: relative;
+}
+
+.vnkr-btn[aria-busy="true"]::after {
+    content: '';
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-left: 6px;
+    border: 2px solid rgba(255,255,255,0.35);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: vnkr-spin 0.65s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes vnkr-spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* ══════════════════════════════════════════════
+   5. BADGES & TAGS
+   ══════════════════════════════════════════════ */
+
+/* Badge inline */
+.vnkr-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-bold);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+}
+
+.vnkr-badge--success  { background: var(--success-light);  color: var(--success-text); }
+.vnkr-badge--warning  { background: var(--warning-light);  color: var(--warning-text); }
+.vnkr-badge--error    { background: var(--error-light);    color: var(--error-text); }
+.vnkr-badge--info     { background: var(--info-light);     color: var(--info-text); }
+.vnkr-badge--brand    { background: var(--brand-light);    color: var(--brand); }
+.vnkr-badge--gold     { background: var(--gold-light);     color: var(--warning-text); }
+
+/* Tag nhỏ trên card */
+.vnkr-tag {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--brand-light);
+    color: var(--brand);
+}
+
+.vnkr-tag--gold    { background: var(--gold-light);   color: var(--warning-text); }
+.vnkr-tag--accent  { background: var(--error-light);  color: var(--accent); }
+.vnkr-tag--success { background: var(--success-light); color: var(--success-text); }
+
+/* Overline label */
+.vnkr-overline {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+
+/* ══════════════════════════════════════════════
+   6. CARDS (generic)
+   ══════════════════════════════════════════════ */
+
+.vnkr-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--p-card);
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.vnkr-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.vnkr-card--sm {
+    padding: var(--p-card-sm);
+}
+
+.vnkr-card--flat {
+    box-shadow: none;
+}
+
+.vnkr-card--border-accent {
+    border-color: var(--accent);
+}
+
+.vnkr-card--border-gold {
+    border-color: var(--gold);
+}
+
+.vnkr-card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vnkr-card-meta {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.vnkr-card-excerpt {
+    font-size: var(--text-md);
+    color: var(--text-muted);
+    line-height: var(--lh-relaxed);
+    margin-bottom: 14px;
+}
+
+.vnkr-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+}
+
+.vnkr-card-body {
+    font-size: var(--text-md);
+    color: var(--text-muted);
+    line-height: var(--lh-normal);
+}
+
+.vnkr-card-body strong { color: var(--text); }
+
+
+/* ══════════════════════════════════════════════
+   7. IDENTITY CARD
+   ══════════════════════════════════════════════ */
+
+.vnkr-identity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.vnkr-identity-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--p-card);
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.vnkr-identity-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.vnkr-identity-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+.vnkr-identity-card h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin-bottom: 6px;
+}
+
+.vnkr-identity-value {
+    font-size: var(--text-md);
+    color: var(--text-muted);
+    line-height: var(--lh-normal);
+}
+
+.vnkr-identity-value strong { color: var(--text); }
+
+
+/* ══════════════════════════════════════════════
+   8. COLOR SWATCH
+   ══════════════════════════════════════════════ */
+
+.vnkr-palette-wrap {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    border: 1.5px solid var(--border);
+    padding: 28px;
+    margin-bottom: 28px;
+}
+
+.vnkr-palette-label {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.vnkr-color-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.vnkr-color-swatch { text-align: center; }
+
+.vnkr-swatch-box {
+    width: 84px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid rgba(0,0,0,0.08);
+    margin-bottom: 8px;
+}
+
+.vnkr-swatch-name {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+}
+
+.vnkr-swatch-hex {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+
+/* ══════════════════════════════════════════════
+   9. TYPOGRAPHY SHOWCASE
+   ══════════════════════════════════════════════ */
+
+.vnkr-type-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vnkr-type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    background: var(--bg-section);
+    border-radius: var(--radius-lg);
+    padding: 16px 24px;
+    border: 1px solid var(--border);
+}
+
+.vnkr-type-meta {
+    width: 160px;
+    flex-shrink: 0;
+}
+
+.vnkr-type-token {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin-bottom: 2px;
+    font-family: var(--font-mono);
+}
+
+.vnkr-type-spec {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.vnkr-type-sample {
+    color: var(--text);
+}
+
+
+/* ══════════════════════════════════════════════
+   10. CHECKLIST
+   ══════════════════════════════════════════════ */
+
+.vnkr-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 640px;
+}
+
+.vnkr-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    font-size: var(--text-base);
+    line-height: var(--lh-snug);
+}
+
+.vnkr-check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-bold);
+    flex-shrink: 0;
+}
+
+/* Trạng thái icon */
+.vnkr-check-icon--done  { background: var(--success-light); color: var(--success-text); }
+.vnkr-check-icon--now   { background: var(--error-light);   color: var(--accent); }
+.vnkr-check-icon--soon  { background: var(--gold-light);    color: var(--warning-text); }
+.vnkr-check-icon--todo  { background: var(--bg-section);    color: var(--text-muted); }
+
+
+/* ══════════════════════════════════════════════
+   11. PROGRESS BAR
+   ══════════════════════════════════════════════ */
+
+.vnkr-progress-wrap {
+    max-width: 560px;
+    margin-bottom: 32px;
+}
+
+.vnkr-progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.vnkr-progress-label span:last-child {
+    font-weight: var(--fw-bold);
+    color: var(--success-text);
+}
+
+.vnkr-progress-bg {
+    background: var(--border);
+    border-radius: var(--radius-full);
+    height: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.vnkr-progress-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--brand);
+    transition: width 0.6s ease;
+}
+
+.vnkr-progress-fill--accent  { background: var(--accent); }
+.vnkr-progress-fill--gold    { background: var(--gold); }
+.vnkr-progress-fill--success { background: var(--success); }
+.vnkr-progress-fill--alt     { background: var(--brand-alt); }
+
+
+/* ══════════════════════════════════════════════
+   12. DATA TABLE
+   ══════════════════════════════════════════════ */
+
+.vnkr-table-wrap {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 28px;
+}
+
+.vnkr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-base);
+}
+
+.vnkr-table th {
+    background: var(--brand);
+    color: var(--white);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: var(--fw-bold);
+    font-size: var(--text-xs);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.vnkr-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.vnkr-table tr:last-child td { border-bottom: none; }
+
+.vnkr-table tr:hover td { background: var(--bg-section); }
+
+.vnkr-table .col-metric { font-weight: var(--fw-semibold); color: var(--brand); }
+.vnkr-table .col-muted  { color: var(--text-muted); }
+.vnkr-table .col-target { font-weight: var(--fw-bold); color: var(--success-text); }
+
+
+/* ══════════════════════════════════════════════
+   13. CODE BLOCK
+   ══════════════════════════════════════════════ */
+
+.vnkr-code-block {
+    background: #0d1f2d;
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    overflow-x: auto;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    margin-top: 16px;
+}
+
+.vnkr-code-block code {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: #7dd3fc;
+    line-height: var(--lh-loose);
+    white-space: pre;
+    display: block;
+}
+
+/* Syntax highlighting helpers */
+.code-comment { color: #4a6a85; }
+.code-prop    { color: #c084fc; }
+.code-val     { color: #86efac; }
+.code-str     { color: #fde68a; }
+.code-key     { color: #93c5fd; }
+
+
+/* ══════════════════════════════════════════════
+   14. GRID LAYOUTS
+   ══════════════════════════════════════════════ */
+
+/* Grid tự động — minmax 260px */
+.vnkr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.vnkr-grid--sm {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.vnkr-grid--md {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.vnkr-grid--lg {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* 2 cột cố định */
+.vnkr-grid--2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* 3 cột cố định */
+.vnkr-grid--3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* ══════════════════════════════════════════════
+   15. ROADMAP CARD
+   ══════════════════════════════════════════════ */
+
+.vnkr-roadmap-card {
+    border-radius: var(--radius-xl);
+    padding: 24px 22px;
+    border: 1.5px solid;
+}
+
+.vnkr-roadmap-card h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-bold);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vnkr-roadmap-period {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    opacity: 0.7;
+    margin-bottom: 14px;
+}
+
+.vnkr-roadmap-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vnkr-roadmap-item {
+    font-size: var(--text-xs);
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    line-height: var(--lh-snug);
+}
+
+.vnkr-roadmap-item::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+/* Color variants */
+.vnkr-roadmap-card--p0 { background: var(--info-light);    border-color: var(--brand-alt); }
+.vnkr-roadmap-card--p0 h3 { color: var(--brand); }
+.vnkr-roadmap-card--p0 .vnkr-roadmap-period { color: var(--brand-alt); }
+.vnkr-roadmap-card--p0 .vnkr-roadmap-item   { color: #1e3a5f; }
+.vnkr-roadmap-card--p0 .vnkr-roadmap-item::before { background: var(--brand-alt); }
+
+.vnkr-roadmap-card--p1 { background: var(--warning-light); border-color: var(--gold); }
+.vnkr-roadmap-card--p1 h3 { color: var(--warning-text); }
+.vnkr-roadmap-card--p1 .vnkr-roadmap-period { color: var(--gold); }
+.vnkr-roadmap-card--p1 .vnkr-roadmap-item   { color: #5a3e00; }
+.vnkr-roadmap-card--p1 .vnkr-roadmap-item::before { background: var(--gold); }
+
+.vnkr-roadmap-card--p2 { background: var(--error-light);   border-color: var(--accent); }
+.vnkr-roadmap-card--p2 h3 { color: var(--error-text); }
+.vnkr-roadmap-card--p2 .vnkr-roadmap-period { color: var(--accent); }
+.vnkr-roadmap-card--p2 .vnkr-roadmap-item   { color: #6b1c09; }
+.vnkr-roadmap-card--p2 .vnkr-roadmap-item::before { background: var(--accent); }
+
+.vnkr-roadmap-card--p3 { background: var(--success-light); border-color: var(--success); }
+.vnkr-roadmap-card--p3 h3 { color: var(--success-text); }
+.vnkr-roadmap-card--p3 .vnkr-roadmap-period { color: var(--success); }
+.vnkr-roadmap-card--p3 .vnkr-roadmap-item   { color: #00523c; }
+.vnkr-roadmap-card--p3 .vnkr-roadmap-item::before { background: var(--success); }
+
+
+/* ══════════════════════════════════════════════
+   16. STAT BLOCK
+   ══════════════════════════════════════════════ */
+
+.vnkr-stats-row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.vnkr-stat-block { text-align: center; }
+
+.vnkr-stat-block-num {
+    font-size: var(--text-5xl);
+    font-weight: var(--fw-extrabold);
+    color: var(--brand);
+    line-height: 1;
+}
+
+.vnkr-stat-block-num--gold    { color: var(--gold); }
+.vnkr-stat-block-num--accent  { color: var(--accent); }
+.vnkr-stat-block-num--success { color: var(--success); }
+
+.vnkr-stat-block-label {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+
+/* ══════════════════════════════════════════════
+   17. TECH CARD
+   ══════════════════════════════════════════════ */
+
+.vnkr-tech-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 18px 16px;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: box-shadow var(--transition-base);
+}
+
+.vnkr-tech-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.vnkr-tech-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.vnkr-tech-name {
+    font-size: var(--text-base);
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+}
+
+.vnkr-tech-desc {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: var(--lh-snug);
+}
+
+
+/* ══════════════════════════════════════════════
+   18. REVENUE CARD
+   ══════════════════════════════════════════════ */
+
+.vnkr-revenue-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--p-card-sm);
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.vnkr-revenue-phase {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.vnkr-revenue-title {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin-bottom: 8px;
+}
+
+.vnkr-revenue-amount {
+    font-size: 22px;
+    font-weight: var(--fw-extrabold);
+    color: var(--success);
+}
+
+.vnkr-revenue-desc {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: var(--lh-snug);
+}
+
+
+/* ══════════════════════════════════════════════
+   19. PERSONA CARD
+   ══════════════════════════════════════════════ */
+
+.vnkr-persona-card {
+    border-radius: var(--radius-xl);
+    padding: 26px 22px;
+    border: 2px solid;
+}
+
+.vnkr-persona-card--p1 { background: var(--brand-light); border-color: var(--brand-alt); }
+.vnkr-persona-card--p2 { background: var(--gold-light);  border-color: var(--gold); }
+.vnkr-persona-card--p3 { background: var(--info-light);  border-color: var(--brand-alt); }
+
+.vnkr-persona-tag {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.vnkr-persona-card--p1 .vnkr-persona-tag { color: var(--brand); }
+.vnkr-persona-card--p2 .vnkr-persona-tag { color: var(--warning-text); }
+.vnkr-persona-card--p3 .vnkr-persona-tag { color: var(--brand-alt); }
+
+.vnkr-persona-name {
+    font-size: var(--text-2xl);
+    font-weight: var(--fw-extrabold);
+    margin-bottom: 10px;
+}
+
+.vnkr-persona-card--p1 .vnkr-persona-name { color: var(--brand); }
+.vnkr-persona-card--p2 .vnkr-persona-name { color: var(--warning-text); }
+.vnkr-persona-card--p3 .vnkr-persona-name { color: var(--brand); }
+
+.vnkr-persona-detail {
+    font-size: var(--text-xs);
+    line-height: 1.7;
+}
+
+.vnkr-persona-card--p1 .vnkr-persona-detail { color: #1e3a5f; }
+.vnkr-persona-card--p2 .vnkr-persona-detail { color: #5a3e00; }
+.vnkr-persona-card--p3 .vnkr-persona-detail { color: #1e3a5f; }
+
+
+/* ══════════════════════════════════════════════
+   20. PYRAMID (Content Hierarchy)
+   ══════════════════════════════════════════════ */
+
+.vnkr-pyramid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 640px;
+}
+
+.vnkr-pyramid-row {
+    border-radius: var(--radius-lg);
+    padding: 18px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.vnkr-pyramid-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-extrabold);
+    flex-shrink: 0;
+    color: var(--white);
+}
+
+.vnkr-pyramid-title {
+    font-size: var(--text-md);
+    font-weight: var(--fw-bold);
+    margin-bottom: 4px;
+}
+
+.vnkr-pyramid-desc {
+    font-size: var(--text-xs);
+    line-height: var(--lh-relaxed);
+}
+
+
+/* ══════════════════════════════════════════════
+   21. FOOTER
+   ══════════════════════════════════════════════ */
+
+.vnkr-footer {
+    background: var(--brand);
+    text-align: center;
+    padding: 32px 40px;
+    border-top: 3px solid var(--accent);
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,0.5);
+}
+
+.vnkr-footer strong {
+    color: rgba(255,255,255,0.85);
+}
+
+.vnkr-footer-disclaimer {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,0.35);
+    margin-top: 6px;
+    line-height: var(--lh-snug);
+}
+
+.vnkr-footer-made {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.4);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+
+/* ══════════════════════════════════════════════
+   23. HAMBURGER NAV TOGGLE
+   ══════════════════════════════════════════════ */
+
+.vnkr-nav-toggle {
+    display: none;              /* Ẩn trên desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 5px;
+    order: 3;                   /* Đặt sau logo */
+}
+
+.vnkr-nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+/* Trạng thái mở — 3 gạch → dấu X */
+.vnkr-nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.vnkr-nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.vnkr-nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ══════════════════════════════════════════════
+   24. CHUYÊN MỤC CARD (cm-*)
+   ══════════════════════════════════════════════ */
+
+.cm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.cm-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 22px 18px;
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.cm-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--brand-alt);
+}
+
+.cm-card--gold { border-color: var(--gold); background: #FFFDF0; }
+
+.cm-emoji { font-size: 26px; }
+.cm-name  { font-size: 14px; font-weight: var(--fw-bold); color: var(--brand); }
+.cm-freq  { font-size: 11px; color: var(--text-muted); }
+
+
+/* ══════════════════════════════════════════════
+   25. LEGAL CARD
+   ══════════════════════════════════════════════ */
+
+.legal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.legal-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 22px 20px;
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.legal-card h3 {
+    font-size: 14px;
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legal-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+
+/* ══════════════════════════════════════════════
+   26. SUB-HEADING & KPI LABEL
+   ══════════════════════════════════════════════ */
+
+.sub-heading {
+    font-size: 16px;
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin-bottom: 16px;
+    margin-top: 40px;
+}
+
+.kpi-label {
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+}
+
+
+/* ══════════════════════════════════════════════
+   22. RESPONSIVE OVERRIDES
+   ══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .vnkr-nav { padding: 0 20px; }
+    .vnkr-nav-links { display: none; }
+    .vnkr-nav-toggle { display: flex; }
+
+    .vnkr-hero { padding: 56px 20px 40px; }
+    .vnkr-hero-stats { gap: 24px; }
+
+    .vnkr-section { padding: var(--p-section-sm); }
+
+    .vnkr-grid--2,
+    .vnkr-grid--3 {
+        grid-template-columns: 1fr;
+    }
+
+    .vnkr-type-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .vnkr-type-meta { width: 100%; }
+
+    .vnkr-progress-wrap { max-width: 100%; }
+    .vnkr-checklist { max-width: 100%; }
+    .vnkr-pyramid  { max-width: 100%; }
+
+    /* Tables — horizontal scroll trên mobile */
+    .vnkr-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 16px;
+    }
+
+    .vnkr-table {
+        min-width: 480px;
+    }
+
+    /* cm-grid — 2 cột trên tablet, 1 cột mobile nhỏ */
+    .cm-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    /* legal-grid — 1 cột */
+    .legal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .vnkr-stats-row { gap: 24px; justify-content: center; }
+    .vnkr-hero-btns { flex-direction: column; align-items: center; }
+    .vnkr-btn--full-mobile { width: 100%; justify-content: center; }
+
+    .cm-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+
+/* ══════════════════════════════════════════════
+   28. CALLOUT / ALERT BOX
+   ══════════════════════════════════════════════ */
+
+/*
+ * Dùng trong bài viết để chú ý, cảnh báo, tip, v.v.
+ *
+ * <div class="vnkr-callout vnkr-callout--info">
+ *   <strong>Lưu ý:</strong> Nội dung callout...
+ * </div>
+ */
+
+.vnkr-callout {
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: var(--text-md);
+    border-left: 3px solid;
+    line-height: var(--lh-relaxed);
+    position: relative;
+}
+
+.vnkr-callout strong { font-weight: var(--fw-bold); }
+
+/* Info — xanh brand */
+.vnkr-callout--info {
+    background: var(--info-light);
+    border-color: var(--info);
+    color: var(--info-text);
+}
+
+/* Success — xanh lá */
+.vnkr-callout--success {
+    background: var(--success-light);
+    border-color: var(--success);
+    color: var(--success-text);
+}
+
+/* Warning — vàng gold */
+.vnkr-callout--warn {
+    background: var(--warning-light);
+    border-color: var(--warning);
+    color: var(--warning-text);
+}
+
+/* Danger / Error — đỏ accent */
+.vnkr-callout--danger {
+    background: var(--error-light);
+    border-color: var(--error);
+    color: var(--error-text);
+}
+
+/* Gold — PTB / highlight đặc biệt */
+.vnkr-callout--gold {
+    background: var(--gold-light);
+    border-color: var(--gold);
+    color: var(--warning-text);
+}
+
+/* Icon tiêu đề callout (optional) */
+.vnkr-callout-title {
+    font-weight: var(--fw-bold);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: var(--text-lg);
+}
+
+.vnkr-callout p:last-child { margin-bottom: 0; }
+
+
+/* ══════════════════════════════════════════════
+   29. INPUT / FORM ELEMENTS
+   ══════════════════════════════════════════════ */
+
+/*
+ * Cấu trúc:
+ * <div class="vnkr-field" data-size="medium">       ← wrapper, data-size: small|medium|large
+ *   <label class="vnkr-label">Tiêu đề</label>
+ *   <div class="vnkr-input-wrap">
+ *     <svg class="vnkr-input-icon vnkr-input-icon--left">...</svg>   ← optional
+ *     <input class="vnkr-input" type="text" placeholder="...">
+ *     <svg class="vnkr-input-icon vnkr-input-icon--right">...</svg>  ← optional
+ *   </div>
+ *   <span class="vnkr-input-helper">Gợi ý phụ</span>                ← optional
+ *   <span class="vnkr-input-error">Thông báo lỗi</span>             ← optional
+ * </div>
+ */
+
+/* Wrapper */
+.vnkr-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    /* Size defaults — medium */
+    --input-h:    44px;
+    --input-fs:   var(--text-md);
+    --input-px:   14px;
+}
+
+/* Size variants qua data-size attribute */
+.vnkr-field[data-size="large"]  { --input-h: 52px; --input-fs: var(--text-lg);   --input-px: 16px; }
+.vnkr-field[data-size="medium"] { --input-h: 44px; --input-fs: var(--text-md);   --input-px: 14px; }
+.vnkr-field[data-size="small"]  { --input-h: 36px; --input-fs: var(--text-base); --input-px: 12px; }
+
+/* Label */
+.vnkr-label {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--text-muted);
+    letter-spacing: 0.2px;
+}
+
+/* Input wrapper — chứa icon + input */
+.vnkr-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    min-height: var(--input-h);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    padding: 0 var(--input-px);
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.vnkr-input-wrap:hover {
+    border-color: var(--border-dark);
+}
+
+/* Focus-within — khi input bên trong được focus */
+.vnkr-field:focus-within .vnkr-input-wrap {
+    border-color: var(--brand-alt);
+    box-shadow: var(--focus-ring);
+}
+
+/* Error state */
+.vnkr-field[data-state="error"] .vnkr-input-wrap {
+    border-color: var(--error);
+}
+
+.vnkr-field[data-state="error"]:focus-within .vnkr-input-wrap {
+    box-shadow: var(--focus-ring-accent);
+}
+
+/* Disabled state */
+.vnkr-field[data-state="disabled"] .vnkr-input-wrap {
+    background: var(--bg);
+    border-color: var(--border);
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.vnkr-field[data-state="disabled"] .vnkr-input-wrap:hover {
+    border-color: var(--border);
+}
+
+/* Input element itself */
+.vnkr-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-main);
+    font-size: var(--input-fs);
+    color: var(--text);
+    min-width: 0;
+    padding: 10px 0;
+    line-height: var(--lh-snug);
+}
+
+.vnkr-input::placeholder {
+    color: var(--text-faint);
+}
+
+.vnkr-input:disabled,
+.vnkr-field[data-state="disabled"] .vnkr-input {
+    cursor: not-allowed;
+    color: var(--text-muted);
+}
+
+/* Textarea variant */
+textarea.vnkr-input {
+    resize: vertical;
+    padding: 10px 0;
+    min-height: 100px;
+}
+
+.vnkr-field--textarea .vnkr-input-wrap {
+    align-items: flex-start;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Icons bên trong input */
+.vnkr-input-icon {
+    display: flex;
+    align-items: center;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+}
+
+.vnkr-input-icon--left  { margin-right: 8px; }
+.vnkr-input-icon--right { margin-left: 8px; }
+
+/* Nút clear / toggle bên trong input */
+.vnkr-input-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    margin-left: 6px;
+    transition: color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.vnkr-input-action:hover { color: var(--text); }
+
+/* Helper & Error messages */
+.vnkr-input-helper {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--lh-snug);
+}
+
+.vnkr-input-error {
+    font-size: var(--text-sm);
+    color: var(--error-text);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+    display: none;
+}
+
+.vnkr-field[data-state="error"] .vnkr-input-error {
+    display: block;
+}
+
+.vnkr-field[data-state="error"] .vnkr-input-helper {
+    display: none;
+}
+
+/* ── Select element ── */
+.vnkr-select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-main);
+    font-size: var(--input-fs);
+    color: var(--text);
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+/* Search input — dùng trên header */
+.vnkr-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 8px 16px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    width: 100%;
+}
+
+.vnkr-search:focus-within {
+    border-color: var(--brand-alt);
+    box-shadow: var(--focus-ring);
+}
+
+.vnkr-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-main);
+    font-size: var(--text-md);
+    color: var(--text);
+    min-width: 0;
+}
+
+.vnkr-search input::placeholder { color: var(--text-faint); }
+
+.vnkr-search svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .vnkr-field[data-size="large"] {
+        --input-h: 44px;
+        --input-fs: var(--text-md);
+    }
+}
+
+
+/* ══════════════════════════════════════════════
+   30. SKELETON LOADING
+   ══════════════════════════════════════════════ */
+
+/*
+ * Dùng để hiển thị placeholder trong khi nội dung đang tải.
+ *
+ * <div class="vnkr-skeleton vnkr-skeleton--text" style="width:60%"></div>
+ * <div class="vnkr-skeleton vnkr-skeleton--circle" style="width:40px;height:40px"></div>
+ * <div class="vnkr-skeleton vnkr-skeleton--rect" style="height:180px"></div>
+ *
+ * Card skeleton:
+ * <div class="vnkr-skeleton-card">
+ *   <div class="vnkr-skeleton-card-header">
+ *     <div class="vnkr-skeleton vnkr-skeleton--circle" style="width:40px;height:40px;flex-shrink:0"></div>
+ *     <div class="vnkr-skeleton-card-header-text">
+ *       <div class="vnkr-skeleton vnkr-skeleton--text" style="width:50%"></div>
+ *       <div class="vnkr-skeleton vnkr-skeleton--text" style="width:30%"></div>
+ *     </div>
+ *   </div>
+ *   <div class="vnkr-skeleton-lines">
+ *     <div class="vnkr-skeleton vnkr-skeleton--text"></div>
+ *     <div class="vnkr-skeleton vnkr-skeleton--text" style="width:85%"></div>
+ *     <div class="vnkr-skeleton vnkr-skeleton--text" style="width:70%"></div>
+ *   </div>
+ * </div>
+ */
+
+@keyframes vnkr-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.40; }
+}
+
+.vnkr-skeleton {
+    display: inline-block;
+    background: var(--border);
+    animation: vnkr-pulse 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+}
+
+/* Text line */
+.vnkr-skeleton--text {
+    height: 0.9em;
+    border-radius: var(--radius-sm);
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.vnkr-skeleton--text:last-child { margin-bottom: 0; }
+
+/* Circle — avatar, icon */
+.vnkr-skeleton--circle {
+    border-radius: 50%;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Rectangle — image, thumbnail, hero */
+.vnkr-skeleton--rect {
+    border-radius: var(--radius-lg);
+    display: block;
+    width: 100%;
+}
+
+/* Card skeleton wrapper */
+.vnkr-skeleton-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.vnkr-skeleton-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vnkr-skeleton-card-header-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vnkr-skeleton-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+/* ══════════════════════════════════════════════
+   31. MODAL / DIALOG
+   ══════════════════════════════════════════════ */
+
+/*
+ * Cấu trúc HTML:
+ *
+ * <!-- Trigger -->
+ * <button data-modal-open="my-modal" class="vnkr-btn vnkr-btn--primary">Mở Modal</button>
+ *
+ * <!-- Modal -->
+ * <div class="vnkr-modal" id="my-modal" role="dialog" aria-modal="true" aria-labelledby="my-modal-title">
+ *   <div class="vnkr-modal-dialog">
+ *     <div class="vnkr-modal-header">
+ *       <h3 class="vnkr-modal-title" id="my-modal-title">Tiêu đề</h3>
+ *       <button class="vnkr-modal-close" data-modal-close aria-label="Đóng">
+ *         <svg>...</svg>
+ *       </button>
+ *     </div>
+ *     <div class="vnkr-modal-body">Nội dung modal...</div>
+ *     <div class="vnkr-modal-footer">
+ *       <button data-modal-close class="vnkr-btn vnkr-btn--ghost vnkr-btn--sm">Hủy</button>
+ *       <button class="vnkr-btn vnkr-btn--primary vnkr-btn--sm">Xác nhận</button>
+ *     </div>
+ *   </div>
+ * </div>
+ *
+ * Bottom Sheet (mobile):
+ * <div class="vnkr-modal vnkr-modal--sheet" id="my-sheet" role="dialog" aria-modal="true">
+ *   <div class="vnkr-modal-dialog">
+ *     <div class="vnkr-sheet-handle"></div>
+ *     <div class="vnkr-modal-body">...</div>
+ *   </div>
+ * </div>
+ */
+
+/* Backdrop */
+.vnkr-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: rgba(10, 30, 50, 0.50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    /* Hidden state */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+}
+
+/* Visible state — toggled by JS via .vnkr-modal--open */
+.vnkr-modal--open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Dialog box */
+.vnkr-modal-dialog {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-width: 480px;
+    max-height: 88vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(10px) scale(0.98);
+    transition: transform var(--transition-base);
+}
+
+.vnkr-modal--open .vnkr-modal-dialog {
+    transform: translateY(0) scale(1);
+}
+
+/* Header */
+.vnkr-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 0;
+    flex-shrink: 0;
+}
+
+.vnkr-modal-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin: 0;
+    line-height: var(--lh-snug);
+}
+
+/* Close button */
+.vnkr-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color var(--transition-fast), background var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.vnkr-modal-close:hover {
+    color: var(--text);
+    background: var(--bg);
+}
+
+.vnkr-modal-close:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/* Body */
+.vnkr-modal-body {
+    padding: 20px 24px;
+    flex: 1;
+    font-size: var(--text-md);
+    color: var(--text);
+    line-height: var(--lh-relaxed);
+}
+
+/* Footer */
+.vnkr-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 0 24px 20px;
+    flex-shrink: 0;
+}
+
+/* ── Bottom Sheet variant ── */
+.vnkr-modal--sheet {
+    align-items: flex-end;
+    padding: 0;
+}
+
+.vnkr-modal--sheet .vnkr-modal-dialog {
+    max-width: 100%;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-height: 85vh;
+    transform: translateY(30px);
+}
+
+.vnkr-modal--sheet.vnkr-modal--open .vnkr-modal-dialog {
+    transform: translateY(0);
+}
+
+/* Sheet drag handle */
+.vnkr-sheet-handle {
+    width: 36px;
+    height: 4px;
+    border-radius: var(--radius-full);
+    background: var(--border-dark);
+    margin: 12px auto 0;
+    flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════════════════════
+   32. TIMELINE
+   ══════════════════════════════════════════════ */
+
+/*
+ * Dùng cho roadmap, lịch sử, lộ trình thời gian.
+ *
+ * <div class="vnkr-timeline">
+ *   <div class="vnkr-tl-item">
+ *     <div class="vnkr-tl-dot vnkr-tl-dot--brand"></div>
+ *     <div class="vnkr-tl-content">
+ *       <div class="vnkr-tl-period">Tháng 1 · 2025</div>
+ *       <div class="vnkr-tl-title">Đặt nền móng</div>
+ *       <div class="vnkr-tl-body">Mô tả chi tiết về giai đoạn này...</div>
+ *       <div class="vnkr-tl-tags">
+ *         <span class="vnkr-tag">Laravel</span>
+ *         <span class="vnkr-tag">MySQL</span>
+ *       </div>
+ *     </div>
+ *   </div>
+ * </div>
+ */
+
+.vnkr-timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+/* Đường kẻ dọc */
+.vnkr-timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent) 0%, var(--brand-alt) 40%, var(--border) 100%);
+    border-radius: var(--radius-full);
+}
+
+/* Mỗi mốc thời gian */
+.vnkr-tl-item {
+    position: relative;
+    padding-bottom: 32px;
+    display: flex;
+    gap: 20px;
+}
+
+.vnkr-tl-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Dot — chấm tròn trên đường kẻ */
+.vnkr-tl-dot {
+    position: absolute;
+    left: -27px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2.5px solid var(--white);
+    box-shadow: 0 0 0 2px var(--border);
+    flex-shrink: 0;
+    z-index: 1;
+    background: var(--border);
+}
+
+/* Dot color variants */
+.vnkr-tl-dot--accent  { background: var(--accent);    box-shadow: 0 0 0 2px var(--accent); }
+.vnkr-tl-dot--brand   { background: var(--brand-alt);  box-shadow: 0 0 0 2px var(--brand-alt); }
+.vnkr-tl-dot--gold    { background: var(--gold);       box-shadow: 0 0 0 2px var(--gold); }
+.vnkr-tl-dot--success { background: var(--success);    box-shadow: 0 0 0 2px var(--success); }
+
+/* Content bên phải dot */
+.vnkr-tl-content {
+    flex: 1;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.vnkr-tl-content:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-dark);
+}
+
+/* Period label */
+.vnkr-tl-period {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+/* Title */
+.vnkr-tl-title {
+    font-size: var(--text-xl);
+    font-weight: var(--fw-bold);
+    color: var(--brand);
+    margin-bottom: 8px;
+    line-height: var(--lh-snug);
+}
+
+/* Body text */
+.vnkr-tl-body {
+    font-size: var(--text-md);
+    color: var(--text-muted);
+    line-height: var(--lh-relaxed);
+    margin-bottom: 12px;
+}
+
+.vnkr-tl-body:last-child { margin-bottom: 0; }
+
+/* Tags row */
+.vnkr-tl-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
+
+/* Status badge trong timeline */
+.vnkr-tl-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    margin-bottom: 8px;
+}
+
+.vnkr-tl-status--done    { background: var(--success-light); color: var(--success-text); }
+.vnkr-tl-status--active  { background: var(--info-light);    color: var(--info-text); }
+.vnkr-tl-status--soon    { background: var(--warning-light); color: var(--warning-text); }
+.vnkr-tl-status--planned { background: var(--bg);            color: var(--text-muted); border: 1px solid var(--border); }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .vnkr-timeline { padding-left: 24px; }
+    .vnkr-tl-dot   { left: -21px; width: 12px; height: 12px; }
+    .vnkr-tl-content { padding: 14px 16px; }
+}
+
+
+
+/* ══════════════════════════════════════════════
+   33. DARK MODE ADJUSTMENTS
+       Các overrides cần thiết khi [data-theme="dark"]
+       (phần còn lại xử lý qua token vars)
+   ══════════════════════════════════════════════ */
+
+/* Body transition mượt khi toggle theme */
+body {
+    transition:
+        background-color var(--transition-slow),
+        color var(--transition-slow);
+}
+
+/* Hero — nền gradient tối hơn trong dark mode */
+[data-theme="dark"] .vnkr-hero {
+    background: linear-gradient(160deg, #071828 0%, #0a2540 60%, #102e52 100%);
+}
+
+/* Code block — tối hơn trong dark */
+[data-theme="dark"] .vnkr-code-block {
+    background: #0d1117;
+    border-color: #2d3d52;
+}
+
+/* Card — border sáng hơn chút trong dark */
+[data-theme="dark"] .vnkr-card,
+[data-theme="dark"] .vnkr-identity-card,
+[data-theme="dark"] .vnkr-skeleton-card,
+[data-theme="dark"] .vnkr-tl-content,
+[data-theme="dark"] .legal-card,
+[data-theme="dark"] .cm-card {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+}
+
+/* Input wrap — adapt border */
+[data-theme="dark"] .vnkr-input-wrap {
+    background: #1a2230;
+}
+
+[data-theme="dark"] .vnkr-search {
+    background: #1a2230;
+}
+
+/* Modal — nền tối */
+[data-theme="dark"] .vnkr-modal-dialog {
+    background: var(--bg-card);
+}
+
+/* Table — header row tối */
+[data-theme="dark"] .vnkr-table thead th {
+    background: #1a2330;
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .vnkr-table tr:nth-child(even) td {
+    background: #1a2330;
+}
+
+/* Progress bar background */
+[data-theme="dark"] .vnkr-progress-bg {
+    background: #2d3d52;
+}
+
+/* Checklist icon done */
+[data-theme="dark"] .vnkr-check-icon--done {
+    background: #0a2e22;
+    color: #4ade9a;
+}
+
+/* Theme toggle button — in nav */
+.vnkr-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    color: rgba(255,255,255,0.8);
+    font-size: 16px;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.vnkr-theme-toggle:hover {
+    background: rgba(255,255,255,0.18);
+    color: var(--gold);
+}
+
+.vnkr-theme-toggle:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+
+/* ══════════════════════════════════════════════
+   34. DROPDOWN
+   ══════════════════════════════════════════════ */
+
+/*
+ * Cấu trúc:
+ * <div class="vnkr-dropdown" data-dropdown>
+ *   <button class="vnkr-dropdown-trigger" data-dropdown-trigger aria-haspopup="true" aria-expanded="false">
+ *     Tùy chọn <svg class="vnkr-dropdown-arrow">...</svg>
+ *   </button>
+ *   <ul class="vnkr-dropdown-menu" role="menu">
+ *     <li role="menuitem"><a class="vnkr-dropdown-item" href="#">Mục 1</a></li>
+ *     <li role="separator" class="vnkr-dropdown-divider"></li>
+ *     <li role="menuitem"><button class="vnkr-dropdown-item vnkr-dropdown-item--danger">Xóa</button></li>
+ *   </ul>
+ * </div>
+ *
+ * Align phải: thêm class .vnkr-dropdown--right vào wrapper
+ * Align lên:  thêm class .vnkr-dropdown--up vào wrapper
+ */
+
+.vnkr-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Trigger button */
+.vnkr-dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-main);
+    font-size: var(--text-md);
+    font-weight: var(--fw-medium);
+    color: var(--text);
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 9px 14px;
+    cursor: pointer;
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    white-space: nowrap;
+}
+
+.vnkr-dropdown-trigger:hover {
+    border-color: var(--border-dark);
+    background: var(--bg);
+}
+
+.vnkr-dropdown-trigger:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-color: var(--brand-alt);
+}
+
+/* Dropdown open state on trigger */
+.vnkr-dropdown[data-open] .vnkr-dropdown-trigger {
+    border-color: var(--brand-alt);
+    box-shadow: var(--focus-ring);
+}
+
+/* Arrow icon */
+.vnkr-dropdown-arrow {
+    width: 14px;
+    height: 14px;
+    transition: transform var(--transition-fast);
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+
+.vnkr-dropdown[data-open] .vnkr-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Menu panel */
+.vnkr-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 200;
+    min-width: 180px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: 6px;
+    list-style: none;
+    /* Hidden by default */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px) scale(0.97);
+    transform-origin: top left;
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+/* Right-aligned */
+.vnkr-dropdown--right .vnkr-dropdown-menu {
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+}
+
+/* Upward */
+.vnkr-dropdown--up .vnkr-dropdown-menu {
+    top: auto;
+    bottom: calc(100% + 6px);
+    transform-origin: bottom left;
+    transform: translateY(6px) scale(0.97);
+}
+
+.vnkr-dropdown--up.vnkr-dropdown--right .vnkr-dropdown-menu {
+    transform-origin: bottom right;
+}
+
+/* Open state */
+.vnkr-dropdown[data-open] .vnkr-dropdown-menu {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0) scale(1);
+}
+
+/* Item */
+.vnkr-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 9px 12px;
+    font-family: var(--font-main);
+    font-size: var(--text-md);
+    font-weight: var(--fw-medium);
+    color: var(--text);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    text-align: left;
+    line-height: var(--lh-snug);
+    white-space: nowrap;
+}
+
+.vnkr-dropdown-item:hover {
+    background: var(--bg);
+    color: var(--brand);
+    text-decoration: none;
+}
+
+.vnkr-dropdown-item:focus-visible {
+    outline: none;
+    background: var(--brand-light);
+    color: var(--brand);
+}
+
+/* Icon inside item */
+.vnkr-dropdown-item svg,
+.vnkr-dropdown-item .vnkr-di-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+
+.vnkr-dropdown-item:hover svg,
+.vnkr-dropdown-item:hover .vnkr-di-icon {
+    color: var(--brand-alt);
+}
+
+/* Danger item */
+.vnkr-dropdown-item--danger {
+    color: var(--error-text);
+}
+
+.vnkr-dropdown-item--danger:hover {
+    background: var(--error-light);
+    color: var(--error-text);
+}
+
+.vnkr-dropdown-item--danger svg,
+.vnkr-dropdown-item--danger .vnkr-di-icon {
+    color: var(--error-text);
+}
+
+/* Muted/disabled item */
+.vnkr-dropdown-item--muted {
+    color: var(--text-muted);
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Divider */
+.vnkr-dropdown-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 5px 0;
+}
+
+/* Header label trong menu */
+.vnkr-dropdown-header {
+    padding: 6px 12px 4px;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 2 — BUTTON PILL SYSTEM
+   (Design System Plan §5.2 — 3 variants × sizes)
+   ══════════════════════════════════════════════ */
+
+/* Base pill button — áp dụng song song với .vnkr-btn */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-main);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-btn-medium);
+    line-height: 1;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    white-space: nowrap;
+    border: 2px solid transparent;
+    padding: 9px 20px;
+}
+
+.btn:hover { text-decoration: none; }
+.btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+/* Sizes */
+.btn-giant  { padding: 16px 32px; font-size: var(--text-btn-giant); }
+.btn-large  { padding: 12px 24px; font-size: var(--text-btn-large); }
+.btn-medium { padding: 9px 20px;  font-size: var(--text-btn-medium); }
+.btn-small  { padding: 6px 14px;  font-size: var(--text-btn-small); }
+.btn-full   { width: 100%; justify-content: center; }
+
+/* === FILLED === */
+.btn-primary   { background: var(--brand);           color: #fff; border-color: var(--brand); }
+.btn-primary:hover { background: var(--brand-dark);  border-color: var(--brand-dark); color: #fff; transform: translateY(-1px); }
+
+.btn-accent    { background: var(--accent);           color: #fff; border-color: var(--accent); box-shadow: var(--shadow-accent); }
+.btn-accent:hover { background: var(--accent-alt);   border-color: var(--accent-alt); color: #fff; transform: translateY(-1px); }
+
+.btn-dark      { background: #000; color: #fff; border-color: #000; }
+.btn-dark:hover { background: #222; border-color: #222; color: #fff; }
+
+.btn-success   { background: var(--success-500); color: #fff; border-color: var(--success-500); }
+.btn-success:hover { background: var(--success-700); border-color: var(--success-700); color: #fff; }
+
+.btn-warning   { background: var(--warning-500); color: #1a1a2e; border-color: var(--warning-500); }
+.btn-warning:hover { background: var(--warning-700); border-color: var(--warning-700); color: #fff; }
+
+.btn-error     { background: var(--error-500);   color: #fff; border-color: var(--error-500); }
+.btn-error:hover { background: var(--error-700); border-color: var(--error-700); color: #fff; }
+
+/* === OUTLINED === */
+.btn-outline-primary { background: transparent; color: var(--brand); border-color: var(--brand); }
+.btn-outline-primary:hover { background: var(--brand-light); }
+
+.btn-outline-dark    { background: transparent; color: #000; border-color: #000; }
+.btn-outline-dark:hover { background: #f4f4f4; }
+
+.btn-outline-accent  { background: transparent; color: var(--accent); border-color: var(--accent); }
+.btn-outline-accent:hover { background: var(--accent-light); }
+
+/* === GHOST === */
+.btn-ghost-primary { background: transparent; color: var(--brand); border-color: transparent; }
+.btn-ghost-primary:hover { background: var(--brand-light); }
+
+.btn-ghost-dark    { background: transparent; color: #000; border-color: transparent; }
+.btn-ghost-dark:hover { background: #f4f4f4; }
+
+/* === DISABLED === */
+.btn:disabled, .btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 2 — FORM INPUT SYSTEM
+   (Design System Plan §5.3 — inputs, labels, toggles)
+   ══════════════════════════════════════════════ */
+
+.form-input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-main);
+    font-size: var(--text-b1);
+    color: var(--text);
+    background: var(--bg-section);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-light);
+    background: var(--bg-card);
+}
+
+.form-input::placeholder { color: var(--text-faint); }
+
+.form-input.is-error {
+    border-color: var(--error-500);
+    box-shadow: 0 0 0 3px var(--error-100);
+}
+
+.form-label {
+    display: block;
+    font-size: var(--text-b2);
+    font-weight: var(--fw-medium);
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.form-caption {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.form-caption.error { color: var(--error-text); }
+
+/* Toggle switch — Design System Plan §5.4 */
+.vnkr-toggle {
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background: var(--border);
+    position: relative;
+    cursor: pointer;
+    transition: background var(--transition-base);
+    flex-shrink: 0;
+}
+
+.vnkr-toggle.active,
+.vnkr-toggle[data-active="true"] {
+    background: var(--success-500);
+}
+
+.vnkr-toggle::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: left var(--transition-base);
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+
+.vnkr-toggle.active::after,
+.vnkr-toggle[data-active="true"]::after {
+    left: 23px;
+}
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 4 — ARTICLE CARD COMPONENT
+   (Design System Plan §6.2)
+   ══════════════════════════════════════════════ */
+
+.article-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+    display: flex;
+    flex-direction: column;
+}
+
+.article-card:hover {
+    box-shadow: 0 4px 20px rgba(10,61,98,0.10);
+    transform: translateY(-2px);
+}
+
+.article-card__img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+
+.article-card__body {
+    padding: var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.article-card__category {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--brand-light);
+    color: var(--brand);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--sp-2);
+}
+
+.article-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h5);
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--sp-2);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.article-card__title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.article-card__title a:hover { color: var(--brand); }
+
+.article-card__excerpt {
+    font-size: var(--text-b2);
+    color: var(--text-muted);
+    line-height: var(--lh-normal);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: var(--sp-3);
+}
+
+.article-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--text-caption);
+    color: var(--text-faint);
+    margin-top: auto;
+}
+
+.article-card__meta .sep { opacity: .4; }
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 4 — STATUS BADGE SYSTEM
+   (Design System Plan §6.1 — semantic status badges)
+   ══════════════════════════════════════════════ */
+
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-caption);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    gap: 4px;
+}
+
+.badge-published { background: var(--success-100); color: var(--success-900); }
+.badge-draft     { background: var(--warning-100); color: var(--warning-900); }
+.badge-review    { background: var(--info-100);    color: var(--info-700); }
+.badge-archived  { background: #f0f0f0;            color: var(--status-archived); }
+.badge-breaking  { background: var(--status-breaking); color: #fff; }
+
+/* LIVE badge với pulse animation */
+.badge-live {
+    background: var(--error-100);
+    color: var(--error-700);
+    animation: badge-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+}
+
+/* Category tag */
+.badge-category {
+    background: var(--brand-light);
+    color: var(--brand);
+}
+
+/* Reading time */
+.badge-readtime {
+    background: var(--bg-section);
+    color: var(--text-muted);
+    font-weight: var(--fw-normal);
+}
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 4 — LIST ITEM COMPONENT
+   (Design System Plan §6.4 — profile/settings lists)
+   ══════════════════════════════════════════════ */
+
+.vnkr-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    gap: var(--sp-3);
+}
+
+.vnkr-list-item:last-child { border-bottom: none; }
+
+.vnkr-list-item__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: var(--bg-section);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--brand);
+}
+
+.vnkr-list-item__content { flex: 1; min-width: 0; }
+
+.vnkr-list-item__title {
+    font-size: var(--text-b1);
+    font-weight: var(--fw-medium);
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vnkr-list-item__desc {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.vnkr-list-item__chevron {
+    color: var(--text-faint);
+    flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 4 — ACCORDION / FAQ
+   (Design System Plan §6.5)
+   ══════════════════════════════════════════════ */
+
+.vnkr-accordion-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.vnkr-accordion-item:last-child { border-bottom: none; }
+
+.vnkr-accordion-trigger {
+    width: 100%;
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-main);
+    font-size: var(--text-b1);
+    font-weight: var(--fw-medium);
+    color: var(--text);
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    gap: var(--sp-3);
+}
+
+.vnkr-accordion-trigger:hover { color: var(--brand); }
+
+.vnkr-accordion-trigger .vnkr-acc-icon {
+    flex-shrink: 0;
+    transition: transform var(--transition-base);
+    color: var(--text-muted);
+}
+
+.vnkr-accordion-item.open .vnkr-acc-icon {
+    transform: rotate(45deg);
+}
+
+.vnkr-accordion-body {
+    font-size: var(--text-b2);
+    color: var(--text-muted);
+    padding: 0 0 14px;
+    line-height: var(--lh-relaxed);
+    display: none;
+}
+
+.vnkr-accordion-item.open .vnkr-accordion-body {
+    display: block;
+}
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 4 — TYPOGRAPHY HELPERS
+   (Design System Plan §4 — headings dùng Work Sans)
+   ══════════════════════════════════════════════ */
+
+/* Article content headings — Work Sans */
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+    color: var(--text);
+    margin: var(--sp-6) 0 var(--sp-3);
+}
+
+.article-content h1 { font-size: var(--text-h1); }
+.article-content h2 { font-size: var(--text-h2); }
+.article-content h3 { font-size: var(--text-h3); }
+.article-content h4 { font-size: var(--text-h4); }
+.article-content h5 { font-size: var(--text-h5); }
+.article-content h6 { font-size: var(--text-h6); }
+
+.article-content p {
+    font-size: var(--text-b1);
+    line-height: var(--lh-relaxed);
+    color: var(--text);
+    margin-bottom: var(--sp-4);
+}
+
+/* Section headings dùng Work Sans */
+.section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+    line-height: var(--lh-tight);
+}
+
+.section-sub {
+    font-size: var(--text-b1);
+    color: var(--text-muted);
+    line-height: var(--lh-relaxed);
+}
+
+/* Category overline */
+.text-overline {
+    font-size: var(--text-overline);
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+
+/* ══════════════════════════════════════════════
+   SPRINT 4 — LAYOUT GRID HELPERS
+   (Design System Plan §7.5)
+   ══════════════════════════════════════════════ */
+
+.grid-articles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-4);
+}
+
+@media (max-width: 768px) {
+    .grid-articles { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+    .grid-articles { grid-template-columns: 1fr; }
+}
+
+.layout-news {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--sp-6);
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .layout-news { grid-template-columns: 1fr; }
+}

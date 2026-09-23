@@ -1,0 +1,33 @@
+{
+  "name": "@vnkr-labs/admin",
+  "version": "2.0.0",
+  "description": "VNKR Design System — Admin Panel CSS (sidebar, header, tables, forms, stats tiles, responsive)",
+  "main": "index.css",
+  "style": "index.css",
+  "files": [
+    "index.css",
+    "README.md"
+  ],
+  "keywords": [
+    "vnkr",
+    "admin",
+    "dashboard",
+    "css",
+    "design-system"
+  ],
+  "author": "VNKR Labs <dev@vnkr.vn>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vnkr-labs/packages.git",
+    "directory": "packages/vnkr-admin"
+  },
+  "homepage": "https://github.com/vnkr-labs/packages/tree/main/packages/vnkr-admin#readme",
+  "peerDependencies": {
+    "@vnkr-labs/tokens": ">=2.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

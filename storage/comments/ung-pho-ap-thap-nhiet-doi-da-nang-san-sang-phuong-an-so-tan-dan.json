@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Cristiano Ronaldo ( CR7 )",
+        "email": "fpg510@gmail.com",
+        "comment": "T\u00e0u thuy\u1ec1n neo \u0111\u1eadu \u1edf \u00e2u thuy\u1ec1n Th\u1ecd Quang \ud83d\ude42",
+        "time": "2024-08-03 23:34:06",
+        "likes": 6,
+        "replies": [
+            {
+                "name": "Lionel Messi ( M10 )",
+                "reply": "Thi\u0300 sao ?",
+                "time": "2024-08-03 23:36:28"
+            }
+        ]
+    },
+    {
+        "name": "Harry Kane ( Vi\u0301a n\u0103\u0323ng thi\u0300 chi\u0323u r\u00f4\u0300i )",
+        "email": "aaaa@gmail.com",
+        "comment": "\u0110\u00e0 N\u1eb5ng s\u1eb5n s\u00e0ng ph\u01b0\u01a1ng \u00e1n di d\u1eddi d\u00e2n kh\u1ecfi v\u00f9ng nguy hi\u1ec3m \ud83d\udce3",
+        "time": "2024-08-03 23:46:10",
+        "replies": [
+            {
+                "name": "Antony  ( Compa 100 tri\u00ea\u0323u Euro)",
+                "reply": "Phi\u0301a d\u01b0\u01a1\u0301i \u0111\u00e2\u0309y ma\u0323nh l\u00ean. Ai s\u01a1\u0323 thi\u0300 \u0111i v\u00ea\u0300  \ud83c\udfc3",
+                "time": "2024-08-04 00:09:57"
+            }
+        ],
+        "likes": 1
+    },
+    {
+        "name": "Romelu Lukaku ( ch\u00e2n g\u1ed7 )",
+        "email": "kukuku@apho.com",
+        "comment": "B\u1ed9 ch\u1ec9 huy B\u0110BP th\u00e0nh ph\u1ed1 ch\u1ee7 \u0111\u1ed9ng qu\u1ea3n l\u00fd t\u00e0u thuy\u1ec1n ra kh\u01a1i \ud83d\udee1",
+        "time": "2024-08-04 00:15:13"
+    }
+]

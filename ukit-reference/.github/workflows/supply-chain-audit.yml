@@ -1,0 +1,137 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# supply-chain-audit.yml
+# Giai đoạn 6: CI/CD Pipeline & Supply Chain Security
+# - npm audit (all packages)
+# - cargo audit (all Rust crates)
+# - GPG signature verification
+# - Veraciphers Scanner (placeholder)
+# ──────────────────────────────────────────────────────────────────────────────
+name: Supply Chain Audit
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * *'   # Daily at 02:00 UTC
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  # ── 1. NPM Supply Chain Audit ────────────────────────────────────────────────
+  npm-audit:
+    name: NPM Supply Chain Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: npm audit (critical + high)
+        run: npm audit --audit-level=high
+
+      - name: Build all packages
+        run: npm run build
+
+      - name: Run all tests
+        run: npm run test
+
+  # ── 2. Rust / Cargo Supply Chain Audit ───────────────────────────────────────
+  cargo-audit:
+    name: Cargo Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install cargo-audit
+        run: cargo install cargo-audit --locked
+
+      - name: Run cargo audit
+        run: |
+          cd smart-contracts/axioledger-system && cargo audit
+          cd ../../smart-contracts/ans-registry && cargo audit
+          cd ../../smart-contracts/kpx-liquidity && cargo audit
+          cd ../../core-nodes/valiprecision-node && cargo audit
+          cd ../../core-nodes/sequentichain-node && cargo audit
+
+      - name: Clippy lint (deny warnings)
+        run: |
+          cd smart-contracts/axioledger-system && cargo clippy -- -D warnings
+          cd ../../core-nodes/valiprecision-node && cargo clippy -- -D warnings
+          cd ../../core-nodes/sequentichain-node && cargo clippy -- -D warnings
+
+      - name: Cargo fmt check
+        run: |
+          cd smart-contracts/axioledger-system && cargo fmt --check
+          cd ../../core-nodes/valiprecision-node && cargo fmt --check
+
+  # ── 3. GPG Commit Signature Verification ─────────────────────────────────────
+  gpg-verify:
+    name: GPG Commit Signature Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify all commits in PR are GPG signed
+        if: github.event_name == 'pull_request'
+        run: |
+          COMMITS=$(git log origin/${{ github.base_ref }}..HEAD --format="%H")
+          FAIL=0
+          for COMMIT in $COMMITS; do
+            STATUS=$(git verify-commit $COMMIT 2>&1 || true)
+            if echo "$STATUS" | grep -q "Good signature"; then
+              echo "✅ $COMMIT — valid GPG signature"
+            else
+              echo "❌ $COMMIT — MISSING or INVALID GPG signature"
+              FAIL=1
+            fi
+          done
+          if [ "$FAIL" -eq 1 ]; then
+            echo "ERROR: All commits must be GPG signed. See CONTRIBUTING.md"
+            exit 1
+          fi
+
+  # ── 4. Veraciphers Scanner (placeholder) ─────────────────────────────────────
+  veraciphers-scan:
+    name: Veraciphers Security Scanner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for hardcoded secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+      - name: Scan node_modules integrity
+        run: |
+          echo "Veraciphers: Scanning node_modules integrity..."
+          # TODO: integrate Veraciphers Scanner CLI when available
+          # veraciphers-cli scan --dir ./node_modules --output sarif
+          echo "Scan complete (placeholder)"

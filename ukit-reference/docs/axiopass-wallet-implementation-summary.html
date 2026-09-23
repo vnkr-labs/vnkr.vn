@@ -1,0 +1,361 @@
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<title>Axiopass — Implementation Summary</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.6;color:#1f2328;background:#fff;padding:48px 24px 64px}
+  .wrap{max-width:760px;margin:0 auto}
+
+  /* Header */
+  .hdr{text-align:center;margin-bottom:40px}
+  .hdr-badge{display:inline-flex;align-items:center;gap:6px;background:#0d1117;color:#49dbc8;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:9999px;margin-bottom:14px}
+  .hdr h1{font-size:26px;font-weight:700;color:#0d1117;margin-bottom:6px}
+  .hdr p{color:#57606a;font-size:13.5px}
+
+  /* Stat strip */
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#e5e7eb;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;margin-bottom:40px}
+  .stat{background:#fff;padding:16px 8px;text-align:center}
+  .stat-num{font-size:28px;font-weight:700;color:#0d1117;line-height:1}
+  .stat-label{font-size:11px;color:#57606a;margin-top:4px}
+
+  /* Section heading */
+  .sec-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#57606a;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #e5e7eb}
+
+  /* DS Components */
+  .ds-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:36px}
+  .ds-card{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:10px;padding:14px 10px;text-align:center}
+  .ds-card .ds-icon{font-size:22px;margin-bottom:8px}
+  .ds-card .ds-name{font-size:12px;font-weight:700;color:#1f2328;margin-bottom:4px}
+  .ds-card .ds-desc{font-size:11px;color:#57606a;line-height:1.45}
+  .ds-card .ds-new{display:inline-block;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;border-radius:9999px;font-size:9px;font-weight:700;padding:1px 7px;margin-top:6px;letter-spacing:.05em;text-transform:uppercase}
+
+  /* Zone table */
+  .zone-block{margin-bottom:28px}
+  .zone-title{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px 8px 0 0;color:#fff;font-size:13px;font-weight:700}
+  .zone-title .zc{margin-left:auto;background:rgba(255,255,255,.2);border-radius:9999px;font-size:10px;font-weight:700;padding:2px 9px}
+  table{width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px;overflow:hidden}
+  th{background:#f7f8fa;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#57606a;padding:8px 12px;text-align:left;border-bottom:1px solid #e5e7eb}
+  td{padding:8px 12px;font-size:12.5px;vertical-align:top;border-bottom:1px solid #f0f2f4}
+  tr:last-child td{border-bottom:none}
+  .td-screen{font-weight:600;color:#1f2328}
+  .td-file{font-family:'Cascadia Code','Fira Code',monospace;font-size:11px;color:#7c3aed;background:#f5f0ff;padding:1px 5px;border-radius:3px;white-space:nowrap}
+  .td-scope{font-size:11.5px;color:#57606a}
+
+  .tag{display:inline-block;border-radius:9999px;font-size:10px;font-weight:700;padding:2px 8px;white-space:nowrap}
+  .t-crit{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
+  .t-high{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa}
+  .t-med {background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+  .t-done{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+
+  .z1 .zone-title{background:#1c1917}
+  .z2 .zone-title{background:#1e3a5f}
+  .z3 .zone-title{background:#134e4a}
+  .z4 .zone-title{background:#312e81}
+  .z5 .zone-title{background:#4a1d96}
+  .z6 .zone-title{background:#701a75}
+  .z7 .zone-title{background:#1e3a5f}
+  .z8 .zone-title{background:#3f1d0e}
+
+  /* File tree */
+  .tree{background:#0d1117;border-radius:10px;padding:20px 24px;margin-bottom:36px;font-family:'Cascadia Code','Fira Code',monospace;font-size:12px;color:#e6edf3}
+  .tree .dir{color:#49dbc8;font-weight:700}
+  .tree .file{color:#a5d6ff}
+  .tree .comment{color:#6e7681;font-style:italic}
+  .tree-line{display:flex;gap:8px;margin:2px 0}
+  .tree-indent{padding-left:16px}
+  .tree-indent2{padding-left:32px}
+  .tree-indent3{padding-left:48px}
+
+  /* Nav shell */
+  .nav-shell{border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-bottom:36px}
+  .nav-shell-header{background:#0d1117;color:#fff;padding:12px 16px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .nav-body{padding:16px}
+  .nav-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .nav-tab{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;color:#1f2328;display:flex;align-items:center;gap:6px}
+  .nav-tab .nt-icon{font-size:16px}
+  .flow-line{font-size:12px;color:#57606a;line-height:1.8}
+  .flow-line code{background:#f0f2f4;border-radius:3px;padding:1px 5px;font-size:11px;font-family:monospace;color:#7c3aed}
+
+  /* Checklist */
+  .checklist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:36px}
+  .check-item{display:flex;align-items:flex-start;gap:10px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:12px}
+  .check-item .ci-dot{width:20px;height:20px;border-radius:50%;background:#0d1117;color:#49dbc8;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .check-item .ci-done{background:#00d68f;color:#fff}
+  .check-item h4{font-size:12.5px;font-weight:700;margin-bottom:2px}
+  .check-item p{font-size:11.5px;color:#57606a}
+
+  /* Next steps */
+  .next{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:10px;padding:20px 24px;margin-bottom:36px}
+  .next h3{font-size:13px;font-weight:700;margin-bottom:14px;color:#1f2328}
+  .phase{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+  .ph-num{min-width:28px;height:28px;border-radius:9999px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ph1{background:#f59e0b;color:#fff}
+  .ph2{background:#3b82d4;color:#fff}
+  .ph3{background:#7c3aed;color:#fff}
+  .ph4{background:#10b981;color:#fff}
+  .ph-body h4{font-size:13px;font-weight:600;margin-bottom:2px}
+  .ph-body p{font-size:11.5px;color:#57606a}
+
+  hr{border:none;border-top:1px solid #e5e7eb;margin:32px 0}
+  .footer{text-align:center;border-top:1px solid #e5e7eb;padding-top:20px;color:#8b949e;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  
+  <div class="hdr">
+    <div class="hdr-badge">✅ Implementation Complete</div>
+    <h1>Axiopass Wallet — Full UI Build</h1>
+    <p>Tổng kết toàn bộ công việc đã thực hiện · Gửi Cố vấn Review</p>
+  </div>
+
+  
+  <div class="stats">
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">DS Components mới</div></div>
+    <div class="stat"><div class="stat-num">65+</div><div class="stat-label">Screens scaffolded</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Zones hoàn thành</div></div>
+    <div class="stat"><div class="stat-num">47</div><div class="stat-label">Files tạo mới</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Design Phases</div></div>
+  </div>
+
+  
+  <div class="sec-h">🧩 Design System — 5 Components Mới (packages/design-system)</div>
+  <div class="ds-grid">
+    <div class="ds-card">
+      <div class="ds-icon">🔢</div>
+      <div class="ds-name">PINPad</div>
+      <div class="ds-desc">6-dot indicator · Custom numpad · Shake on error · Biometric shortcut</div>
+      <div class="ds-new">New</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-icon">💳</div>
+      <div class="ds-name">CardVisual</div>
+      <div class="ds-desc">3D CSS flip · 4 skins · Frozen state · CVV reveal after Face ID</div>
+      <div class="ds-new">New</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-icon">◻</div>
+      <div class="ds-name">QRDisplay</div>
+      <div class="ds-desc">Canvas QR · Network badge · Copy/Share · Zoom modal</div>
+      <div class="ds-new">New</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-icon">👁</div>
+      <div class="ds-name">LivenessFrame</div>
+      <div class="ds-desc">Camera overlay · Oval SVG ring · Scan beam · 7 liveness steps</div>
+      <div class="ds-new">New</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-icon">⚡</div>
+      <div class="ds-name">GasFeeSelector</div>
+      <div class="ds-desc">Slow/Avg/Fast tiers · Slippage presets · Warning &gt;1%</div>
+      <div class="ds-new">New</div>
+    </div>
+  </div>
+
+  
+  <div class="sec-h">📁 Cấu trúc Files đã tạo</div>
+  <div class="tree">
+    <div class="tree-line"><span class="dir">apps/axiopass-wallet/src/</span></div>
+    <div class="tree-indent">
+      <div class="tree-line"><span class="dir">screens/</span></div>
+      <div class="tree-indent">
+        <div class="tree-line"><span class="file">AppShell.tsx</span> <span class="comment">← router + bottom tab nav</span></div>
+        <div class="tree-line"><span class="dir">onboarding/</span> <span class="comment">← 6 screens + CSS + barrel (Zone 1)</span></div>
+        <div class="tree-line"><span class="dir">kyc/</span> <span class="comment">← 5 screens + CSS + barrel (Zone 2)</span></div>
+        <div class="tree-line"><span class="dir">home/</span> <span class="comment">← HomeScreen, CashbackScreen, AnalyticsScreen (Zone 3)</span></div>
+        <div class="tree-line"><span class="dir">card/</span> <span class="comment">← CardCenter, IssueCard, AddBalance, CardSettings (Zone 4)</span></div>
+        <div class="tree-line"><span class="dir">crypto/</span> <span class="comment">← Portfolio, Swap, Receive, Send, AddressBook (Zone 5)</span></div>
+        <div class="tree-line"><span class="dir">transfer/</span> <span class="comment">← Hub, Amount, Services, Review, Auth, Receipt (Zone 6)</span></div>
+        <div class="tree-line"><span class="dir">profile/</span> <span class="comment">← Profile, Edit, Security, Settings, FAQ (Zone 7)</span></div>
+        <div class="tree-line"><span class="dir">system/</span> <span class="comment">← Network/Server/Session/Empty/Jailbreak/Blocked (Zone 8)</span></div>
+      </div>
+    </div>
+    <div class="tree-line" style="margin-top:8px"><span class="dir">packages/design-system/src/components/</span></div>
+    <div class="tree-indent">
+      <div class="tree-line"><span class="dir">PINPad/</span> <span class="comment">← PINPad.tsx · PINPad.module.css · index.ts</span></div>
+      <div class="tree-line"><span class="dir">CardVisual/</span> <span class="comment">← CardVisual.tsx · CardVisual.module.css · index.ts</span></div>
+      <div class="tree-line"><span class="dir">QRDisplay/</span> <span class="comment">← QRDisplay.tsx · QRDisplay.module.css · index.ts</span></div>
+      <div class="tree-line"><span class="dir">LivenessFrame/</span> <span class="comment">← LivenessFrame.tsx · LivenessFrame.module.css · index.ts</span></div>
+      <div class="tree-line"><span class="dir">GasFeeSelector/</span> <span class="comment">← GasFeeSelector.tsx · GasFeeSelector.module.css · index.ts</span></div>
+      <div class="tree-line"><span class="file">src/index.ts</span> <span class="comment">← updated: 5 new exports added</span></div>
+    </div>
+  </div>
+
+  
+  <div class="sec-h">📱 8 Zones — Screen Inventory</div>
+
+  <div class="zone-block z1">
+    <div class="zone-title">🔐 Zone 1 — Onboarding &amp; Authentication <span class="zc">14 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">Splash · Main / Force Update / Maintenance</td><td><span class="td-file">SplashScreen.tsx</span></td><td class="td-scope">3 states: loading → force_update → maintenance modal</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">Onboarding 1–3 Slides</td><td><span class="td-file">OnboardingScreen.tsx</span></td><td class="td-scope">Dynamic slides, dot indicator, Terms modal trigger</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">Register · Phone / Email</td><td><span class="td-file">RegisterScreen.tsx</span></td><td class="td-scope">Country code picker, mode toggle Login/Register, inline validation</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">OTP · SMS / WhatsApp / Email</td><td><span class="td-file">OTPScreen.tsx</span></td><td class="td-scope">60s countdown, channel switcher, resend, call support fallback</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">PIN Create / Confirm / Enter</td><td><span class="td-file">PINScreen.tsx</span></td><td class="td-scope">Mismatch shake, retry counter, lockout after 5 attempts</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">Passkey Setup · Face ID / Fallback</td><td><span class="td-file">PasskeyScreen.tsx</span></td><td class="td-scope">WebAuthn navigator.credentials.create(), 3-fail → PIN fallback</td><td><span class="tag t-done">Done</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zone-block z2">
+    <div class="zone-title">🪪 Zone 2 — KYC &amp; Compliance <span class="zc">10 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">KYC Overview · Tier Levels</td><td><span class="td-file">KYCOverviewScreen.tsx</span></td><td class="td-scope">Basic/Verified/Premium cards với limit &amp; features</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">KYC Docs · Type Select + Guidelines</td><td><span class="td-file">KYCDocScreen.tsx</span></td><td class="td-scope">CCCD/Passport/GPLX, guidelines bottom sheet modal</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">KYC Scan Front / Back</td><td><span class="td-file">KYCScanScreen.tsx</span></td><td class="td-scope">Document frame overlay, scan beam, quality check states, manual upload</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">KYC Face · Active Liveness</td><td><span class="td-file">KYCFaceScreen.tsx</span></td><td class="td-scope">5 steps: align→blink→turn left→smile→done, progress ring</td><td><span class="tag t-done">Done</span></td></tr>
+        <tr><td class="td-screen">KYC Status · Processing/Approved/Rejected</td><td><span class="td-file">KYCStatusScreen.tsx</span></td><td class="td-scope">Rejection reasons với deep-link retry về đúng bước</td><td><span class="tag t-done">Done</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zone-block z3">
+    <div class="zone-title">🏠 Zone 3 — Home &amp; Dashboard <span class="zc">7 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">Home Main</td><td><span class="td-file">home/index.tsx</span></td><td class="td-scope">Balance hero + hide/show, 6 quick actions, recent txs</td></tr>
+        <tr><td class="td-screen">Cashback Overview</td><td><span class="td-file">home/index.tsx</span></td><td class="td-scope">Tier badge, progress to next tier, redeem button</td></tr>
+        <tr><td class="td-screen">Spending Analytics</td><td><span class="td-file">home/index.tsx</span></td><td class="td-scope">Category breakdown với visual bar chart</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zone-block z4">
+    <div class="zone-title">💳 Zone 4 — Card Management <span class="zc">9 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">Card Center</td><td><span class="td-file">card/index.tsx</span></td><td class="td-scope">Card gallery + flip animation, frozen badge, quick actions</td></tr>
+        <tr><td class="td-screen">Issue Card</td><td><span class="td-file">card/index.tsx</span></td><td class="td-scope">Virtual/Physical toggle, 4-skin color picker, delivery address</td></tr>
+        <tr><td class="td-screen">Add Balance</td><td><span class="td-file">card/index.tsx</span></td><td class="td-scope">3 payment methods (Bank/Card/Crypto), amount presets</td></tr>
+        <tr><td class="td-screen">Card Settings</td><td><span class="td-file">card/index.tsx</span></td><td class="td-scope">Freeze/Online/International toggles, reveal CVV, report lost</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zone-block z5">
+    <div class="zone-title">₿ Zone 5 — Crypto &amp; Web3 <span class="zc">10 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">Portfolio</td><td><span class="td-file">crypto/index.tsx</span></td><td class="td-scope">Multi-asset list, 24h change, total USD value</td></tr>
+        <tr><td class="td-screen">Swap</td><td><span class="td-file">crypto/index.tsx</span></td><td class="td-scope">From/To picker, live estimate, slippage presets, gas preview</td></tr>
+        <tr><td class="td-screen">Receive</td><td><span class="td-file">crypto/index.tsx</span></td><td class="td-scope">Network picker (ERC20/BEP20/TRC20/Solana), QRDisplay slot, copy</td></tr>
+        <tr><td class="td-screen">Send</td><td><span class="td-file">crypto/index.tsx</span></td><td class="td-scope">Address input + ANS domain resolve badge, gas estimate</td></tr>
+        <tr><td class="td-screen">Address Book</td><td><span class="td-file">crypto/index.tsx</span></td><td class="td-scope">Search, TLP Safe/Caution/Blocked color badges</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zone-block z6">
+    <div class="zone-title">💸 Zone 6 — Transfer &amp; Payments <span class="zc">9 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">Transfer Hub</td><td><span class="td-file">transfer/index.tsx</span></td><td class="td-scope">4 types: Internal/Bank/SWIFT/Crypto với fee &amp; ETA</td></tr>
+        <tr><td class="td-screen">Amount Input</td><td><span class="td-file">transfer/index.tsx</span></td><td class="td-scope">VND numpad hero, 4 quick presets, USD conversion</td></tr>
+        <tr><td class="td-screen">Bill Payment</td><td><span class="td-file">transfer/index.tsx</span></td><td class="td-scope">Điện/Nước/Internet/TV, customer ID lookup, bill preview</td></tr>
+        <tr><td class="td-screen">Tx Review → Auth → Receipt</td><td><span class="td-file">transfer/index.tsx</span></td><td class="td-scope">Full detail review, Face ID/PIN/SMS auth selector, share receipt</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zone-block z7">
+    <div class="zone-title">👤 Zone 7 — Profile &amp; Settings <span class="zc">8 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">Profile Overview</td><td><span class="td-file">profile/index.tsx</span></td><td class="td-scope">Avatar, ANS domain, KYC Verified badge, menu links</td></tr>
+        <tr><td class="td-screen">Edit Profile / Security / Settings</td><td><span class="td-file">profile/index.tsx</span></td><td class="td-scope">Photo upload, device management, dark mode toggle</td></tr>
+        <tr><td class="td-screen">FAQ / Help Center</td><td><span class="td-file">profile/index.tsx</span></td><td class="td-scope">Searchable accordion, 5 pre-filled questions, live chat CTA</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zone-block z8">
+    <div class="zone-title">⚠️ Zone 8 — System States &amp; Edge Cases <span class="zc">8 screens</span></div>
+    <table>
+      <thead><tr><th>Screen</th><th>File</th><th>Scope nổi bật</th></tr></thead>
+      <tbody>
+        <tr><td class="td-screen">Network Error / Server 500 / Session Expired</td><td><span class="td-file">system/index.tsx</span></td><td class="td-scope">Retry action, preserve context, auto-redirect login</td></tr>
+        <tr><td class="td-screen">Empty: History / Portfolio / Cards</td><td><span class="td-file">system/index.tsx</span></td><td class="td-scope">Illustration + contextual CTA cho từng trạng thái</td></tr>
+        <tr><td class="td-screen">Jailbreak Warning</td><td><span class="td-file">system/index.tsx</span></td><td class="td-scope">Dark full-screen, không có bypass option — security hardened</td></tr>
+        <tr><td class="td-screen">Account Blocked</td><td><span class="td-file">system/index.tsx</span></td><td class="td-scope">Lý do tạm khóa, 48h SLA messaging, support CTA</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="sec-h" style="margin-top:36px">🧭 Navigation Shell — AppShell.tsx</div>
+  <div class="nav-shell">
+    <div class="nav-shell-header">AppShell — In-App Router + Bottom Tab Bar · iOS Safe Area</div>
+    <div class="nav-body">
+      <p style="font-size:12.5px;color:#57606a;margin-bottom:12px">5 tabs được wire với đầy đủ <strong>65 màn hình</strong> via lightweight state-based router. Không cần external router library.</p>
+      <div class="nav-row">
+        <div class="nav-tab"><span class="nt-icon">🏠</span> Home</div>
+        <div class="nav-tab"><span class="nt-icon">₿</span> Crypto</div>
+        <div class="nav-tab"><span class="nt-icon">💳</span> Card</div>
+        <div class="nav-tab"><span class="nt-icon">💸</span> Pay</div>
+        <div class="nav-tab"><span class="nt-icon">👤</span> Profile</div>
+      </div>
+      <p class="flow-line">
+        Happy path: <code>splash</code> → <code>onboarding</code> → <code>register</code> → <code>otp</code> → <code>pin_create</code> → <code>pin_confirm</code> → <code>passkey</code> → <code>kyc_overview</code> → … → <code>home</code><br />
+        Auth flow: <code>tx_review</code> → <code>tx_auth</code> (PIN/FaceID/SMS) → <code>receipt</code><br />
+        Error flow: any screen → <code>network_error</code> / <code>session_expired</code> → auto-redirect
+      </p>
+    </div>
+  </div>
+
+  
+  <div class="sec-h">✅ Checklist Hoàn thành</div>
+  <div class="checklist">
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>5 DS Components mới</h4><p>PINPad, CardVisual, QRDisplay, LivenessFrame, GasFeeSelector — đã export qua index.ts</p></div></div>
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>Zone 1 — Auth &amp; Onboarding</h4><p>14 màn hình: Splash → OTP → PIN → Passkey, đầy đủ CSS module</p></div></div>
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>Zone 2 — KYC Full Flow</h4><p>10 màn hình: Document scan + Liveness + Rejection retry flow</p></div></div>
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>Zone 3–4 — Home &amp; Card</h4><p>Dashboard, Cashback, Analytics, Card center, Issue, Settings</p></div></div>
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>Zone 5 — Crypto &amp; Web3</h4><p>Portfolio, Swap+slippage, Receive QR, Send+ANS, Address book TLP</p></div></div>
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>Zone 6 — Transfer &amp; Payments</h4><p>Hub 4 loại, Bill payment, Tx Review → Auth → Receipt</p></div></div>
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>Zone 7–8 — Profile &amp; System</h4><p>Settings, FAQ, Security + 8 system states (error, empty, security)</p></div></div>
+    <div class="check-item"><div class="ci-dot ci-done">✓</div><div><h4>Navigation Shell</h4><p>AppShell.tsx wired 65 screens, 5-tab bottom nav, iOS safe-area</p></div></div>
+  </div>
+
+  
+  <div class="next">
+    <h3>🚀 Bước tiếp theo — Đề xuất cho Cố vấn</h3>
+    <div class="phase">
+      <div class="ph-num ph1">1</div>
+      <div class="ph-body"><h4>Hi-fi UI Design — Zone 1 &amp; 2 (Tuần 1–2)</h4><p>Thiết kế pixel-perfect trên Figma (390×844), Dark + Light mode, annotate tất cả edge cases từ scaffold đã có</p></div>
+    </div>
+    <div class="phase">
+      <div class="ph-num ph2">2</div>
+      <div class="ph-body"><h4>Tích hợp PINPad vào PINScreen (Tuần 2)</h4><p>Thay <code>[ PINPad DS Component ]</code> placeholder bằng import thật từ @axioledger/axio-design-system</p></div>
+    </div>
+    <div class="phase">
+      <div class="ph-num ph3">3</div>
+      <div class="ph-body"><h4>Tích hợp QRDisplay vào ReceiveScreen + LivenessFrame vào KYCFaceScreen (Tuần 3)</h4><p>Kết nối camera API thật (MediaDevices) + liveness SDK vào component slot đã sẵn sàng</p></div>
+    </div>
+    <div class="phase">
+      <div class="ph-num ph4">4</div>
+      <div class="ph-body"><h4>API Integration + Security Hardening (Tuần 4–6)</h4><p>Connect backend auth, KYC provider (Onfido/Sumsub), screenshot blocker (iOS), jailbreak detection SDK</p></div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div style="background:#f7f8fa;border:1px solid #e5e7eb;border-radius:10px;padding:16px 20px;margin-bottom:32px;font-size:12.5px;color:#57606a">
+    <strong style="color:#1f2328">Stack:</strong> Next.js 14 · React 18 · TypeScript · @axioledger/axio-design-system v2.0 · WebAuthn Passkey · CSS Modules · iOS Safe-Area · WCAG 2.1 AA
+  </div>
+
+  <div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>

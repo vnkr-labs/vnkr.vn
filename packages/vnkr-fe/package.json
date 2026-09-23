@@ -1,0 +1,34 @@
+{
+  "name": "@vnkr-labs/fe",
+  "version": "2.0.0",
+  "description": "VNKR Design System — Frontend Site CSS (top-bar, header, nav, breaking ticker, article, sidebar, footer)",
+  "main": "index.css",
+  "style": "index.css",
+  "files": [
+    "index.css",
+    "README.md"
+  ],
+  "keywords": [
+    "vnkr",
+    "frontend",
+    "css",
+    "news-site",
+    "design-system"
+  ],
+  "author": "VNKR Labs <dev@vnkr.vn>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vnkr-labs/packages.git",
+    "directory": "packages/vnkr-fe"
+  },
+  "homepage": "https://github.com/vnkr-labs/packages/tree/main/packages/vnkr-fe#readme",
+  "peerDependencies": {
+    "@vnkr-labs/tokens": ">=2.0.0",
+    "@vnkr-labs/ui": ">=2.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

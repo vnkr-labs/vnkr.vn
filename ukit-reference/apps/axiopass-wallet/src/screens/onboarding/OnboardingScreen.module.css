@@ -1,0 +1,112 @@
+.root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--inset-lg);
+  padding-top: env(safe-area-inset-top, 44px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--primitive-space-32));
+  position: relative;
+  background: var(--color-background-primary);
+}
+
+.skip {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  font-size: var(--type-body-sm);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.slide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-space-24);
+  text-align: center;
+}
+
+.illustration {
+  width: 180px; height: 180px;
+  border-radius: var(--primitive-radius-full);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.illustrationEmoji { font-size: 72px; }
+
+.title {
+  font-size: var(--type-h5);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.body {
+  font-size: var(--type-body);
+  color: var(--color-text-secondary);
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+/* Dot indicator */
+.dots {
+  display: flex;
+  gap: var(--gap-sm);
+  justify-content: center;
+  margin-bottom: var(--primitive-space-24);
+}
+
+.dot {
+  width: 8px; height: 8px;
+  border-radius: var(--primitive-radius-full);
+  background: var(--color-border-strong);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width var(--transition-fast), background var(--transition-fast);
+}
+
+.dotActive {
+  width: 24px;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-space-12);
+  align-items: center;
+}
+
+.primaryBtn {
+  width: 100%;
+  height: 56px;
+  border-radius: var(--radius-button);
+  border: none;
+  color: var(--primitive-grey-900);
+  font-size: var(--type-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+.primaryBtn:hover { opacity: 0.88; }
+
+.terms {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin: 0;
+}
+
+.termsLink {
+  background: none;
+  border: none;
+  color: var(--color-text-link);
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}

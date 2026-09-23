@@ -1,0 +1,57 @@
+# ──────────────────────────────────────────────
+# AXIOLEDGER MONOREPO — .gitignore template
+# Copy this file to .gitignore at project root
+# ──────────────────────────────────────────────
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+target/
+*.wasm
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Rust artifacts
+Cargo.lock
+**/target/
+
+# Keys & Secrets (NEVER commit)
+keys/
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.csr
+identity-declaration.json
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Turbo cache
+.turbo/
+
+# Test coverage
+coverage/
+lcov.info
+
+# Temporary
+tmp/
+temp/

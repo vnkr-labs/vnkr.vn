@@ -1,0 +1,102 @@
+/* ── Base ──────────────────────────────────────────────── */
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-sm);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border-radius: var(--radius-button);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: opacity var(--transition-fast), background-color var(--transition-fast),
+    border-color var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+  position: relative;
+  outline: none;
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.root:disabled {
+  cursor: not-allowed;
+  background: var(--color-background-disabled) !important;
+  border-color: var(--color-background-disabled) !important;
+  color: var(--color-text-disabled) !important;
+}
+
+.fullWidth { width: 100%; }
+
+/* ── Sizes ─────────────────────────────────────────────── */
+.giant  { height: 56px; padding: 0 24px; font-size: var(--type-h6); }
+.large  { height: 48px; padding: 0 20px; font-size: var(--type-body); }
+.medium { height: 40px; padding: 0 16px; font-size: var(--type-body-sm); }
+.small  { height: 32px; padding: 0 12px; font-size: var(--type-caption); }
+
+.iconOnly.giant  { width: 56px; padding: 0; }
+.iconOnly.large  { width: 48px; padding: 0; }
+.iconOnly.medium { width: 40px; padding: 0; }
+.iconOnly.small  { width: 32px; padding: 0; }
+
+/* ── Filled ────────────────────────────────────────────── */
+.filled.black  { background: var(--color-background-brand); color: var(--color-text-inverse); }
+.filled.blue   { background: var(--color-status-info-default); color: var(--color-text-inverse); }
+.filled.error  { background: var(--color-status-error-default); color: var(--color-text-inverse); }
+.filled.navy   { background: var(--primitive-grey-600); color: var(--color-text-inverse); }
+.filled.white  { background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-default); }
+
+/* A11y: light bg colors MUST use dark text */
+.filled.green  { background: var(--primitive-brand-green);  color: var(--primitive-grey-900); }
+.filled.yellow { background: var(--primitive-brand-yellow); color: var(--primitive-grey-900); }
+.filled.orange { background: var(--primitive-brand-orange); color: var(--primitive-grey-900); }
+
+.filled:not(:disabled):hover { opacity: 0.88; }
+.filled:not(:disabled):active { opacity: 0.75; }
+
+/* ── Outlined ──────────────────────────────────────────── */
+.outlined.black  { border-color: var(--color-background-brand); color: var(--color-text-brand); background: transparent; }
+.outlined.blue   { border-color: var(--color-status-info-default); color: var(--color-status-info-text); background: transparent; }
+.outlined.error  { border-color: var(--color-status-error-default); color: var(--color-status-error-text); background: transparent; }
+.outlined.green  { border-color: var(--primitive-brand-green);  color: var(--primitive-grey-700); background: transparent; }
+.outlined.yellow { border-color: var(--primitive-brand-yellow); color: var(--primitive-grey-700); background: transparent; }
+.outlined.orange { border-color: var(--primitive-brand-orange); color: var(--primitive-grey-700); background: transparent; }
+.outlined.white  { border-color: var(--color-border-default); color: var(--color-text-primary); background: transparent; }
+.outlined.navy   { border-color: var(--primitive-grey-600); color: var(--primitive-grey-600); background: transparent; }
+
+.outlined:not(:disabled):hover { background: var(--color-background-secondary); }
+
+/* ── Ghost ─────────────────────────────────────────────── */
+.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-text-primary);
+}
+.ghost:not(:disabled):hover { background: var(--color-background-secondary); }
+.ghost.blue   { color: var(--color-status-info-default); }
+.ghost.error  { color: var(--color-status-error-default); }
+
+/* ── Spinner ───────────────────────────────────────────── */
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+
+.filled.green .spinner,
+.filled.yellow .spinner,
+.filled.orange .spinner {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: var(--primitive-grey-900);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.label { flex: 1; text-align: center; }

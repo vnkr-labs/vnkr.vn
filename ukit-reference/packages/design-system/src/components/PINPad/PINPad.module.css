@@ -1,0 +1,134 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--primitive-space-24);
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: var(--inset-lg) var(--inset-md);
+  user-select: none;
+}
+
+.root[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Label block ──────────────────────────────── */
+.labelBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xs);
+  text-align: center;
+}
+
+.label {
+  font-size: var(--type-h6);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.hint {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* ── Dot row ──────────────────────────────────── */
+.dots {
+  display: flex;
+  gap: var(--primitive-space-16);
+  align-items: center;
+  height: 20px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--primitive-radius-full);
+  border: 2px solid var(--color-border-strong);
+  background: transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.dotFilled {
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  transform: scale(1.15);
+}
+
+.dotError {
+  border-color: var(--color-status-error-default);
+  background: var(--color-status-error-default);
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-6px); }
+  30%       { transform: translateX(6px); }
+  45%       { transform: translateX(-5px); }
+  60%       { transform: translateX(5px); }
+  75%       { transform: translateX(-3px); }
+  90%       { transform: translateX(3px); }
+}
+
+.shake {
+  animation: shake 0.5s ease;
+}
+
+/* ── Numpad grid ──────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--primitive-space-12);
+  width: 100%;
+  max-width: 300px;
+}
+
+.key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  border-radius: var(--primitive-radius-full);
+  border: none;
+  background: var(--color-surface-overlay);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.key:active:not(:disabled) {
+  background: var(--color-background-tertiary);
+  transform: scale(0.95);
+}
+
+.key:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.key:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.keyNum {
+  font-size: 26px;
+  font-weight: 400;
+  font-family: var(--font-sans);
+  line-height: 1;
+}
+
+.keySpecial {
+  background: transparent;
+  color: var(--color-icon-secondary);
+}
+
+.keyEmpty {
+  /* empty placeholder cell */
+}

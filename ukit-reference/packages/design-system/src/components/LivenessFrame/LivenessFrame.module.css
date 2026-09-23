@@ -1,0 +1,98 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Dim corners ──────────────────────────────── */
+.dimOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  /* Real implementation: use SVG mask or clip-path to cut out oval */
+}
+
+/* ── Oval / SVG ───────────────────────────────── */
+.ovalWrap {
+  position: relative;
+  width: 260px;
+  height: 320px;
+  z-index: 1;
+}
+
+.ovalSvg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Scanning beam ────────────────────────────── */
+@keyframes scanBeam {
+  0%   { top: 10%; opacity: 0.8; }
+  50%  { top: 85%; opacity: 0.6; }
+  100% { top: 10%; opacity: 0.8; }
+}
+
+.scanBeam {
+  position: absolute;
+  left: 10px; right: 10px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-teal), transparent);
+  border-radius: 1px;
+  animation: scanBeam 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* ── Done overlay ─────────────────────────────── */
+.doneOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+/* ── Step icon ────────────────────────────────── */
+.stepIcon {
+  font-size: 28px;
+  margin-top: 12px;
+  z-index: 2;
+  text-align: center;
+}
+
+/* ── Instructions ─────────────────────────────── */
+.instructionWrap {
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.instruction {
+  font-size: var(--type-h6);
+  font-weight: 600;
+  transition: color var(--transition-base);
+}
+
+.errorMsg {
+  font-size: var(--type-body-sm);
+  color: var(--color-status-error-default);
+}
+
+/* ── Progress text ────────────────────────────── */
+.progressText {
+  z-index: 2;
+  font-size: var(--type-body-sm);
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}

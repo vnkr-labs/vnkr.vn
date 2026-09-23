@@ -1,0 +1,39 @@
+---
+title: AXQ Icons for React Native
+---
+
+![](https://raw.githubusercontent.com/axioledger/axqdesign-icons/main/.github/packages/og-package-react-native.png)
+
+## Installation
+
+<TabsPackage name="@axioledger/icons-react-native" />
+
+or just [download from GitHub](https://github.com/axioledger/axqdesign-icons/releases).
+
+## How to use
+
+It's build with ESmodules so it's completely tree-shakable. Each icon can be imported as a component.
+
+```js
+import { IconArrowLeft } from '@axioledger/icons-react-native';
+
+const App = () => {
+  return <IconArrowLeft />;
+};
+
+export default App;
+```
+
+You can pass additional props to adjust the icon.
+
+```js
+<IconArrowLeft color="red" size={48} />
+```
+
+### Props
+
+| name          | type     | default      |
+| ------------- | -------- | ------------ |
+| `size`        | _Number_ | 24           |
+| `color`       | _String_ | currentColor |
+| `strokeWidth` | _Number_ | 2            |

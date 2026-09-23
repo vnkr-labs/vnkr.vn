@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<title>Không có kết nối — VNKR</title>
+<meta name="robots" content="noindex">
+<!-- Google Fonts — Be Vietnam Pro (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Work+Sans:wght@600;700&subset=vietnamese&display=swap" rel="stylesheet">
+<style>
+  /* ── VNKR Design Tokens (inline — không cần vnkr-tokens.css khi offline) ── */
+  :root {
+    --brand:        #0A3D62;
+    --brand-dark:   #072d47;
+    --brand-light:  #D6E8F5;
+    --accent:       #E84118;
+    --accent-alt:   #c73510;
+    --gold:         #F0A500;
+    --success:      #00A878;
+    --text:         #1a1a1a;
+    --text-muted:   #5a6a7a;
+    --bg:           #f4f6f8;
+    --border:       #d1dce8;
+    --white:        #ffffff;
+    --radius-pill:  50px;
+    --radius-lg:    12px;
+    --shadow-lg:    0 8px 32px rgba(10,61,98,.15);
+    --font-display: 'Work Sans', 'Be Vietnam Pro', Arial, sans-serif;
+    --font-main:    'Be Vietnam Pro', Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-main);
+    background: var(--brand);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    /* Subtle animated gradient background */
+    background: linear-gradient(160deg, #0A3D62 0%, #0d4f80 60%, #1a6299 100%);
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--white);
+    color: var(--text);
+    border-radius: var(--radius-lg);
+    padding: 48px 40px;
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    border-top: 4px solid var(--accent);
+  }
+
+  .card-icon {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .card-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--brand);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--brand);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  /* ── Buttons — pill shape từ design system ── */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-main);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    box-shadow: 0 4px 14px rgba(232,65,24,.35);
+  }
+  .btn-primary:hover { background: var(--accent-alt); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--brand);
+    border: 2px solid var(--brand);
+  }
+  .btn-outline:hover { background: var(--brand-light); }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 20px;
+  }
+
+  /* ── Tips ── */
+  .tips {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: left;
+    line-height: 1.6;
+  }
+
+  .tips-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tips ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .tips li::before {
+    content: '›';
+    color: var(--brand);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  /* ── Online banner (hiện khi có mạng trở lại) ── */
+  .online-banner {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--success);
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,168,120,.4);
+    z-index: 999;
+    animation: slide-down .3s ease;
+  }
+
+  @keyframes slide-down {
+    from { opacity: 0; transform: translate(-50%, -12px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 36px 24px; }
+    h1    { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Online restored banner -->
+<div class="online-banner" id="online-banner">
+  ✅ Đã có kết nối — đang tải lại...
+</div>
+
+<div class="card">
+  <div class="card-logo">VNKR</div>
+  <span class="card-icon">📡</span>
+
+  <h1>Không có kết nối Internet</h1>
+  <p>
+    VNKR cần kết nối mạng để tải tin tức mới nhất.<br>
+    Vui lòng kiểm tra kết nối và thử lại.
+  </p>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="window.location.reload()">
+      ↩ Thử lại ngay
+    </button>
+    <a href="/" class="btn btn-outline">
+      🏠 Trang chủ
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="tips">
+    <div class="tips-title">💡 Gợi ý:</div>
+    <ul>
+      <li>Kiểm tra Wifi hoặc dữ liệu di động của bạn</li>
+      <li>Các trang đã truy cập trước đó vẫn đọc được khi offline</li>
+      <li>Trang sẽ tự reload ngay khi có mạng trở lại</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Tự động reload khi mạng trở lại
+  window.addEventListener('online', function () {
+    var banner = document.getElementById('online-banner');
+    if (banner) banner.style.display = 'block';
+    setTimeout(function () { window.location.reload(); }, 1200);
+  });
+
+  // Nếu đã có mạng khi load (nhầm trang), redirect luôn
+  if (navigator.onLine) {
+    var ref = document.referrer;
+    window.location.href = (ref && ref !== window.location.href) ? ref : '/';
+  }
+</script>
+</body>
+</html>

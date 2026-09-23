@@ -1,0 +1,965 @@
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Axiopass — UI Design Plan</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #1f2328;
+    background: #ffffff;
+    padding: 48px 24px 64px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  /* ── Header ── */
+  .header { text-align: center; margin-bottom: 40px; }
+  .header .badge {
+    display: inline-block;
+    background: #0d1117;
+    color: #49dbc8;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    margin-bottom: 12px;
+  }
+  .header h1 { font-size: 26px; font-weight: 700; color: #0d1117; margin-bottom: 6px; }
+  .header p { color: #57606a; font-size: 13.5px; }
+
+  /* ── Meta row ── */
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-bottom: 36px; justify-content: center;
+  }
+  .meta-pill {
+    background: #f7f8fa; border: 1px solid #e5e7eb;
+    border-radius: 9999px; padding: 5px 14px;
+    font-size: 12.5px; color: #57606a;
+  }
+  .meta-pill strong { color: #1f2328; }
+
+  /* ── Timeline ── */
+  .timeline { margin-bottom: 44px; }
+  .timeline h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #57606a; margin-bottom: 16px; }
+  .phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .phase {
+    background: #f7f8fa; border: 1px solid #e5e7eb;
+    border-radius: 8px; padding: 12px;
+    position: relative;
+  }
+  .phase .num {
+    font-size: 10px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .phase h3 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .phase p { font-size: 11.5px; color: #57606a; }
+  .phase .duration {
+    display: inline-block; background: #e5e7eb;
+    border-radius: 9999px; font-size: 10px; padding: 2px 8px;
+    color: #57606a; margin-top: 8px; font-weight: 600;
+  }
+  .p1 .num { color: #d97706; } .p1 { border-top: 3px solid #f59e0b; }
+  .p2 .num { color: #3b82d4; } .p2 { border-top: 3px solid #3b82d4; }
+  .p3 .num { color: #7c3aed; } .p3 { border-top: 3px solid #7c3aed; }
+  .p4 .num { color: #059669; } .p4 { border-top: 3px solid #10b981; }
+
+  /* ── Zones ── */
+  .zone { margin-bottom: 32px; }
+  .zone-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #e5e7eb; border-bottom: none;
+  }
+  .zone-header .icon { font-size: 18px; }
+  .zone-header .title { font-size: 15px; font-weight: 700; flex: 1; }
+  .zone-header .count {
+    background: rgba(255,255,255,.35);
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 9999px; font-size: 11px; font-weight: 700;
+    padding: 2px 10px; color: #fff;
+  }
+  .zone-body {
+    border: 1px solid #e5e7eb; border-top: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: #f7f8fa; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em; color: #57606a;
+    padding: 8px 12px; text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  td { padding: 9px 12px; font-size: 13px; vertical-align: top; border-bottom: 1px solid #f0f2f4; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafbfc; }
+
+  .screen { font-weight: 600; color: #1f2328; }
+  .scope { color: #57606a; font-size: 12px; }
+  .comp { font-size: 11.5px; }
+  .comp code {
+    background: #f0f2f4; border-radius: 4px; padding: 1px 5px;
+    font-family: 'Cascadia Code','Fira Code',monospace; font-size: 11px;
+    color: #7c3aed;
+  }
+
+  .pri { display: inline-block; border-radius: 9999px; font-size: 10.5px; font-weight: 700; padding: 2px 9px; white-space: nowrap; }
+  .p-critical { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+  .p-high     { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+  .p-medium   { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+  .p-low      { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+  /* zone colors */
+  .z1 .zone-header { background: #1c1917; color: #fff; }
+  .z2 .zone-header { background: #1e3a5f; color: #fff; }
+  .z3 .zone-header { background: #134e4a; color: #fff; }
+  .z4 .zone-header { background: #312e81; color: #fff; }
+  .z5 .zone-header { background: #4a1d96; color: #fff; }
+  .z6 .zone-header { background: #701a75; color: #fff; }
+  .z7 .zone-header { background: #1e3a5f; color: #fff; }
+  .z8 .zone-header { background: #3f1d0e; color: #fff; }
+
+  /* ── Component Inventory ── */
+  .inventory { margin-bottom: 36px; }
+  .inventory h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #57606a; margin-bottom: 14px; }
+  .inv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .inv-card {
+    background: #f7f8fa; border: 1px solid #e5e7eb;
+    border-radius: 8px; padding: 12px;
+  }
+  .inv-card h4 { font-size: 12px; font-weight: 700; color: #1f2328; margin-bottom: 6px; }
+  .inv-card ul { list-style: none; }
+  .inv-card ul li { font-size: 11.5px; color: #57606a; padding: 1px 0; }
+  .inv-card ul li::before { content: "·  "; color: #49dbc8; font-weight: 700; }
+
+  /* ── Deliverables ── */
+  .deliverables { margin-bottom: 36px; }
+  .deliverables h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #57606a; margin-bottom: 14px; }
+  .del-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .del-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: #f7f8fa; border: 1px solid #e5e7eb;
+    border-radius: 8px; padding: 12px;
+  }
+  .del-num {
+    min-width: 24px; height: 24px; border-radius: 9999px;
+    background: #0d1117; color: #49dbc8;
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .del-item h4 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .del-item p { font-size: 11.5px; color: #57606a; }
+
+  /* ── Divider ── */
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 36px 0; }
+
+  /* ── Footer ── */
+  .footer { text-align: center; border-top: 1px solid #e5e7eb; padding-top: 20px; color: #8b949e; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  
+  <div class="header">
+    <div class="badge">Axiopass Wallet · UI Design Masterplan</div>
+    <h1>Onboard → Banking → Crypto — Full UI Plan</h1>
+    <p>Kế hoạch thiết kế chi tiết (Wireframe → UI) gửi Cố vấn · Phiên bản v1.0</p>
+  </div>
+
+  
+  <div class="meta-row">
+    <div class="meta-pill"><strong>Stack:</strong> Next.js 14 · React 18 · TypeScript</div>
+    <div class="meta-pill"><strong>DS:</strong> @axioledger/axio-design-system v2.0</div>
+    <div class="meta-pill"><strong>Auth:</strong> WebAuthn Passkey · Face ID · TouchID</div>
+    <div class="meta-pill"><strong>Screens:</strong> 65+ màn hình</div>
+    <div class="meta-pill"><strong>Zones:</strong> 8 phân khu</div>
+    <div class="meta-pill"><strong>Platform:</strong> iOS-first · Web PWA</div>
+  </div>
+
+  
+  <div class="timeline">
+    <h2>Lộ trình Thiết kế — 4 Phases</h2>
+    <div class="phases">
+      <div class="phase p1">
+        <div class="num">Phase 1 · Critical</div>
+        <h3>Auth &amp; KYC</h3>
+        <p>Splash → Onboarding → Register → OTP → PIN → Passkey → KYC full flow</p>
+        <span class="duration">Tuần 1–2</span>
+      </div>
+      <div class="phase p2">
+        <div class="num">Phase 2 · High</div>
+        <h3>Home &amp; Card</h3>
+        <p>Dashboard, Balance, Cashback, Card Center, Top-up, Card Settings</p>
+        <span class="duration">Tuần 3–4</span>
+      </div>
+      <div class="phase p3">
+        <div class="num">Phase 3 · Medium</div>
+        <h3>Crypto &amp; Transfer</h3>
+        <p>Portfolio, Swap, Wallet, Send/Receive, Transfer Hub, Payments, Receipt</p>
+        <span class="duration">Tuần 5–6</span>
+      </div>
+      <div class="phase p4">
+        <div class="num">Phase 4 · Polish</div>
+        <h3>Profile &amp; System</h3>
+        <p>Settings, Security, FAQ, Empty States, Error Pages, Edge Cases</p>
+        <span class="duration">Tuần 7</span>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="zone z1">
+    <div class="zone-header">
+      <span class="icon">🔐</span>
+      <span class="title">Zone 1 — Onboarding &amp; Authentication</span>
+      <span class="count">14 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">Splash Main</span></td>
+            <td class="scope">Logo animation, brand tagline, kiểm tra token phiên</td>
+            <td class="comp"><code>Skeleton</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Splash · Force Update</span></td>
+            <td class="scope">Modal bắt buộc cập nhật, nút "Cập nhật ngay" → App Store</td>
+            <td class="comp"><code>Modal</code> <code>Button</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Splash · Maintenance</span></td>
+            <td class="scope">Full-screen thông báo bảo trì, thời gian dự kiến</td>
+            <td class="comp"><code>EmptyState</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Onboarding 1–3</span></td>
+            <td class="scope">3 slide giá trị cốt lõi, dot indicator, nút Skip/Next</td>
+            <td class="comp"><code>Button</code> <code>ProgressBar</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Terms &amp; Privacy Modal</span></td>
+            <td class="scope">Scrollable full-text, Checkbox đồng ý, nút Tiếp tục</td>
+            <td class="comp"><code>Modal</code> <code>Checkbox</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Welcome · Select Mode</span></td>
+            <td class="scope">Đăng nhập / Đăng ký, deep-link hỗ trợ referral</td>
+            <td class="comp"><code>Button</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Phone / Email Input</span></td>
+            <td class="scope">Country code picker, validation inline, keyboard auto-up</td>
+            <td class="comp"><code>Input</code> <code>Dropdown</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">OTP Input</span></td>
+            <td class="scope">6-digit, auto-submit, SMS/WhatsApp/Email toggle</td>
+            <td class="comp"><code>OTPInput</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">OTP · Timeout / Error</span></td>
+            <td class="scope">Countdown timer, Resend, Call Support fallback</td>
+            <td class="comp"><code>Alert</code> <code>Toast</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Create PIN</span></td>
+            <td class="scope">6-dot PIN pad, strength indicator, haptic feedback</td>
+            <td class="comp"><code>Input</code> <code>ProgressBar</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Confirm PIN</span></td>
+            <td class="scope">Re-entry, mismatch shake animation, retry limit</td>
+            <td class="comp"><code>Alert</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Passkey Setup</span></td>
+            <td class="scope">WebAuthn <code>navigator.credentials.create()</code>, iCloud Keychain, Face ID prompt</td>
+            <td class="comp"><code>PasskeyButton</code> <code>Modal</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Biometric Fallback</span></td>
+            <td class="scope">Chuyển sang PIN nếu FaceID/TouchID thất bại 3 lần</td>
+            <td class="comp"><code>Alert</code> <code>Toast</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Forgot PIN / Reset</span></td>
+            <td class="scope">Xác minh lại OTP → Re-create PIN flow</td>
+            <td class="comp"><code>OTPInput</code> <code>Input</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="zone z2">
+    <div class="zone-header">
+      <span class="icon">🪪</span>
+      <span class="title">Zone 2 — KYC &amp; Compliance (eKYC)</span>
+      <span class="count">10 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">KYC Overview</span></td>
+            <td class="scope">Tier levels (Basic / Verified / Premium), hạn mức, CTA bắt đầu</td>
+            <td class="comp"><code>Badge</code> <code>ProgressBar</code> <code>Card</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Country / Residency</span></td>
+            <td class="scope">Searchable picker, hỗ trợ 195 quốc gia, FATF filter</td>
+            <td class="comp"><code>SearchBar</code> <code>Dropdown</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">KYC Docs — Type Select</span></td>
+            <td class="scope">CCCD / Hộ chiếu / GPLX, guidelines modal, example images</td>
+            <td class="comp"><code>Modal</code> <code>Card</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">KYC Scan — Front</span></td>
+            <td class="scope">Camera frame overlay, auto-capture khi căn chỉnh, torch toggle</td>
+            <td class="comp">Native Camera API</td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">KYC Scan — Back</span></td>
+            <td class="scope">Image quality check: mờ / chói sáng / góc cắt; retry</td>
+            <td class="comp"><code>Alert</code> <code>Toast</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">KYC Face / Liveness</span></td>
+            <td class="scope">Active liveness: chớp mắt + quay đầu + mỉm cười; passive 3D scan</td>
+            <td class="comp">Native Camera + Overlay</td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Proof of Address</span></td>
+            <td class="scope">Upload hóa đơn điện/nước, file type validation, size limit</td>
+            <td class="comp"><code>Button</code> <code>Alert</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">FATCA / Tax ID</span></td>
+            <td class="scope">Khai báo nguồn tiền, TIN, US Person checkbox, form</td>
+            <td class="comp"><code>Input</code> <code>Checkbox</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">KYC Status · Processing</span></td>
+            <td class="scope">Skeleton loading, push notification khi hoàn tất, ETA hiển thị</td>
+            <td class="comp"><code>Skeleton</code> <code>Toast</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">KYC Rejected · Retry</span></td>
+            <td class="scope">Lý do từ chối theo mã, deep-link về đúng bước cần làm lại</td>
+            <td class="comp"><code>Alert</code> <code>Button</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="zone z3">
+    <div class="zone-header">
+      <span class="icon">🏠</span>
+      <span class="title">Zone 3 — Home &amp; Dashboard</span>
+      <span class="count">7 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">Home Main</span></td>
+            <td class="scope">Balance hero, Quick Actions grid (4-6 lối tắt), Recent Txs feed</td>
+            <td class="comp"><code>Card</code> <code>Avatar</code> <code>Badge</code> <code>Skeleton</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Balance · Multi-Currency</span></td>
+            <td class="scope">Toggle VND / USD / Crypto, tỉ giá realtime, hide balance</td>
+            <td class="comp"><code>Toggle</code> <code>Dropdown</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Cashback Overview</span></td>
+            <td class="scope">Tổng hoàn tiền, tier badge, biểu đồ tháng, nút "Đổi điểm"</td>
+            <td class="comp"><code>Badge</code> <code>ProgressBar</code> <code>Card</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Loyalty Tier</span></td>
+            <td class="scope">Bronze/Silver/Gold/Platinum levels, progress to next tier</td>
+            <td class="comp"><code>ProgressBar</code> <code>Badge</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Voucher / Coupon Store</span></td>
+            <td class="scope">Grid ưu đãi, filter theo danh mục, modal chi tiết &amp; đổi quà</td>
+            <td class="comp"><code>SearchBar</code> <code>Modal</code> <code>Badge</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Financial Analytics</span></td>
+            <td class="scope">Pie chart thu chi theo danh mục, lịch sử 3/6/12 tháng</td>
+            <td class="comp"><code>Card</code> <code>Dropdown</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Quick Actions Config</span></td>
+            <td class="scope">Drag &amp; drop tùy chỉnh lối tắt trang chủ (tối đa 6)</td>
+            <td class="comp"><code>Toggle</code> <code>Card</code></td>
+            <td><span class="pri p-low">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="zone z4">
+    <div class="zone-header">
+      <span class="icon">💳</span>
+      <span class="title">Zone 4 — Card Management</span>
+      <span class="count">9 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">Card Center</span></td>
+            <td class="scope">Virtual / Physical card gallery, flip animation, status badge</td>
+            <td class="comp"><code>Card</code> <code>Badge</code> <code>Skeleton</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Issue Card — Type</span></td>
+            <td class="scope">Chọn Virtual / Physical, tùy chọn màu/skin thẻ</td>
+            <td class="comp"><code>Card</code> <code>Button</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Issue Card — Delivery</span></td>
+            <td class="scope">Nhập địa chỉ giao, chọn tốc độ giao, phí hiển thị</td>
+            <td class="comp"><code>Input</code> <code>Dropdown</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Add Balance / Top-up</span></td>
+            <td class="scope">Chọn phương thức (Ngân hàng / Thẻ / Crypto), review confirm</td>
+            <td class="comp"><code>Dropdown</code> <code>Input</code> <code>Card</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Card Settings</span></td>
+            <td class="scope">Freeze toggle, hạn mức, ATM PIN, thay thẻ, báo mất</td>
+            <td class="comp"><code>Toggle</code> <code>Input</code> <code>Alert</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Reveal Card Details</span></td>
+            <td class="scope">Face ID auth → hiện CVV + số thẻ, blur lại sau 10s</td>
+            <td class="comp"><code>PasskeyButton</code> <code>Modal</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Spending Limits</span></td>
+            <td class="scope">Daily / Monthly / Per-transaction caps, slider input</td>
+            <td class="comp"><code>Input</code> <code>Toggle</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Replace / Report Lost</span></td>
+            <td class="scope">Lý do báo mất, xác nhận khóa tức thì, form yêu cầu thẻ mới</td>
+            <td class="comp"><code>Modal</code> <code>Alert</code> <code>Input</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Add to Apple Wallet</span></td>
+            <td class="scope">PKAddPassButton, provisioning flow, success state</td>
+            <td class="comp">Apple PassKit</td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="zone z5">
+    <div class="zone-header">
+      <span class="icon">₿</span>
+      <span class="title">Zone 5 — Crypto &amp; Web3 Ecosystem</span>
+      <span class="count">10 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">Crypto Portfolio</span></td>
+            <td class="scope">Tổng tài sản USD, % biến động 24h, danh sách holdings</td>
+            <td class="comp"><code>CryptoComponents</code> <code>Badge</code> <code>Skeleton</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Asset Breakdown</span></td>
+            <td class="scope">Chi tiết token: price chart, send/receive/swap shortcuts</td>
+            <td class="comp"><code>Card</code> <code>AddressDisplay</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Swap Interface</span></td>
+            <td class="scope">From/To token picker, amount input, slippage settings, price impact</td>
+            <td class="comp"><code>Input</code> <code>Dropdown</code> <code>Alert</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Buy / Sell Crypto</span></td>
+            <td class="scope">FIAT → Crypto, on-ramp provider selection, KYC gate check</td>
+            <td class="comp"><code>Input</code> <code>Modal</code> <code>Badge</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Wallet Details</span></td>
+            <td class="scope">Multi-chain balances, ANS domain, ZK-DID identity card</td>
+            <td class="comp"><code>NamespaceBadge</code> <code>AddressDisplay</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Receive</span></td>
+            <td class="scope">QR code, network picker (ERC20/TRC20/BEP20), copy address</td>
+            <td class="comp"><code>AddressDisplay</code> <code>Dropdown</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Send</span></td>
+            <td class="scope">Nhập địa chỉ / ANS domain, network, gas fee preview, max button</td>
+            <td class="comp"><code>Input</code> <code>NamespaceBadge</code> <code>Alert</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Address Book</span></td>
+            <td class="scope">Lưu &amp; quản lý địa chỉ ví, TLP safety badge, search</td>
+            <td class="comp"><code>SearchBar</code> <code>NamespaceBadge</code> <code>Avatar</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Staking List</span></td>
+            <td class="scope">APY hiển thị, thời hạn lock, estimated rewards</td>
+            <td class="comp"><code>Card</code> <code>Badge</code> <code>ProgressBar</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Stake / Unstake</span></td>
+            <td class="scope">Nhập số lượng, review fee, confirm flow, cooldown period</td>
+            <td class="comp"><code>Input</code> <code>Modal</code> <code>Alert</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="zone z6">
+    <div class="zone-header">
+      <span class="icon">💸</span>
+      <span class="title">Zone 6 — Transfer &amp; Payments</span>
+      <span class="count">9 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">Transfer Hub</span></td>
+            <td class="scope">Nội bộ / Ngân hàng trong nước / Quốc tế (SWIFT/SEPA) tabs</td>
+            <td class="comp"><code>Card</code> <code>Badge</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Select Recipient</span></td>
+            <td class="scope">Danh bạ / Nhập số TK / QR Code scan, recents list</td>
+            <td class="comp"><code>SearchBar</code> <code>Avatar</code> <code>AddressDisplay</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Amount Input</span></td>
+            <td class="scope">Numpad lớn, quick-amount chips (100K/500K/1M), note field</td>
+            <td class="comp"><code>Input</code> <code>Badge</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Home Services</span></td>
+            <td class="scope">Điện / Nước / Internet / TV, nhập mã khách hàng, bill preview</td>
+            <td class="comp"><code>Input</code> <code>Card</code> <code>Dropdown</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">QR Scanner</span></td>
+            <td class="scope">Camera QR, torch, manual code entry fallback, TLP check</td>
+            <td class="comp"><code>Alert</code> <code>NamespaceBadge</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Tx Review</span></td>
+            <td class="scope">Toàn bộ chi tiết: người nhận, số tiền, phí, ước tính thời gian</td>
+            <td class="comp"><code>Card</code> <code>Badge</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Tx Auth</span></td>
+            <td class="scope">PIN / Face ID / SMS OTP / Hardware Key selector</td>
+            <td class="comp"><code>OTPInput</code> <code>PasskeyButton</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Receipt / Success</span></td>
+            <td class="scope">Biên nhận đẹp, nút Share/Save ảnh, "Giao dịch mới" CTA</td>
+            <td class="comp"><code>Card</code> <code>Button</code> <code>Toast</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Tx Failed</span></td>
+            <td class="scope">Mã lỗi, lý do thân thiện, nút Thử lại / Liên hệ hỗ trợ</td>
+            <td class="comp"><code>Alert</code> <code>Button</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="zone z7">
+    <div class="zone-header">
+      <span class="icon">👤</span>
+      <span class="title">Zone 7 — Profile, Settings &amp; Support</span>
+      <span class="count">8 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">Profile Overview</span></td>
+            <td class="scope">Avatar, tên, KYC tier badge, ANS domain, điểm thành viên</td>
+            <td class="comp"><code>Avatar</code> <code>Badge</code> <code>NamespaceBadge</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Edit Profile</span></td>
+            <td class="scope">Đổi avatar (camera/gallery), tên hiển thị, email</td>
+            <td class="comp"><code>Avatar</code> <code>Input</code> <code>Button</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Account Security</span></td>
+            <td class="scope">Đổi PIN/mật khẩu, danh sách thiết bị đang đăng nhập, revoke session</td>
+            <td class="comp"><code>Toggle</code> <code>Alert</code> <code>Badge</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Linked Bank Accounts</span></td>
+            <td class="scope">Danh sách TK liên kết, thêm mới, xóa liên kết</td>
+            <td class="comp"><code>Card</code> <code>Button</code> <code>Alert</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Settings Hub</span></td>
+            <td class="scope">Language, Appearance (Light/Dark/Auto), Notifications, Region</td>
+            <td class="comp"><code>Toggle</code> <code>Dropdown</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Notifications Prefs</span></td>
+            <td class="scope">Tùy chỉnh từng loại: Push / Email / SMS per-category</td>
+            <td class="comp"><code>Toggle</code> <code>Checkbox</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">FAQ / Help Center</span></td>
+            <td class="scope">Searchable accordion FAQ, deep link từ error screens</td>
+            <td class="comp"><code>SearchBar</code> <code>Accordion</code></td>
+            <td><span class="pri p-medium">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Live Chat / Ticketing</span></td>
+            <td class="scope">In-app chat UI, file attachment, ticket history</td>
+            <td class="comp"><code>Input</code> <code>Avatar</code></td>
+            <td><span class="pri p-low">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="zone z8">
+    <div class="zone-header">
+      <span class="icon">⚠️</span>
+      <span class="title">Zone 8 — System States &amp; Edge Cases</span>
+      <span class="count">8 screens</span>
+    </div>
+    <div class="zone-body">
+      <table>
+        <thead><tr><th>Màn hình</th><th>Scope / Trạng thái</th><th>Components DS</th><th>Ưu tiên</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="screen">Network Error / Offline</span></td>
+            <td class="scope">Full-screen offline state, auto-retry khi có mạng lại</td>
+            <td class="comp"><code>EmptyState</code> <code>Button</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Server Error (500)</span></td>
+            <td class="scope">Mã lỗi thân thiện, nút Thử lại, liên hệ support</td>
+            <td class="comp"><code>EmptyState</code> <code>Alert</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Session Expired</span></td>
+            <td class="scope">Auto-logout modal, preserve context, redirect login</td>
+            <td class="comp"><code>Modal</code> <code>Alert</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Empty History</span></td>
+            <td class="scope">Illustration + CTA "Thực hiện giao dịch đầu tiên"</td>
+            <td class="comp"><code>EmptyState</code> <code>Button</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Empty Portfolio</span></td>
+            <td class="scope">Illustration + CTA "Mua crypto / Nhận tài sản"</td>
+            <td class="comp"><code>EmptyState</code> <code>Button</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Empty Cards</span></td>
+            <td class="scope">Illustration + CTA "Issue Card" cho người dùng mới</td>
+            <td class="comp"><code>EmptyState</code> <code>Button</code></td>
+            <td><span class="pri p-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Jailbreak Warning</span></td>
+            <td class="scope">Cảnh báo toàn màn hình, không thể bypass, thoát app</td>
+            <td class="comp"><code>Alert</code> <code>Modal</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+          <tr>
+            <td><span class="screen">Account Blocked</span></td>
+            <td class="scope">Lý do khóa, hướng dẫn liên hệ hỗ trợ, thời hạn review</td>
+            <td class="comp"><code>Alert</code> <code>EmptyState</code></td>
+            <td><span class="pri p-critical">Critical</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr />
+
+  
+  <div class="inventory">
+    <h2>Component Inventory — @axioledger/axio-design-system v2.0</h2>
+    <div class="inv-grid">
+      <div class="inv-card">
+        <h4>Input &amp; Forms</h4>
+        <ul>
+          <li>Input (text, numeric, password)</li>
+          <li>OTPInput (6-digit animated)</li>
+          <li>Checkbox</li>
+          <li>Toggle</li>
+          <li>Dropdown / SearchBar</li>
+        </ul>
+      </div>
+      <div class="inv-card">
+        <h4>Feedback &amp; Status</h4>
+        <ul>
+          <li>Alert (info/success/warning/error)</li>
+          <li>Toast (auto-dismiss)</li>
+          <li>ProgressBar</li>
+          <li>Skeleton</li>
+          <li>EmptyState</li>
+        </ul>
+      </div>
+      <div class="inv-card">
+        <h4>Layout &amp; Navigation</h4>
+        <ul>
+          <li>Card (surface raised)</li>
+          <li>Modal (sheet / dialog)</li>
+          <li>Navbar (bottom tab + top)</li>
+          <li>Tooltip</li>
+          <li>Badge</li>
+        </ul>
+      </div>
+      <div class="inv-card">
+        <h4>Crypto-Specific</h4>
+        <ul>
+          <li>AddressDisplay (truncated + copy)</li>
+          <li>NamespaceBadge (.axq/.vrq/.kpx)</li>
+          <li>PasskeyButton (Face ID / Touch ID)</li>
+          <li>CryptoComponents (token row)</li>
+        </ul>
+      </div>
+      <div class="inv-card">
+        <h4>Identity</h4>
+        <ul>
+          <li>Avatar (with status ring)</li>
+          <li>TLP Safe / Caution / Blocked badges</li>
+          <li>KYC Tier indicator</li>
+        </ul>
+      </div>
+      <div class="inv-card">
+        <h4>To-Build (New)</h4>
+        <ul>
+          <li>PINPad (dot display + numpad)</li>
+          <li>CardVisual (flip 3D)</li>
+          <li>QRDisplay (generate + zoom)</li>
+          <li>LivenessFrame (camera overlay)</li>
+          <li>GasFeeSelector (slow/avg/fast)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  
+  <div class="deliverables">
+    <h2>Deliverables Gửi Cố vấn — Theo Phase</h2>
+    <div class="del-list">
+      <div class="del-item">
+        <div class="del-num">1</div>
+        <div>
+          <h4>Flow Map (Figma / FigJam)</h4>
+          <p>Sơ đồ luồng toàn bộ 65 màn hình, kết nối navigation, phân biệt Happy Path vs Error Path</p>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-num">2</div>
+        <div>
+          <h4>Low-fi Wireframes — Zone 1 &amp; 2</h4>
+          <p>Grayscale wireframe: Auth + KYC flow (14 + 10 màn hình), annotated edge cases</p>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-num">3</div>
+        <div>
+          <h4>Design System Mapping Doc</h4>
+          <p>Bảng ánh xạ: mỗi màn hình → component DS, token CSS, state variations</p>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-num">4</div>
+        <div>
+          <h4>Hi-fi UI Design — Zone 1 (Phase 1)</h4>
+          <p>Pixel-perfect mobile screens (390×844), Light + Dark mode, iOS safe areas</p>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-num">5</div>
+        <div>
+          <h4>Prototype Clickable — Auth → Home</h4>
+          <p>Figma interactive prototype: Splash → KYC Approved → Home, demo cho investor</p>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-num">6</div>
+        <div>
+          <h4>Component Spec Sheet</h4>
+          <p>5 new components cần build: PINPad, CardVisual, QRDisplay, LivenessFrame, GasFeeSelector</p>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-num">7</div>
+        <div>
+          <h4>Security UX Checklist</h4>
+          <p>Screenshot blocker, Jailbreak detection, Session timeout, Biometric fallback, WCAG 2.1 AA</p>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-num">8</div>
+        <div>
+          <h4>Full Hi-fi UI — Zone 3–8</h4>
+          <p>Home, Card, Crypto, Transfer, Profile, System States — đầy đủ 51 màn hình còn lại</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;align-items:center">
+    <span style="font-size:12px;color:#57606a;font-weight:600">LEGEND:</span>
+    <span class="pri p-critical">Critical — Phase 1</span>
+    <span class="pri p-high">High — Phase 2</span>
+    <span class="pri p-medium">Medium — Phase 3</span>
+    <span class="pri p-low">Low — Phase 4</span>
+  </div>
+
+  
+  <div style="background:#f7f8fa;border:1px solid #e5e7eb;border-radius:10px;padding:20px 24px;margin-bottom:36px">
+    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#57606a;margin-bottom:14px">Summary Stats</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:700;color:#0d1117">65+</div>
+        <div style="font-size:12px;color:#57606a">Màn hình</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:700;color:#0d1117">8</div>
+        <div style="font-size:12px;color:#57606a">Phân khu (Zones)</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:700;color:#0d1117">4</div>
+        <div style="font-size:12px;color:#57606a">Design Phases</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:28px;font-weight:700;color:#0d1117">7W</div>
+        <div style="font-size:12px;color:#57606a">Timeline Dự kiến</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>

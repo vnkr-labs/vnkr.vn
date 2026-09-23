@@ -1,0 +1,116 @@
+.root {
+  border-radius: var(--radius-modal);
+  border: 2px solid;
+  padding: var(--inset-lg);
+  background: var(--color-surface-default);
+  max-width: 420px;
+}
+
+.root[data-level="safe"] {
+  border-color: var(--tlp-safe);
+}
+.root[data-level="caution"] {
+  border-color: var(--tlp-caution);
+}
+.root[data-level="blocked"] {
+  border-color: var(--tlp-blocked);
+}
+.root[data-level="system"] {
+  border-color: var(--tlp-system);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-chip);
+  margin-bottom: var(--gap-md);
+  font-size: var(--type-caption);
+  font-weight: 600;
+}
+
+.root[data-level="safe"]    .badge { background: var(--tlp-safe-bg);    color: var(--tlp-safe-text); }
+.root[data-level="caution"] .badge { background: var(--tlp-caution-bg); color: var(--tlp-caution-text); }
+.root[data-level="blocked"] .badge { background: var(--tlp-blocked-bg); color: var(--tlp-blocked-text); }
+.root[data-level="system"]  .badge { background: var(--tlp-system-bg);  color: var(--tlp-system-text); }
+
+.badgeIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.root[data-level="safe"]    .badgeIndicator { background: var(--tlp-safe); }
+.root[data-level="caution"] .badgeIndicator { background: var(--tlp-caution); }
+.root[data-level="blocked"] .badgeIndicator { background: var(--tlp-blocked); }
+.root[data-level="system"]  .badgeIndicator { background: var(--tlp-system); }
+
+.badgeLabel { text-transform: uppercase; letter-spacing: 0.5px; }
+
+.title {
+  font-size: var(--type-h6);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--gap-sm);
+}
+
+.nameDisplay { margin-bottom: var(--gap-sm); }
+
+.nameCode {
+  font-family: var(--font-mono);
+  font-size: var(--type-body-sm);
+  background: var(--color-surface-sunken);
+  padding: 2px 8px;
+  border-radius: var(--primitive-radius-sm);
+  color: var(--color-text-primary);
+  word-break: break-all;
+}
+
+.reason {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--inset-lg);
+}
+
+.actions {
+  display: flex;
+  gap: var(--gap-sm);
+  justify-content: flex-end;
+}
+
+.dismissBtn {
+  padding: var(--inset-sm) var(--inset-md);
+  border: 1.5px solid var(--color-border-default);
+  border-radius: var(--radius-button);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dismissBtn:hover { background: var(--color-background-secondary); }
+
+.actionBtn {
+  padding: var(--inset-sm) var(--inset-md);
+  border: none;
+  border-radius: var(--radius-button);
+  background: var(--color-status-error-default);
+  color: var(--color-text-inverse);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+/* SECURITY: blocked state — pointer-events also removed to prevent CSS override */
+.actionBtn:disabled,
+.actionBtn[data-blocked] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

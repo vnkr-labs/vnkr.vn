@@ -1,0 +1,72 @@
+.container {
+  position: fixed;
+  z-index: 600;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  pointer-events: none;
+  max-width: 360px;
+  width: calc(100% - 32px);
+}
+
+.container[data-position="top-right"]     { top: 16px; right: 16px; }
+.container[data-position="top-center"]    { top: 16px; left: 50%; transform: translateX(-50%); }
+.container[data-position="bottom-right"]  { bottom: 80px; right: 16px; }
+.container[data-position="bottom-center"] { bottom: 80px; left: 50%; transform: translateX(-50%); }
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  padding: var(--inset-sm) var(--inset-md);
+  border-radius: var(--radius-input);
+  background: var(--color-background-inverse);
+  color: var(--color-text-inverse);
+  font-size: var(--type-body-sm);
+  box-shadow: var(--shadow-lg);
+  pointer-events: all;
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.toast[data-variant="success"] .icon { color: var(--color-status-success-default); }
+.toast[data-variant="error"]   .icon { color: var(--color-status-error-default); }
+.toast[data-variant="warning"] .icon { color: var(--color-status-warning-default); }
+.toast[data-variant="info"]    .icon { color: var(--color-status-info-default); }
+
+.icon { display: flex; align-items: center; flex-shrink: 0; }
+
+.message { flex: 1; line-height: 1.4; }
+
+.action {
+  border: none;
+  background: transparent;
+  color: var(--color-text-link);
+  font-family: var(--font-sans);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0;
+  filter: brightness(1.4);
+}
+.action:hover { text-decoration: underline; }
+
+.dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  cursor: pointer;
+  border-radius: var(--primitive-radius-sm);
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+.dismiss:hover { color: rgba(255,255,255,0.9); }

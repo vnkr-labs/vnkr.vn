@@ -1,0 +1,105 @@
+.root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--inset-lg);
+  padding-top: calc(env(safe-area-inset-top, 44px) + var(--primitive-space-16));
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--primitive-space-32));
+  background: var(--color-background-primary);
+  position: relative;
+}
+
+.back {
+  background: none; border: none;
+  font-size: 20px; color: var(--color-text-primary);
+  cursor: pointer; align-self: flex-start;
+  padding: 4px 0 16px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--primitive-space-20);
+}
+
+.title {
+  font-size: var(--type-h5); font-weight: 700;
+  color: var(--color-text-primary); text-align: center;
+}
+
+.subtitle {
+  font-size: var(--type-body-sm);
+  color: var(--color-text-secondary);
+  text-align: center; line-height: 1.6; max-width: 300px;
+  margin: 0;
+}
+
+/* OTP boxes */
+.otpRow {
+  display: flex; gap: var(--gap-sm);
+  position: relative;
+}
+
+.otpCell {
+  width: 48px; height: 56px;
+  border: 1.5px solid var(--color-border-default);
+  border-radius: var(--radius-input);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font-size: var(--type-h6); font-weight: 600;
+  text-align: center;
+  pointer-events: none; /* driven by hidden input */
+}
+
+.otpRowError .otpCell {
+  border-color: var(--color-status-error-default);
+  background: var(--color-status-error-bg);
+}
+
+.hiddenInput {
+  position: absolute;
+  opacity: 0; width: 1px; height: 1px;
+  pointer-events: none;
+}
+
+.errorMsg {
+  font-size: var(--type-body-sm);
+  color: var(--color-status-error-text);
+  margin: 0; text-align: center;
+}
+
+/* Resend */
+.resendRow { text-align: center; }
+.countdown { font-size: var(--type-body-sm); color: var(--color-text-tertiary); }
+.resendBtn {
+  background: none; border: none;
+  color: var(--color-text-link); font-size: var(--type-body-sm);
+  font-weight: 600; cursor: pointer;
+}
+
+/* Channels */
+.channels { display: flex; gap: var(--gap-sm); flex-wrap: wrap; justify-content: center; }
+.channelBtn {
+  padding: 6px 14px;
+  border-radius: var(--primitive-radius-full);
+  border: 1.5px solid var(--color-border-default);
+  background: transparent;
+  font-size: var(--type-caption); font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+.channelBtnActive {
+  border-color: var(--color-border-focus);
+  color: var(--color-status-info-text);
+  background: var(--color-status-info-bg);
+}
+
+.callBtn {
+  background: none; border: none;
+  color: var(--color-text-tertiary);
+  font-size: var(--type-caption); cursor: pointer;
+  text-decoration: underline;
+  margin-top: auto;
+}

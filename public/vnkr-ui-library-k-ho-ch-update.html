@@ -1,0 +1,532 @@
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>VNKR UI Library — Kế Hoạch Update</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 14px; line-height: 1.6;
+    background: #f7f8fa; color: #1f2328;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  /* Header */
+  .header { margin-bottom: 36px; }
+  .header-tag {
+    display: inline-block;
+    background: #E84118; color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    padding: 3px 12px; border-radius: 9999px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .header h1 {
+    font-size: 28px; font-weight: 800; color: #0A3D62;
+    letter-spacing: -0.5px; margin-bottom: 8px;
+  }
+  .header h1 span { color: #F0A500; }
+  .header-sub { font-size: 14px; color: #57606a; line-height: 1.6; }
+  .header-meta {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-top: 16px; padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 12px; color: #57606a;
+  }
+  .header-meta strong { color: #1f2328; }
+
+  /* Section */
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #57606a;
+    margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* Gap analysis table */
+  .gap-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .gap-table th {
+    background: #f7f8fa; text-align: left;
+    padding: 8px 12px; border: 1px solid #e5e7eb;
+    font-size: 11px; font-weight: 700; color: #57606a;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .gap-table td {
+    padding: 9px 12px; border: 1px solid #e5e7eb;
+    vertical-align: top;
+  }
+  .gap-table tr:nth-child(even) td { background: #f7f8fa; }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 9999px; white-space: nowrap;
+  }
+  .tag-p0 { background: #fee2e2; color: #9f1239; }
+  .tag-p1 { background: #fef3c7; color: #92400e; }
+  .tag-p2 { background: #d1fae5; color: #065f46; }
+  .tag-new { background: #dbeafe; color: #1d4ed8; }
+  .tag-fix { background: #ede9fe; color: #6d28d9; }
+  .tag-done { background: #f3f4f6; color: #6b7280; }
+  code {
+    font-family: 'SFMono-Regular', 'Fira Code', monospace;
+    font-size: 11px; background: #f0f3f6;
+    border: 1px solid #e5e7eb; border-radius: 4px;
+    padding: 1px 5px; color: #0A3D62;
+  }
+
+  /* Phase cards */
+  .phases { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .phases { grid-template-columns: 1fr; } }
+  .phase-card {
+    background: #fff; border: 1.5px solid #e5e7eb;
+    border-radius: 12px; padding: 20px;
+  }
+  .phase-card--p0 { border-color: #fca5a5; background: #fff9f9; }
+  .phase-card--p1 { border-color: #fcd34d; background: #fffdf5; }
+  .phase-card--p2 { border-color: #6ee7b7; background: #f0fdf8; }
+  .phase-card--p3 { border-color: #93c5fd; background: #f0f7ff; }
+  .phase-num {
+    font-size: 10px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .phase-card--p0 .phase-num { color: #dc2626; }
+  .phase-card--p1 .phase-num { color: #d97706; }
+  .phase-card--p2 .phase-num { color: #059669; }
+  .phase-card--p3 .phase-num { color: #2563eb; }
+  .phase-title {
+    font-size: 15px; font-weight: 700; color: #1f2328;
+    margin-bottom: 4px;
+  }
+  .phase-period { font-size: 11px; color: #57606a; margin-bottom: 12px; }
+  .phase-items { display: flex; flex-direction: column; gap: 7px; }
+  .phase-item {
+    font-size: 12px; display: flex; align-items: flex-start;
+    gap: 8px; color: #1f2328; line-height: 1.5;
+  }
+  .phase-item::before {
+    content: '·'; font-weight: 700; flex-shrink: 0;
+    margin-top: 1px; color: #57606a;
+  }
+  .phase-item strong { color: #0A3D62; }
+
+  /* File diff */
+  .diff-block {
+    background: #fff; border: 1px solid #e5e7eb;
+    border-radius: 10px; overflow: hidden; margin-bottom: 16px;
+  }
+  .diff-header {
+    background: #f7f8fa; padding: 8px 16px;
+    font-size: 11px; font-weight: 700; color: #57606a;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .diff-rows { padding: 12px 0; }
+  .diff-row {
+    padding: 5px 16px; font-size: 12px;
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .diff-add { background: #f0fdf4; }
+  .diff-fix { background: #fdf4ff; }
+  .diff-info { background: #f0f7ff; }
+  .diff-sign {
+    font-weight: 800; font-size: 13px; flex-shrink: 0; width: 12px;
+  }
+  .diff-add .diff-sign { color: #16a34a; }
+  .diff-fix .diff-sign { color: #7c3aed; }
+  .diff-info .diff-sign { color: #2563eb; }
+  .diff-text { line-height: 1.5; }
+
+  /* Timeline summary */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 9px; top: 6px; bottom: 6px;
+    width: 2px; background: #e5e7eb;
+  }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 5px;
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 2px solid #f7f8fa;
+  }
+  .tl-dot--red   { background: #dc2626; }
+  .tl-dot--gold  { background: #d97706; }
+  .tl-dot--green { background: #059669; }
+  .tl-dot--blue  { background: #2563eb; }
+  .tl-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 3px;
+  }
+  .tl-label--red   { color: #dc2626; }
+  .tl-label--gold  { color: #d97706; }
+  .tl-label--green { color: #059669; }
+  .tl-label--blue  { color: #2563eb; }
+  .tl-content { font-size: 13px; color: #1f2328; }
+  .tl-sub { font-size: 12px; color: #57606a; margin-top: 2px; }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding-top: 32px; margin-top: 32px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 12px; color: #57606a;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  
+  <div class="header">
+    <div class="header-tag">Kế Hoạch Cập Nhật</div>
+    <h1>VNKR UI Library <span>Update Plan</span></h1>
+    <div class="header-sub">
+      Phân tích gap giữa <strong>VNKR UI hiện tại</strong> và <strong>UKIT (AXQ Design System)</strong> —
+      xác định những gì cần thêm, cần sửa, và thứ tự thực hiện.
+    </div>
+    <div class="header-meta">
+      <span><strong>Files đích:</strong> vnkr-tokens.css · vnkr-ui.css · vnkr-ui.js</span>
+      <span><strong>Tham khảo:</strong> ukit-reference/assets/css/ · packages/design-system/</span>
+      <span><strong>Nguyên tắc:</strong> Giữ prefix <code>vnkr-*</code> · Vanilla CSS+JS · Không framework</span>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title">Phân Tích Gap — VNKR vs UKIT</div>
+    <table class="gap-table">
+      <thead>
+        <tr>
+          <th>Hạng mục</th>
+          <th>VNKR hiện tại</th>
+          <th>UKIT có</th>
+          <th>Ưu tiên</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Dark mode</strong></td>
+          <td>❌ Không có</td>
+          <td><code>html.dark {}</code> override toàn bộ tokens</td>
+          <td><span class="tag tag-p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>Input / Form</strong></td>
+          <td>❌ Không có class nào</td>
+          <td>Input đầy đủ: label, icon left/right, error state, 3 sizes, focus ring</td>
+          <td><span class="tag tag-p0">P0</span></td>
+        </tr>
+        <tr>
+          <td><strong>Callout / Alert box</strong></td>
+          <td>❌ Không có</td>
+          <td><code>.callout-info/warn/danger/success/purple</code> — border-left 3px</td>
+          <td><span class="tag tag-p0">P0</span></td>
+        </tr>
+        <tr>
+          <td><strong>Skeleton loading</strong></td>
+          <td>❌ Không có</td>
+          <td>Pulse animation: text, circle, rect, card skeleton</td>
+          <td><span class="tag tag-p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>Modal / Dialog</strong></td>
+          <td>❌ Không có</td>
+          <td>Modal đầy đủ: backdrop blur, dialog, header/body/footer, close btn, bottom sheet</td>
+          <td><span class="tag tag-p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>Timeline</strong></td>
+          <td>Dùng grid cards — không có line connector</td>
+          <td><code>.tl-wrap</code> với <code>::before</code> line + <code>.tl-dot</code> circles</td>
+          <td><span class="tag tag-p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>Nav header glassmorphism</strong></td>
+          <td>Nền đặc <code>#0A3D62</code></td>
+          <td><code>color-mix(85%, transparent)</code> + <code>backdrop-filter: blur(16px)</code></td>
+          <td><span class="tag tag-p2">P2</span></td>
+        </tr>
+        <tr>
+          <td><strong>Focus ring / Accessibility</strong></td>
+          <td>❌ Không có <code>:focus-visible</code></td>
+          <td><code>outline: 2px solid var(--color-border-focus); outline-offset: 2px</code></td>
+          <td><span class="tag tag-p0">P0</span></td>
+        </tr>
+        <tr>
+          <td><strong>Toast — dismiss button</strong></td>
+          <td>Chỉ auto-dismiss, không có nút × đóng thủ công</td>
+          <td>Có <code>.dismiss</code> button + <code>.action</code> link trong toast</td>
+          <td><span class="tag tag-p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>Button — loading state</strong></td>
+          <td>❌ Không có spinner</td>
+          <td>Spinner <code>@keyframes spin</code> trong button khi <code>disabled</code></td>
+          <td><span class="tag tag-p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>data-* variant pattern</strong></td>
+          <td>Dùng class modifier <code>--variant</code></td>
+          <td><code>[data-size="large"]</code>, <code>[data-state="error"]</code> — sạch hơn với JS</td>
+          <td><span class="tag tag-p2">P2</span></td>
+        </tr>
+        <tr>
+          <td><strong>Token: spacing đặt tên</strong></td>
+          <td><code>--sp-1..--sp-20</code> (không dùng nhiều trong component)</td>
+          <td><code>--space-1..16</code> dùng nhất quán trong mọi component</td>
+          <td><span class="tag tag-p2">P2</span></td>
+        </tr>
+        <tr>
+          <td><strong>Scroll-linked nav tint</strong></td>
+          <td>❌ Nav luôn đặc màu</td>
+          <td>Nav đổi <code>background</code> khi scroll (JS <code>scroll</code> event)</td>
+          <td><span class="tag tag-p2">P2</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title">4 Giai Đoạn Thực Hiện</div>
+    <div class="phases">
+      <div class="phase-card phase-card--p0">
+        <div class="phase-num">Giai đoạn 1 — P0 · Làm ngay</div>
+        <div class="phase-title">Nền tảng còn thiếu</div>
+        <div class="phase-period">Ảnh hưởng đến usability — phải có trước khi dùng thật</div>
+        <div class="phase-items">
+          <div class="phase-item"><strong>vnkr-ui.css:</strong> Thêm <code>.vnkr-input</code> — label, field, icon, error state, 3 sizes (sm/md/lg)</div>
+          <div class="phase-item"><strong>vnkr-ui.css:</strong> Thêm <code>.vnkr-callout--*</code> (info/warn/danger/success) — border-left + background tint</div>
+          <div class="phase-item"><strong>vnkr-tokens.css:</strong> Thêm <code>:focus-visible</code> global rule + <code>--focus-ring</code> token</div>
+          <div class="phase-item"><strong>vnkr-ui.css:</strong> Áp dụng <code>:focus-visible</code> cho button, input, nav links</div>
+        </div>
+      </div>
+
+      <div class="phase-card phase-card--p1">
+        <div class="phase-num">Giai đoạn 2 — P1 · Tuần này</div>
+        <div class="phase-title">Component mở rộng</div>
+        <div class="phase-period">Nâng cao UX — cần cho site thật (skeleton, modal, toast nâng cấp)</div>
+        <div class="phase-items">
+          <div class="phase-item"><strong>vnkr-ui.css:</strong> Thêm <code>.vnkr-skeleton</code> — pulse animation, text/circle/rect/card variants</div>
+          <div class="phase-item"><strong>vnkr-ui.css + js:</strong> Thêm <code>.vnkr-modal</code> — backdrop blur, dialog, header/body/footer, bottom-sheet mobile</div>
+          <div class="phase-item"><strong>vnkr-ui.css:</strong> Refactor <code>.vnkr-roadmap-card</code> → <code>.vnkr-timeline</code> — line connector + dots</div>
+          <div class="phase-item"><strong>vnkr-ui.js:</strong> Nâng cấp <code>vnkrToast</code> — thêm nút × dismiss thủ công + action link</div>
+          <div class="phase-item"><strong>vnkr-ui.js:</strong> Thêm spinner vào button khi <code>aria-busy="true"</code></div>
+        </div>
+      </div>
+
+      <div class="phase-card phase-card--p2">
+        <div class="phase-num">Giai đoạn 3 — P2 · Tuần sau</div>
+        <div class="phase-title">Nâng cấp thị giác</div>
+        <div class="phase-period">Dark mode + glassmorphism + scroll behaviors</div>
+        <div class="phase-items">
+          <div class="phase-item"><strong>vnkr-tokens.css:</strong> Thêm <code>html[data-theme="dark"] {}</code> — override toàn bộ color tokens</div>
+          <div class="phase-item"><strong>vnkr-ui.js:</strong> Theme toggle — lưu preference vào <code>localStorage</code></div>
+          <div class="phase-item"><strong>vnkr-ui.css:</strong> Nav glassmorphism khi scroll — <code>backdrop-filter: blur(16px)</code></div>
+          <div class="phase-item"><strong>vnkr-ui.js:</strong> Scroll-linked nav — thêm class <code>.scrolled</code> sau 60px</div>
+          <div class="phase-item"><strong>vnkr-ui.html:</strong> Thêm nút theme toggle vào nav demo</div>
+        </div>
+      </div>
+
+      <div class="phase-card phase-card--p3">
+        <div class="phase-num">Giai đoạn 4 — P3 · Khi cần</div>
+        <div class="phase-title">Polish &amp; Tích hợp</div>
+        <div class="phase-period">Áp dụng vào Blade templates thực tế</div>
+        <div class="phase-items">
+          <div class="phase-item"><strong>vnkr-tokens.css:</strong> Refactor spacing — dùng <code>--sp-*</code> nhất quán trong tất cả component</div>
+          <div class="phase-item"><strong>Blade templates:</strong> Áp dụng <code>vnkr-*</code> classes vào <code>resources/views/</code></div>
+          <div class="phase-item"><strong>main.scss:</strong> Import <code>vnkr-tokens.css</code> thay <code>variables.scss</code> cũ</div>
+          <div class="phase-item"><strong>vnkr-ui.css:</strong> Dropdown component — dùng <code>data-open</code> attribute pattern</div>
+          <div class="phase-item"><strong>ui.html:</strong> Thêm section "Form Elements" demo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title">Thay Đổi Chi Tiết Theo File</div>
+
+    <div class="diff-block">
+      <div class="diff-header">
+        <span>vnkr-tokens.css</span>
+        <span><span class="tag tag-new">+3 additions</span>   <span class="tag tag-fix">1 fix</span></span>
+      </div>
+      <div class="diff-rows">
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Thêm <code>--focus-ring</code> token: <code>0 0 0 3px rgba(30,111,165,0.25)</code></span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Thêm <code>html[data-theme="dark"]</code> block — override color tokens cho dark mode (Giai đoạn 3)</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Thêm <code>:focus-visible</code> global rule — <code>outline: 2px solid var(--brand-alt); outline-offset: 2px</code></span>
+        </div>
+        <div class="diff-row diff-fix">
+          <span class="diff-sign">~</span>
+          <span class="diff-text">Body font-size: <code>--text-lg (15px)</code> → <code>--text-md (14px)</code> — đồng nhất với UKIT baseline</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-block">
+      <div class="diff-header">
+        <span>vnkr-ui.css</span>
+        <span><span class="tag tag-new">+5 sections mới</span>   <span class="tag tag-fix">2 refactor</span></span>
+      </div>
+      <div class="diff-rows">
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section 28: <code>.vnkr-callout</code> — 5 variants (info/warn/danger/success/gold), border-left 3px</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section 29: <code>.vnkr-input</code> — wrapper, label, field, icon left/right, error/disabled states, 3 sizes</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section 30: <code>.vnkr-skeleton</code> — pulse keyframe, text/circle/rect/card variants</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section 31: <code>.vnkr-modal</code> — backdrop blur, dialog, header/body/footer, <code>.vnkr-sheet</code> (bottom sheet mobile)</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section 32: <code>.vnkr-timeline</code> — tl-wrap, tl-item, tl-dot, tl-connector line — thay thế roadmap grid đơn điệu</span>
+        </div>
+        <div class="diff-row diff-fix">
+          <span class="diff-sign">~</span>
+          <span class="diff-text">Mọi button/input/link: thêm <code>:focus-visible</code> với <code>var(--focus-ring)</code></span>
+        </div>
+        <div class="diff-row diff-fix">
+          <span class="diff-sign">~</span>
+          <span class="diff-text">Nav scrolled state: <code>.vnkr-nav.scrolled</code> — glassmorphism + <code>backdrop-filter</code></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-block">
+      <div class="diff-header">
+        <span>vnkr-ui.js</span>
+        <span><span class="tag tag-new">+3 functions</span>   <span class="tag tag-fix">2 nâng cấp</span></span>
+      </div>
+      <div class="diff-rows">
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text"><code>vnkrTheme()</code> — toggle <code>html[data-theme]</code>, persist <code>localStorage</code>, sync nút toggle icon</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text"><code>vnkrModal()</code> — open/close modal bằng <code>data-modal-trigger</code> / <code>data-modal-close</code>, trap focus, ESC key</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text"><code>vnkrNavScroll()</code> — thêm class <code>.scrolled</code> vào <code>.vnkr-nav</code> khi <code>scrollY &gt; 60</code></span>
+        </div>
+        <div class="diff-row diff-fix">
+          <span class="diff-sign">~</span>
+          <span class="diff-text"><code>vnkrToast()</code> — thêm nút × dismiss thủ công + optional <code>action</code> text/callback</span>
+        </div>
+        <div class="diff-row diff-fix">
+          <span class="diff-sign">~</span>
+          <span class="diff-text">Public API: expose <code>VNKRUI.modal.open(id)</code> / <code>.modal.close(id)</code> / <code>.theme.toggle()</code></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-block">
+      <div class="diff-header">
+        <span>public/ui.html</span>
+        <span><span class="tag tag-new">+3 sections demo</span>   <span class="tag tag-fix">1 nâng cấp nav</span></span>
+      </div>
+      <div class="diff-rows">
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section "Form Elements" — demo: input sizes, error state, callout boxes</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section "Skeleton &amp; Loading" — demo: skeleton card, text line, circle placeholder</span>
+        </div>
+        <div class="diff-row diff-add">
+          <span class="diff-sign">+</span>
+          <span class="diff-text">Section "Modal Demo" — nút trigger + modal HTML, bottom sheet demo</span>
+        </div>
+        <div class="diff-row diff-fix">
+          <span class="diff-sign">~</span>
+          <span class="diff-text">Nav: thêm nút theme toggle ☀/🌙 ở góc phải</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title">Lộ Trình Thực Hiện</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot tl-dot--red"></div>
+        <div class="tl-label tl-label--red">Giai đoạn 1 — Làm ngay (hôm nay)</div>
+        <div class="tl-content"><strong>focus-visible</strong> global + <strong>vnkr-callout</strong> + <strong>vnkr-input</strong></div>
+        <div class="tl-sub">Tác động lớn nhất — unblock cho form search, bình luận, đăng nhập</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-dot--gold"></div>
+        <div class="tl-label tl-label--gold">Giai đoạn 2 — Tuần này</div>
+        <div class="tl-content"><strong>vnkr-skeleton</strong> + <strong>vnkr-modal</strong> + <strong>vnkr-timeline</strong> + toast nâng cấp</div>
+        <div class="tl-sub">Hoàn thiện component library cho site thật</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-dot--green"></div>
+        <div class="tl-label tl-label--green">Giai đoạn 3 — Tuần sau</div>
+        <div class="tl-content"><strong>Dark mode</strong> + <strong>nav glassmorphism</strong> + <strong>theme toggle</strong></div>
+        <div class="tl-sub">Visual polish — tạo khác biệt rõ với các báo truyền thống</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot tl-dot--blue"></div>
+        <div class="tl-label tl-label--blue">Giai đoạn 4 — Khi tích hợp Blade</div>
+        <div class="tl-content"><strong>Tích hợp resources/views/</strong> + replace variables.scss + Dropdown</div>
+        <div class="tl-sub">Kết nối UI library vào site Laravel thật sự</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title">Nguyên Tắc Giữ Nguyên</div>
+    <table class="gap-table">
+      <tbody>
+        <tr>
+          <td>✅ <strong>Prefix <code>vnkr-*</code></strong></td>
+          <td>Mọi class mới đều dùng prefix — không conflict với Tailwind hay Bootstrap</td>
+        </tr>
+        <tr>
+          <td>✅ <strong>Vanilla CSS + JS thuần</strong></td>
+          <td>Không thêm thư viện ngoài — không Alpine.js, không jQuery</td>
+        </tr>
+        <tr>
+          <td>✅ <strong>Màu VNKR bất biến</strong></td>
+          <td><code>#0A3D62</code> brand · <code>#E84118</code> accent · <code>#F0A500</code> gold — không thay đổi</td>
+        </tr>
+        <tr>
+          <td>✅ <strong>Be Vietnam Pro</strong></td>
+          <td>Font chính không đổi — UKIT dùng Work Sans nhưng VNKR giữ Be Vietnam Pro</td>
+        </tr>
+        <tr>
+          <td>✅ <strong>Backward compatible</strong></td>
+          <td>Class cũ không bị xóa — chỉ thêm, không breaking change cho code đang dùng</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    VNKR.VN · Phạm Thế Bảo / TheKingBao · Made with IBM Bob
+  </div>
+</div>
+</body>
+</html>

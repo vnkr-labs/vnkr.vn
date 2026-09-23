@@ -1,0 +1,29 @@
+{
+  "name": "@vnkr-labs/tokens",
+  "version": "2.0.0",
+  "description": "VNKR Design System — CSS Design Tokens (colors, typography, spacing, radius, shadow, transitions)",
+  "main": "index.css",
+  "style": "index.css",
+  "files": [
+    "index.css",
+    "README.md"
+  ],
+  "keywords": [
+    "vnkr",
+    "design-tokens",
+    "css-variables",
+    "design-system"
+  ],
+  "author": "VNKR Labs <dev@vnkr.vn>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vnkr-labs/packages.git",
+    "directory": "packages/vnkr-tokens"
+  },
+  "homepage": "https://github.com/vnkr-labs/packages/tree/main/packages/vnkr-tokens#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

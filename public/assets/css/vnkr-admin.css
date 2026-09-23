@@ -1,0 +1,716 @@
+/**
+ * VNKR.VN — Admin Panel CSS
+ * ==========================
+ * File: vnkr-admin.css
+ * Phụ thuộc: vnkr-tokens.css (phải load trước), main.min.css (Arise theme)
+ * Mô tả: Tích hợp VNKR Design System vào admin panel.
+ *        Ghi đè màu sắc Arise sang VNKR brand tokens.
+ *        Không xóa main.min.css — chỉ override có chọn lọc.
+ *
+ * Mục lục:
+ *   1.  TOKEN BRIDGE — map VNKR tokens → admin context
+ *   2.  SIDEBAR — brand colors + active states
+ *   3.  HEADER — top bar admin
+ *   4.  BUTTONS — pill system + semantic variants
+ *   5.  BADGES & STATUS LABELS
+ *   6.  BOX / CARD COMPONENTS
+ *   7.  TABLES — responsive + token styling
+ *   8.  FORMS — input/label tokens
+ *   9.  STATS TILES — metric cards
+ *   10. TYPOGRAPHY — Work Sans headings
+ *   11. RESPONSIVE — mobile sidebar + table scroll
+ */
+
+
+/* ══════════════════════════════════════════════
+   1. TOKEN BRIDGE
+   Map VNKR tokens sang context admin.
+   Arise dùng --bs-* vars — ta thêm song song
+   mà không xóa để tránh break Arise components.
+   ══════════════════════════════════════════════ */
+:root {
+    /* Override --bs-primary → brand xanh VNKR */
+    --bs-primary:       #0A3D62;
+    --bs-primary-rgb:   10, 61, 98;
+    --bs-danger:        #E84118;
+    --bs-danger-rgb:    232, 65, 24;
+    --bs-success:       #00A878;
+    --bs-success-rgb:   0, 168, 120;
+    --bs-warning:       #F0A500;
+    --bs-warning-rgb:   240, 165, 0;
+    --bs-info:          #1E6FA5;
+    --bs-info-rgb:      30, 111, 165;
+
+    /* Shorthand aliases dùng trong file này */
+    --adm-brand:     var(--brand,   #0A3D62);
+    --adm-accent:    var(--accent,  #E84118);
+    --adm-gold:      var(--gold,    #F0A500);
+    --adm-success:   var(--success, #00A878);
+    --adm-text:      var(--text,    #1a1a1a);
+    --adm-muted:     var(--text-muted, #5a6a7a);
+    --adm-border:    var(--border,  #d1dce8);
+    --adm-bg:        var(--bg,      #f4f6f8);
+    --adm-card:      var(--bg-card, #ffffff);
+
+    /* Sidebar dimensions */
+    --adm-sidebar-w: 240px;
+    --adm-header-h:  60px;
+}
+
+
+/* ══════════════════════════════════════════════
+   2. SIDEBAR — VNKR brand + nav tokens
+   ══════════════════════════════════════════════ */
+
+.sidebar-wrapper {
+    background: var(--adm-brand) !important;
+    width: var(--adm-sidebar-w) !important;
+}
+
+/* Sidebar brand logo area */
+.sidebar-brand {
+    background: var(--adm-brand) !important;
+    border-bottom: 2px solid rgba(255,255,255,.1);
+}
+
+/* Menu links */
+.sidebar-wrapper .sidebar-menu ul li a {
+    color: rgba(255,255,255,.78) !important;
+    font-size: 13.5px;
+    font-weight: var(--fw-medium, 500);
+    transition: color var(--transition-fast, .15s ease), background var(--transition-fast, .15s ease);
+    border-radius: var(--radius-md, 8px);
+    margin: 1px 8px;
+    padding: 9px 12px !important;
+}
+
+.sidebar-wrapper .sidebar-menu ul li a:hover,
+.sidebar-wrapper .sidebar-menu ul li.active > a {
+    color: #fff !important;
+    background: rgba(255,255,255,.12) !important;
+}
+
+/* Active menu item — accent left border */
+.sidebar-wrapper .sidebar-menu ul li.active > a {
+    border-left: 3px solid var(--adm-accent) !important;
+    padding-left: 9px !important;
+}
+
+/* Submenu */
+.sidebar-submenu {
+    background: rgba(0,0,0,.18) !important;
+}
+
+.sidebar-submenu ul li a {
+    font-size: 12.5px !important;
+    color: rgba(255,255,255,.65) !important;
+}
+
+.sidebar-submenu ul li a:hover {
+    color: #fff !important;
+    background: rgba(255,255,255,.1) !important;
+}
+
+/* Menu icons */
+.sidebar-menu li a i {
+    color: rgba(255,255,255,.6);
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+}
+
+.sidebar-menu li.active > a i,
+.sidebar-menu li a:hover i {
+    color: rgba(255,255,255,.9);
+}
+
+
+/* ══════════════════════════════════════════════
+   3. HEADER — admin top bar
+   ══════════════════════════════════════════════ */
+
+header .page-header {
+    background: var(--adm-card) !important;
+    border-bottom: 1px solid var(--adm-border);
+    box-shadow: 0 1px 6px rgba(10,61,98,.06);
+    height: var(--adm-header-h);
+}
+
+.toggle-sidebar {
+    color: var(--adm-brand);
+    font-size: 20px;
+}
+
+.toggle-sidebar:hover {
+    color: var(--adm-accent);
+}
+
+/* Admin search input */
+.search-container .input-group .form-control {
+    border-color: var(--adm-border);
+    border-radius: var(--radius-pill, 50px) 0 0 var(--radius-pill, 50px);
+    font-size: 13px;
+    background: var(--adm-bg);
+    color: var(--adm-text);
+}
+
+.search-container .input-group .form-control:focus {
+    border-color: var(--adm-brand);
+    box-shadow: 0 0 0 3px rgba(10,61,98,.12);
+}
+
+.search-container .input-group .btn {
+    background: var(--adm-brand);
+    color: #fff;
+    border-color: var(--adm-brand);
+    border-radius: 0 var(--radius-pill, 50px) var(--radius-pill, 50px) 0;
+}
+
+.search-container .input-group .btn:hover {
+    background: var(--brand-dark, #072d47);
+    border-color: var(--brand-dark, #072d47);
+}
+
+/* User name + avatar */
+.user-name {
+    color: var(--adm-muted);
+    font-size: 13px;
+}
+
+
+/* ══════════════════════════════════════════════
+   4. BUTTONS — pill system từ Design System §5.2
+   Override Arise button classes sang VNKR tokens
+   ══════════════════════════════════════════════ */
+
+/* Reset Arise btn, áp dụng pill shape */
+.btn {
+    border-radius: var(--radius-pill, 50px) !important;
+    font-weight: var(--fw-semibold, 600) !important;
+    font-size: 13px;
+    transition: all var(--transition-fast, .15s ease) !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Primary — brand xanh */
+.btn-primary {
+    background: var(--adm-brand) !important;
+    border-color: var(--adm-brand) !important;
+    color: #fff !important;
+}
+.btn-primary:hover {
+    background: var(--brand-dark, #072d47) !important;
+    border-color: var(--brand-dark, #072d47) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(10,61,98,.25) !important;
+}
+
+/* Danger / accent */
+.btn-danger {
+    background: var(--adm-accent) !important;
+    border-color: var(--adm-accent) !important;
+}
+.btn-danger:hover {
+    background: var(--accent-alt, #d13512) !important;
+    border-color: var(--accent-alt, #d13512) !important;
+    transform: translateY(-1px);
+}
+
+/* Success */
+.btn-success {
+    background: var(--adm-success) !important;
+    border-color: var(--adm-success) !important;
+}
+.btn-success:hover {
+    background: var(--success-700, #007A55) !important;
+    border-color: var(--success-700, #007A55) !important;
+}
+
+/* Warning */
+.btn-warning {
+    background: var(--adm-gold) !important;
+    border-color: var(--adm-gold) !important;
+    color: #1a1a1a !important;
+}
+.btn-warning:hover {
+    background: var(--gold-alt, #d49200) !important;
+    border-color: var(--gold-alt, #d49200) !important;
+    color: #1a1a1a !important;
+}
+
+/* Default / secondary */
+.btn-default {
+    background: var(--adm-bg) !important;
+    border-color: var(--adm-border) !important;
+    color: var(--adm-text) !important;
+}
+.btn-default:hover {
+    background: #e8f0f7 !important;
+    border-color: var(--adm-brand) !important;
+    color: var(--adm-brand) !important;
+}
+
+/* Info */
+.btn-info {
+    background: var(--info, #1E6FA5) !important;
+    border-color: var(--info, #1E6FA5) !important;
+    color: #fff !important;
+}
+
+/* Sizes */
+.btn-xs { padding: 4px 12px;  font-size: 11.5px !important; }
+.btn-sm { padding: 6px 16px;  font-size: 12.5px !important; }
+.btn-lg { padding: 11px 28px; font-size: 15px   !important; }
+
+/* Disabled */
+.btn:disabled, .btn.disabled {
+    opacity: .5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+
+/* Focus ring */
+.btn:focus-visible {
+    outline: none !important;
+    box-shadow: var(--focus-ring, 0 0 0 3px rgba(30,111,165,.3)) !important;
+}
+
+
+/* ══════════════════════════════════════════════
+   5. BADGES & STATUS LABELS
+   ══════════════════════════════════════════════ */
+
+.badge {
+    border-radius: var(--radius-full, 9999px) !important;
+    font-weight: var(--fw-semibold, 600) !important;
+    font-size: 11px !important;
+    letter-spacing: .3px;
+}
+
+.badge.bg-primary,
+.badge.bg-brand        { background: var(--adm-brand)   !important; color: #fff; }
+.badge.bg-danger,
+.badge.bg-accent       { background: var(--adm-accent)  !important; color: #fff; }
+.badge.bg-success      { background: var(--adm-success) !important; color: #fff; }
+.badge.bg-warning      { background: var(--adm-gold)    !important; color: #1a1a1a; }
+.badge.bg-info         { background: var(--info, #1E6FA5) !important; color: #fff; }
+
+/* Status badges dùng trong bài viết */
+.badge-status-published { background: var(--success-100, #CCFAEC); color: var(--success-900, #00543A); }
+.badge-status-draft     { background: var(--warning-100, #FFF4CC); color: var(--warning-900, #7A4100); }
+.badge-status-review    { background: var(--info-100,    #CCE5FF); color: var(--info-700,    #0052CC); }
+.badge-status-archived  { background: #f0f0f0; color: #718096; }
+
+
+/* ══════════════════════════════════════════════
+   6. BOX / CARD — override Arise .box
+   ══════════════════════════════════════════════ */
+
+.box {
+    background: var(--adm-card) !important;
+    border: 1px solid var(--adm-border) !important;
+    border-radius: var(--radius-lg, 12px) !important;
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(10,61,98,.06)) !important;
+    transition: box-shadow var(--transition-base, .2s ease);
+}
+
+.box-header {
+    background: transparent !important;
+    border-bottom: 1px solid var(--adm-border) !important;
+    padding: 12px 16px !important;
+}
+
+.box-title {
+    font-family: var(--font-display, 'Work Sans', 'Be Vietnam Pro', Arial, sans-serif) !important;
+    font-size: 14px !important;
+    font-weight: var(--fw-bold, 700) !important;
+    color: var(--adm-brand) !important;
+    margin: 0;
+}
+
+.box-body {
+    padding: 14px 16px !important;
+}
+
+.box-footer {
+    background: var(--adm-bg) !important;
+    border-top: 1px solid var(--adm-border) !important;
+    border-radius: 0 0 var(--radius-lg, 12px) var(--radius-lg, 12px) !important;
+}
+
+
+/* ══════════════════════════════════════════════
+   7. TABLES — responsive + VNKR token styling
+   ══════════════════════════════════════════════ */
+
+/* Wrapper responsive — horizontal scroll trên mobile */
+.table-responsive-vnkr {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-lg, 12px);
+    border: 1px solid var(--adm-border);
+}
+
+.table {
+    font-size: 13px;
+    color: var(--adm-text);
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: var(--adm-brand) !important;
+    color: #fff !important;
+    font-family: var(--font-display, 'Work Sans', 'Be Vietnam Pro', Arial, sans-serif);
+    font-size: 12px !important;
+    font-weight: var(--fw-semibold, 600) !important;
+    letter-spacing: .3px;
+    border: none !important;
+    padding: 10px 12px !important;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 9px 12px !important;
+    border-bottom: 1px solid var(--adm-border) !important;
+    vertical-align: middle;
+    border-top: none !important;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+.table-hover tbody tr:hover td {
+    background: rgba(10,61,98,.04) !important;
+}
+
+/* Table in box — remove rounded corner top */
+.box .table thead th:first-child { border-radius: 0; }
+.box .table thead th:last-child  { border-radius: 0; }
+
+/* Compact table-sm */
+.table-sm thead th { padding: 7px 10px !important; }
+.table-sm tbody td { padding: 6px 10px !important; }
+
+
+/* ══════════════════════════════════════════════
+   8. FORMS — input/label/select
+   ══════════════════════════════════════════════ */
+
+.form-control,
+.form-select {
+    border: 1.5px solid var(--adm-border) !important;
+    border-radius: var(--radius-lg, 12px) !important;
+    font-size: 13.5px !important;
+    color: var(--adm-text) !important;
+    background: var(--adm-bg) !important;
+    transition: border-color var(--transition-fast, .15s ease), box-shadow var(--transition-fast, .15s ease) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--adm-brand) !important;
+    box-shadow: 0 0 0 3px rgba(10,61,98,.12) !important;
+    background: var(--adm-card) !important;
+    outline: none !important;
+}
+
+.form-control::placeholder {
+    color: var(--text-faint, #8a9ab0) !important;
+}
+
+.form-label,
+label {
+    font-size: 13px;
+    font-weight: var(--fw-medium, 500);
+    color: var(--adm-muted);
+    margin-bottom: 5px;
+}
+
+/* Textarea */
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Validation states */
+.is-invalid .form-control,
+.form-control.is-invalid {
+    border-color: var(--adm-accent) !important;
+    box-shadow: 0 0 0 3px rgba(232,65,24,.12) !important;
+}
+
+.is-valid .form-control,
+.form-control.is-valid {
+    border-color: var(--adm-success) !important;
+    box-shadow: 0 0 0 3px rgba(0,168,120,.12) !important;
+}
+
+.invalid-feedback { color: var(--adm-accent); font-size: 12px; }
+.valid-feedback   { color: var(--adm-success); font-size: 12px; }
+
+
+/* ══════════════════════════════════════════════
+   9. STATS TILES — metric cards trên dashboard
+   ══════════════════════════════════════════════ */
+
+.stats-tile {
+    background: var(--adm-card) !important;
+    border: 1px solid var(--adm-border) !important;
+    border-radius: var(--radius-lg, 12px) !important;
+    box-shadow: var(--shadow-sm) !important;
+    padding: 16px 18px !important;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: box-shadow var(--transition-base, .2s ease), transform var(--transition-base, .2s ease);
+}
+
+.stats-tile:hover {
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(10,61,98,.1)) !important;
+    transform: translateY(-2px);
+}
+
+.sale-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg, 12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+/* Sale icon color variants — map sang VNKR tokens */
+.sale-icon.shade-blue   { background: var(--brand-light, #D6E8F5); color: var(--adm-brand); }
+.sale-icon.shade-red    { background: var(--accent-light, #FDECEA); color: var(--adm-accent); }
+.sale-icon.shade-yellow { background: var(--gold-light, #FEF6E0);  color: var(--adm-gold); }
+.sale-icon.shade-green  { background: var(--success-light, #e6f9f1); color: var(--adm-success); }
+
+.sale-details h3 {
+    font-family: var(--font-display, 'Work Sans', 'Be Vietnam Pro', Arial, sans-serif);
+    font-size: 22px !important;
+    font-weight: var(--fw-extrabold, 800) !important;
+    color: var(--adm-brand) !important;
+    margin: 0;
+    line-height: 1;
+}
+
+.sale-details p {
+    font-size: 12px;
+    color: var(--adm-muted);
+    margin: 4px 0 0;
+}
+
+.sale-details a {
+    color: var(--adm-muted);
+    font-size: 12px;
+}
+
+.sale-details a:hover { color: var(--adm-brand); }
+
+
+/* ══════════════════════════════════════════════
+   10. TYPOGRAPHY — Work Sans cho headings admin
+   ══════════════════════════════════════════════ */
+
+body {
+    font-family: var(--font-main, 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif);
+    font-size: 14px;
+    color: var(--adm-text);
+    background: var(--adm-bg) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.box-title,
+.content-header h4 {
+    font-family: var(--font-display, 'Work Sans', 'Be Vietnam Pro', Arial, sans-serif);
+}
+
+/* Page title */
+.content-header .alert {
+    background: transparent !important;
+    border: none !important;
+    padding: 12px 0 !important;
+}
+
+.content-header h4 {
+    font-size: 17px;
+    font-weight: var(--fw-bold, 700);
+    color: var(--adm-brand);
+    margin: 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 12.5px;
+}
+
+.breadcrumb-item a { color: var(--adm-muted); }
+.breadcrumb-item.active { color: var(--adm-brand); font-weight: var(--fw-medium, 500); }
+.breadcrumb-item + .breadcrumb-item::before { color: var(--adm-border); }
+
+
+/* ══════════════════════════════════════════════
+   11. RESPONSIVE
+   ══════════════════════════════════════════════ */
+
+/* Tất cả tables trong admin bọc responsive */
+@media (max-width: 992px) {
+    /* Tables scroll ngang */
+    .box .box-body .table-responsive,
+    .box .box-body > table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Sidebar collapse thành overlay */
+    .sidebar-wrapper {
+        transform: translateX(-100%);
+        transition: transform var(--transition-slow, .3s ease);
+        position: fixed !important;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .sidebar-wrapper.sidebar-open {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0,0,0,.25);
+    }
+
+    /* Main content full width khi sidebar ẩn */
+    .content-wrapper,
+    .main-container > .content-wrapper {
+        margin-left: 0 !important;
+    }
+
+    /* Overlay backdrop khi sidebar mở */
+    .sidebar-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(10,20,40,.45);
+        z-index: 999;
+    }
+
+    .sidebar-backdrop.active { display: block; }
+
+    /* Tighten padding */
+    .box-body    { padding: 12px !important; }
+    .box-header  { padding: 10px 12px !important; }
+    .content-wrapper { padding: 12px !important; }
+}
+
+@media (max-width: 576px) {
+    .stats-tile { padding: 12px !important; }
+    .sale-icon  { width: 40px; height: 40px; font-size: 17px; }
+    .sale-details h3 { font-size: 18px !important; }
+
+    /* Header search ẩn trên mobile nhỏ */
+    .search-container { display: none; }
+
+    .header-actions-container { gap: 8px !important; }
+
+    /* Table xs — chữ nhỏ lại */
+    .table { font-size: 12px; }
+    .table thead th { font-size: 11px !important; padding: 6px 8px !important; }
+    .table tbody td { padding: 6px 8px !important; }
+}
+
+
+/* ══════════════════════════════════════════════
+   12. UTILITIES ADMIN
+   ══════════════════════════════════════════════ */
+
+/* Text truncate với tooltip */
+.text-truncate-admin {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Category label inline */
+.cat-label-admin {
+    display: inline-block;
+    background: var(--brand-light, #D6E8F5);
+    color: var(--adm-brand);
+    font-size: 11.5px;
+    font-weight: var(--fw-semibold, 600);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm, 4px);
+}
+
+/* Rank number trong tables */
+.rank-num {
+    font-weight: var(--fw-extrabold, 800);
+    font-size: 13px;
+    color: var(--adm-muted);
+}
+.rank-num.top { color: var(--adm-accent); }
+
+/* Muted helper text */
+.text-admin-muted { color: var(--adm-muted); font-size: 12px; }
+
+/* Alert flash messages */
+.alert-success {
+    background: var(--success-light, #e6f9f1) !important;
+    border-color: var(--success, #00A878) !important;
+    color: var(--success-text, #007c52) !important;
+    border-radius: var(--radius-md, 8px) !important;
+}
+
+.alert-danger {
+    background: var(--error-light, #FDECEA) !important;
+    border-color: var(--accent, #E84118) !important;
+    color: var(--error-text, #8b1c09) !important;
+    border-radius: var(--radius-md, 8px) !important;
+}
+
+.alert-warning {
+    background: var(--warning-light, #FEF6E0) !important;
+    border-color: var(--gold, #F0A500) !important;
+    color: var(--warning-text, #7a5200) !important;
+    border-radius: var(--radius-md, 8px) !important;
+}
+
+.alert-info {
+    background: var(--info-light, #EFF6FF) !important;
+    border-color: var(--info, #1E6FA5) !important;
+    color: var(--info-text, #0A3D62) !important;
+    border-radius: var(--radius-md, 8px) !important;
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: var(--adm-brand);
+    border-color: var(--adm-border);
+    border-radius: var(--radius-md, 8px) !important;
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--adm-brand) !important;
+    border-color: var(--adm-brand) !important;
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background: var(--brand-light, #D6E8F5);
+    color: var(--adm-brand);
+}
+
+/* Footer admin */
+.app-footer {
+    background: var(--adm-card) !important;
+    border-top: 1px solid var(--adm-border) !important;
+    padding: 12px 20px !important;
+}

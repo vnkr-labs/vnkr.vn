@@ -1,0 +1,147 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--primitive-space-12);
+  position: relative;
+}
+
+/* ── Network badge ────────────────────────────── */
+.networkBadge {
+  background: var(--color-background-inverse);
+  color: var(--color-text-inverse);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--primitive-radius-full);
+}
+
+/* ── Canvas wrap ──────────────────────────────── */
+.canvasWrap {
+  background: #ffffff;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: 12px;
+  cursor: zoom-in;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  line-height: 0;
+}
+
+.canvasWrap:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.canvasWrap:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.canvas {
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* ── Placeholder ──────────────────────────────── */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-secondary);
+  border-radius: var(--radius-card);
+  color: var(--color-text-tertiary);
+  font-size: var(--type-body-sm);
+}
+
+/* ── Labels ───────────────────────────────────── */
+.label {
+  font-size: var(--type-body-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.sublabel {
+  font-family: var(--font-mono);
+  font-size: var(--type-caption);
+  color: var(--color-text-tertiary);
+  margin: 0;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Action buttons ───────────────────────────── */
+.actions {
+  display: flex;
+  gap: var(--gap-sm);
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--primitive-radius-full);
+  border: 1.5px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font-size: var(--type-body-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.actionBtn:hover {
+  background: var(--color-background-secondary);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.actionBtnSuccess {
+  border-color: var(--color-status-success-default);
+  color: var(--color-status-success-text);
+  background: var(--color-status-success-bg);
+}
+
+/* ── Zoom modal ───────────────────────────────── */
+.zoomOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.zoomInner {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius-modal);
+  padding: 16px;
+}
+
+.zoomClose {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-background-inverse);
+  color: var(--color-text-inverse);
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

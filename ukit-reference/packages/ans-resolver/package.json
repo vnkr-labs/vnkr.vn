@@ -1,0 +1,21 @@
+{
+  "name": "@axioledger/ans-resolver",
+  "version": "0.1.0",
+  "description": "ANS Domain Resolver — resolve .axq/.vpx/.sqx/.kpx/.vrq domains",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/index.test.js",
+    "lint": "eslint src/**/*.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "scope": "@axioledger"
+  }
+}

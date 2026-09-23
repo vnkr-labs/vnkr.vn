@@ -1,0 +1,71 @@
+.wrapper { display: flex; flex-direction: column; gap: 5px; width: 100%; }
+
+/* Size variants */
+.wrapper[data-size="large"]  { --input-h: 52px; --input-fs: var(--type-body);    --input-px: 16px; }
+.wrapper[data-size="medium"] { --input-h: 44px; --input-fs: var(--type-body-sm); --input-px: 14px; }
+.wrapper[data-size="small"]  { --input-h: 36px; --input-fs: var(--type-caption); --input-px: 12px; }
+
+.label {
+  font-size: var(--type-caption);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  min-height: var(--input-h);
+  padding: 0 var(--input-px);
+  border: 1.5px solid var(--color-border-default);
+  border-radius: var(--radius-input);
+  background: var(--color-surface-default);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.field:hover { border-color: var(--color-border-strong); }
+
+.wrapper:focus-within .field {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-border-focus) 18%, transparent);
+}
+
+.wrapper[data-state="error"] .field {
+  border-color: var(--color-status-error-default);
+}
+.wrapper[data-state="error"]:focus-within .field {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-status-error-default) 18%, transparent);
+}
+
+.wrapper[data-state="disabled"] .field {
+  background: var(--color-background-disabled);
+  border-color: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: var(--input-fs);
+  color: var(--color-text-primary);
+  min-width: 0;
+  padding: var(--inset-sm) 0;
+  resize: none; /* textarea */
+}
+
+.input::placeholder { color: var(--color-text-tertiary); }
+.input:disabled     { cursor: not-allowed; color: var(--color-text-disabled); }
+.input[readonly]    { cursor: default; }
+
+.iconLeft, .iconRight {
+  display: flex;
+  align-items: center;
+  color: var(--color-icon-tertiary);
+  flex-shrink: 0;
+}
+
+.helper { font-size: var(--type-caption); color: var(--color-text-tertiary); }
+.error  { font-size: var(--type-caption); color: var(--color-status-error-text); }

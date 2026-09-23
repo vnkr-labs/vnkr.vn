@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Cristiano Ronaldo ( CR7 )",
+        "email": "fpg510@gmail.com",
+        "comment": "UNO, DOS, TRES, HALA MADRIDD!! \ud83d\udc4f",
+        "time": "2024-08-04 00:35:52",
+        "replies": [
+            {
+                "name": "Lionel Messi ( M10 )",
+                "reply": "Misstiano Penaldo \ud83e\udd23",
+                "time": "2024-08-04 00:48:11"
+            },
+            {
+                "name": "VNexpress24h",
+                "reply": "oke",
+                "time": "2024-08-12 07:52:51"
+            }
+        ],
+        "likes": 2
+    },
+    {
+        "name": "Lionel Messi ( M10 )",
+        "email": "Messi@gmail.com",
+        "comment": "Vinicius Jr., Rodrygo, Jude Bellingham, Arda Guler, Endrick, Kylian Mbappe.... \ud83d\udc4f",
+        "time": "2024-08-04 00:49:48",
+        "likes": 1
+    },
+    {
+        "name": "Antony  ( Compa 100 tri\u00ea\u0323u Euro)",
+        "email": "Antony2008@gmail.com",
+        "comment": "Erling Haaland  \ud83e\udd23",
+        "time": "2024-08-04 00:53:47",
+        "likes": 1
+    }
+]

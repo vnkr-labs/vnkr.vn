@@ -1,0 +1,46 @@
+{
+  "name": "VNKR — Cộng Đồng Tin Tức",
+  "short_name": "VNKR",
+  "description": "Nền tảng tin tức cộng đồng hoàn toàn miễn phí — Cộng đồng phục vụ cộng đồng.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A3D62",
+  "theme_color": "#0A3D62",
+  "lang": "vi",
+  "dir": "ltr",
+  "categories": ["news", "social"],
+  "icons": [
+    {
+      "src": "/client/images/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/client/images/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tin Mới Nhất",
+      "short_name": "Tin Mới",
+      "description": "Xem các tin tức mới nhất",
+      "url": "/search?s=",
+      "icons": [{ "src": "/client/images/favicon.png", "sizes": "64x64" }]
+    },
+    {
+      "name": "Thảo Luận",
+      "short_name": "Thảo Luận",
+      "description": "Diễn đàn cộng đồng",
+      "url": "/chuyen-muc/thao-luan",
+      "icons": [{ "src": "/client/images/favicon.png", "sizes": "64x64" }]
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

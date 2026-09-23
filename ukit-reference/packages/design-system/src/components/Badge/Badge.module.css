@@ -1,0 +1,75 @@
+/* ── Badge ─────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  border-radius: var(--radius-badge);
+  white-space: nowrap;
+}
+
+.badge[data-size="md"] { font-size: var(--type-caption); padding: 2px 8px; }
+.badge[data-size="sm"] { font-size: 10px; padding: 1px 6px; }
+
+.badge[data-variant="default"] { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+.badge[data-variant="info"]    { background: var(--color-status-info-bg);    color: var(--color-status-info-text); }
+.badge[data-variant="success"] { background: var(--color-status-success-bg); color: var(--color-status-success-text); }
+.badge[data-variant="warning"] { background: var(--color-status-warning-bg); color: var(--color-status-warning-text); }
+.badge[data-variant="error"]   { background: var(--color-status-error-bg);   color: var(--color-status-error-text); }
+
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Chip ──────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  padding: 5px 12px;
+  border-radius: var(--radius-chip);
+  border: 1.5px solid var(--color-border-default);
+  background: var(--color-background-secondary);
+  color: var(--color-text-primary);
+  font-size: var(--type-body-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.chip[role="button"] { cursor: pointer; }
+.chip[role="button"]:hover { background: var(--color-background-tertiary); }
+.chip[role="button"]:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+
+.chip[data-active] {
+  background: var(--color-background-brand);
+  border-color: var(--color-background-brand);
+  color: var(--color-text-inverse);
+}
+
+.chip[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chipIcon { display: flex; align-items: center; }
+.chipLabel { }
+
+.chipRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px; height: 16px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+  opacity: 0.65;
+  transition: opacity var(--transition-fast);
+}
+.chipRemove:hover { opacity: 1; }
